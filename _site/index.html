@@ -35,11 +35,11 @@
   
 
   <!-- code highlighting-->
-  <link rel="stylesheet" href="/lib/highlight/styles/hybrid.css">
+ <!--  <link rel="stylesheet" href="/lib/highlight/styles/hybrid.css">
   <script src="/lib/highlight/highlight.pack.js"></script>
   <script>hljs.initHighlightingOnLoad();</script>
   <script>hljs.configure({ ignore: ['text'] });</script>
-  
+  --> 
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -50,191 +50,148 @@
 
   <body>
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header page-scroll">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand page-scroll" href="#page-top">Soki's Blog</a>
-            </div>
+    <header class="header">
+  <!-- Navigation -->
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://localhost:4000" style="color:#333">Soki's Blog</a>
+        <p class="navbar-text">God does not play dice.</p>
+      </div>
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="hidden">
-                        <a href="#page-top"></a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#services">Services</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#portfolio">Portfolio</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#about">About</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#team">Team</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#contact">Contact</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container-fluid -->
-    </nav>
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right">
+          <li class="nav-search">
+            <form class="navbar-form navbar-left" role="search">
+              <div class="input-group">
+                  <span class="input-group-btn">
+                    <button class="btn btn-default" type="button" style="color:#777">Go!</button>
+                  </span>
+                  <input type="text" class="form-control" placeholder="Search">
+              </div>
+            </form>
+          </li>
+          <li>
+            <a href="#">Archives</a>
+          </li>
+          <li>
+            <a href="#">Links</a>
+          </li>
+          <li>
+            <a href="#">About</a>
+          </li>
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+  </nav>
+</header>
 
   
-    <div class="container content">
-      <header class="masthead">
-        <h3 class="masthead-title">
-          <a href="/" title="Home">Soki's Blog</a>
-          <small></small>
-        </h3>
-      </header>
-
-      <main>
-        <div class="posts">
+    <div class="container main">
+      <div class="container content">
+        <main>
+          <div class="posts">
   
   <article class="post-preview">
     <h1 class="post-title">
-      <a href="/coding4fun/2017/08/01/static-website-with-jekyll.html">
-        从WordPress到静态网站
-      </a>
+      <a href="/coding4fun/2017/08/01/static-website-with-jekyll.html">从WordPress到静态网站</a>
     </h1>
 
-    <time class="post-date">01 Aug 2017</time>
-<!--    <p>[TOC]</p>
+    <div class="content">
+      <p>[TOC]</p>
 
-  -->
-    [TOC]
+<p>作为一个极简主义者，越来越受不了WordPress的臃肿。主要自己平时都是用Markdown来做记录，而WordPress支持的不是很好，另外有时写的md长文通过三方软件导出的html也不造放在wp的什么地方才合适，管理起来还不如几个静态页面来得方便。于是有了某天来个大整顿的想法。</p>
 
-作为一个极简主义者，越来越受不了WordPress的臃肿。主要自己平时都是用Markdown来做记录，而WordPress支持的不是很好，另外有时写的md长文通过三方软件导出的html也不造放在wp的什么地方才合适，管理起来还不如几个静态页面来得方便。于是有了某天来个大整顿的想法。
-
-对前端只停留在css的我，花了整三天时间，从Hexo到Jekyll再到Bootstrap，以及各种markdown2html解析器…最后基本算是从头写了一个基于Jekyll的website theme 😥
-
-Hexo
-
-主流的静态页面生成器有俩，一个Jekyll，一个Hexo，都支持Markdown。 前者用的是Ruby，后者为Node.js。
-
-Hexo会比Jekyll搭建起来更方便一些，而且各种配置项的设计也很便捷，网站themes还很丰富，所以我一开始弄的就是这个。
+<p>对前端只停留在css的我，花了整三天时间，从Hexo到Jekyll再到Bootstrap，以及各种markdown2html解析器…最后基本算是从头写了一个基于Jekyll的website theme 😥</p>
 
 
-  Hexo官方文档
-  next : 一款优雅并且功能强大的主题. [doc] [demo]
+    </div>
+
+    <footer class="post-meta">
+      <div class="post-info">
+        <a class="author" href="http://localhost:4000">lszero</a>
+        <time class="post-date"><a href="/coding4fun/2017/08/01/static-website-with-jekyll.html">01 Aug 2017</a></time>
+        <a class="category" href="#">类别</a>
+        <a class="comments" href="#">No Comments</a>
+        <a class="read-more" href="/coding4fun/2017/08/01/static-website-with-jekyll.html">Read More</a>
+      </div>
+      <hr />
+    </footer>
+  </article>
+  
+  <article class="post-preview">
+    <h1 class="post-title">
+      <a href="/algorithm/2017/04/27/computational-geometry.html">计算几何</a>
+    </h1>
+
+    <div class="content">
+      <h2 id="点和线">点和线</h2>
+<h3 id="基础">基础</h3>
+<p>向量  $\vec{a} = (x_1, y_1), \vec{b} = (x_2, y_2)$.</p>
+
+<p>(1) <strong>点积</strong>:  <script type="math/tex">\vec{a}\cdot \vec{b} = x_1x_2 + y_1y_2 = \vert a \vert \vert b \vert cos\theta</script></p>
+
+<p>(2) <strong>叉积</strong> (cross product):
+<img src="http://lszero.com/wp-content/uploads/2017/04/Screen-Shot-2017-04-27-at-11.20.09-AM.png" style="zoom:50%; float:right" /></p>
+
+<p><script type="math/tex">% <![CDATA[
+\vert \vec{a}\times \vec{b} \vert = det\begin{bmatrix}x_1 & x_2 \\y_1 & y_2 \end{bmatrix}= x_1y_2 - x_2y_1 = \vert a \vert \vert b \vert sin\theta %]]></script>.</p>
+
+<p>$\vec{a}\times \vec{b} =  - \vec{b}\times \vec{a}$</p>
+
+<p>看作由点(0, 0), $\vec{a}$, $\vec{b}$ 和 $\vec{a}+\vec{b}=(x_1+x_2, y_1+y_2)$所形成的平行四边形的有向面积.</p>
+
+<p><strong>右手</strong>定则判断方向.</p>
+
+<p>(3) 向量 $\vec{a}, \vec{b}$ <strong>共线</strong>:  $\vec{a}\times \vec{b} = x_1y_2 - x_2y_1 = 0$</p>
+
+<p>向量 $\vec{a}, \vec{b}$ <strong>垂直</strong>:  $\vec{a}\cdot \vec{b} = x_1x_2 + y_1y_2 = 0$</p>
+
+<p>(4) 点 $P_1 = (x_1, y_1), P2 = (x_2, y_2)$, 则 $\overrightarrow{P_1P_2} = (x_2-x_1, y_2-y_1)$.</p>
+
+<p>(5) 判断三点共线: <code class="highlighter-rouge">叉乘==0</code>.</p>
+
+<p>(6) 判断点P在线段$P_1P_2$上:</p>
+
+<p><code class="highlighter-rouge">叉乘==0 &amp;&amp; (P1.x-P.x)*(P2.x-P.x)&lt;0 &amp;&amp; (P1.y-P.y)*(P2.y-P.y)&lt;0</code></p>
+
+<p>(7) 判断两直线平行: <code class="highlighter-rouge">叉乘==0</code>.</p>
 
 
-搭建方法上面这两个链接写的很详细。
+    </div>
 
-这里主要记录一下让Hexo支持LaTex的注意地方。Hexo用MathJax时会有一些转义问题，经我自己测试，最好的方式是用hexo-renderer-pandoc渲染器代替原有的hexo-renderer-marked。而网上说的用hexo-renderer-kramed，对矩阵的情况显示的不好。
-
-$ npm uninstall hexo-renderer-marked --save
-$ npm install hexo-renderer-kramed --save
-
-
-
-Jekyll
-
-其实用Hexo/Jekyll+现成的主题，很方便就能搭出一个静态网站出来。只是除了代码高亮、LaTex这些功能之外，我还想能区分出code blocks和普通无需highlighting的&lt;pre&gt;部分，还有其他一些改动。因为markdown解析的原因，基本所有themes出的效果都是将两者统一处理了。强迫症（其实就是zuo），主题挑来挑去都没找到个合心意的，比如next这种，太复杂，让我一个前端白痴改，哈，那还是自己从头写一个比较符合程序员造轮子的习惯吧。。。（捂脸
-
-（至于为啥从Hexo转到了Jekyll，原因未明）
-
-Get Started
-
-Jekyll Doc (中文版，内容比较旧)
-
-Create Theme From Scratch
-
-用jekyll new-theme命令，就可以创建出一个theme需要的基本目录项。
-
-jekyll new-theme jekyll-theme-awesome
-
-
-
-_config.yml是配置文件。
-
-默认配置参见：https://jekyllrb.com/docs/configuration/#default-configuration
-
-下面对自己的_config.yml文件中的内容做一些说明：
-
-markdown: kramdown
-
-
-
-使用kramdown作为markdown的解析器。
-
-plugins:
-  - jekyll-paginate
-paginate: 5
-paginate_path: "/pages:num/"
-
-
-
-分页显示
-
-用于index.html里对文章的分页显示功能。参见https://jekyllrb.com/docs/pagination/。
-
-在配置文件_config.yml中添加：
-
-plugins:
-  - jekyll-paginate
-paginate: 5
-paginate_path: "/pages:num/"
-
-
-
-其中，paginate: 5 设置的是分页数；
-paginate_path: “/pages:num/” 设置的是URL的显示格式，如http://localhost:4000/pages2/。
-
-LaTex支持
-
-在配置文件_config.yml中添加：
-
-mathjax: false
-
-
-
-修改markdown解析器
-
-在配置文件_config.yml中，默认使用的是kramdown解析器。
-
-markdown: kramdown
-
-
-
-
-    <footer>
-      <a class="morebox" href="/coding4fun/2017/08/01/static-website-with-jekyll.html.html">Read More →</a>
-      <hr size="6px" color="#4285F4">
+    <footer class="post-meta">
+      <div class="post-info">
+        <a class="author" href="http://localhost:4000">lszero</a>
+        <time class="post-date"><a href="/algorithm/2017/04/27/computational-geometry.html">27 Apr 2017</a></time>
+        <a class="category" href="#">类别</a>
+        <a class="comments" href="#">No Comments</a>
+        <a class="read-more" href="/algorithm/2017/04/27/computational-geometry.html">Read More</a>
+      </div>
+      <hr />
     </footer>
   </article>
   
 </div>
 
-<div class="pagination">
-  
-    <span class="pagination-item older">Older</span>
-  
-  
-    <span class="pagination-item newer">Newer</span>
-  
-</div>
 
-      </main>
-
+        </main>
+      </div>
       <footer class="footer">
-        <small>
-          &copy; <time datetime="2017-08-02T16:31:47+08:00">2017</time>. All rights reserved.
-        </small>
-      </footer>
+          <small>
+            &copy; <time datetime="2017-08-04T03:19:42+08:00">2017</time>. All rights reserved.
+          </small>
+        </footer>
     </div>
 
     

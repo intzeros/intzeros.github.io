@@ -35,11 +35,11 @@
   
 
   <!-- code highlighting-->
-  <link rel="stylesheet" href="/lib/highlight/styles/hybrid.css">
+ <!--  <link rel="stylesheet" href="/lib/highlight/styles/hybrid.css">
   <script src="/lib/highlight/highlight.pack.js"></script>
   <script>hljs.initHighlightingOnLoad();</script>
   <script>hljs.configure({ ignore: ['text'] });</script>
-  
+  --> 
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -50,66 +50,64 @@
 
   <body>
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header page-scroll">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand page-scroll" href="#page-top">Soki's Blog</a>
-            </div>
+    <header class="header">
+  <!-- Navigation -->
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://localhost:4000" style="color:#333">Soki's Blog</a>
+        <p class="navbar-text">God does not play dice.</p>
+      </div>
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="hidden">
-                        <a href="#page-top"></a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#services">Services</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#portfolio">Portfolio</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#about">About</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#team">Team</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#contact">Contact</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container-fluid -->
-    </nav>
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right">
+          <li class="nav-search">
+            <form class="navbar-form navbar-left" role="search">
+              <div class="input-group">
+                  <span class="input-group-btn">
+                    <button class="btn btn-default" type="button" style="color:#777">Go!</button>
+                  </span>
+                  <input type="text" class="form-control" placeholder="Search">
+              </div>
+            </form>
+          </li>
+          <li>
+            <a href="#">Archives</a>
+          </li>
+          <li>
+            <a href="#">Links</a>
+          </li>
+          <li>
+            <a href="#">About</a>
+          </li>
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+  </nav>
+</header>
 
   
-    <div class="container content">
-      <header class="masthead">
-        <h3 class="masthead-title">
-          <a href="/" title="Home">Soki's Blog</a>
-          <small></small>
-        </h3>
-      </header>
-
-      <main>
-        <article class="post">
+    <div class="container main">
+      <div class="container content">
+        <main>
+          <article class="post">
   <h1 class="post-title">从WordPress到静态网站</h1>
-  <time datetime="2017-08-01T20:00:00+08:00" class="post-date">01 Aug 2017</time>
+  <hr />
   <p>[TOC]</p>
 
 <p>作为一个极简主义者，越来越受不了WordPress的臃肿。主要自己平时都是用Markdown来做记录，而WordPress支持的不是很好，另外有时写的md长文通过三方软件导出的html也不造放在wp的什么地方才合适，管理起来还不如几个静态页面来得方便。于是有了某天来个大整顿的想法。</p>
 
-<p>对前端只停留在css的我，花了整三天时间，从Hexo到Jekyll再到Bootstrap，以及各种markdown2html解析器…最后基本算是从头写了一个基于Jekyll的website theme 😥</p>
+<p>对前端只停留在css的我，花了整三天时间，从Hexo到Jekyll再到Bootstrap，以及各种markdown2html解析器…最后基本算是从头写了一个基于Jekyll的website theme 😥<!-- more --></p>
 
 <h1 id="hexo">Hexo</h1>
 
@@ -126,10 +124,9 @@
 
 <p>这里主要记录一下让Hexo支持LaTex的注意地方。Hexo用MathJax时会有一些<a href="http://2wildkids.com/2016/10/06/%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86Hexo%E5%92%8CMathJax%E7%9A%84%E5%85%BC%E5%AE%B9%E9%97%AE%E9%A2%98/#">转义问题</a>，经我自己测试，最好的方式是用hexo-renderer-pandoc渲染器代替原有的hexo-renderer-marked。而网上说的用hexo-renderer-kramed，对矩阵的情况显示的不好。</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>$ npm uninstall hexo-renderer-marked --save
+<pre><code class="language-text">$ npm uninstall hexo-renderer-marked --save
 $ npm install hexo-renderer-kramed --save
 </code></pre>
-</div>
 
 <h1 id="jekyll">Jekyll</h1>
 
@@ -141,77 +138,437 @@ $ npm install hexo-renderer-kramed --save
 
 <p><a href="https://jekyllrb.com/docs/home/">Jekyll Doc</a> (<a href="http://jekyll.com.cn/docs/home/">中文版</a>，内容比较旧)</p>
 
-<h2 id="create-theme-from-scratch">Create Theme From Scratch</h2>
+<p>本来在本地用Homebrew安装一路顺畅，但放到服务器就各种问题。</p>
+
+<p>首先直接用apt-get下载的Ruby版本比较旧。</p>
+
+<div class="language-shell highlighter-rouge"><pre class="highlight"><code><span class="c"># Install Ruby &amp; RubyGems</span>
+<span class="gp">$ </span>sudo apt-add-repository ppa:brightbox/ruby-ng
+<span class="gp">$ </span>sudo apt-get update
+<span class="gp">$ </span>sudo apt-get install ruby2.4
+
+<span class="c"># Install Jekyll and Bundler gems</span>
+<span class="gp">$ </span>sudo gem install jekyll bundler
+</code></pre>
+</div>
+<p>然后在<code class="highlighter-rouge">gem install jekyll</code>时会报错：</p>
+
+<pre><code class="language-text">error: could not find a valid gem (&gt;= 0) in any repository
+</code></pre>
+
+<p>参考<a href="https://github.com/jekyll/jekyll/issues/1409">github issues</a>，F*k GWF，需要将https://rubygems.org/换成其他可访问的镜像，如<a href="http://gems.ruby-china.org/">Ruby China 镜像</a>。</p>
+
+<div class="language-shell highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>gem sources --remove https://rubygems.org/
+<span class="gp">$ </span>gem sources -a https://gems.ruby-china.org/
+<span class="gp">$ </span>gem sources -l
+<span class="k">***</span> CURRENT SOURCES <span class="k">***</span>
+https://gems.ruby-china.org/   
+<span class="c"># 确保只有 gems.ruby-china.org</span>
+</code></pre>
+</div>
+
+<p>重新尝试 install jekyll，还是报错：</p>
+
+<pre><code class="language-text">current directory: /var/lib/gems/2.4.0/gems/ffi-1.9.18/ext/ffi_c
+/usr/bin/ruby2.4 -r ./siteconf20170801-1836-1n75umz.rb extconf.rb
+mkmf.rb can't find header files for ruby at /usr/lib/ruby/include/ruby.h
+</code></pre>
+
+<p>解决方式：</p>
+
+<div class="language-shell highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>sudo apt-get install ruby2.4-dev
+</code></pre>
+</div>
+
+<p>之后就可以正常安装jekyll了。</p>
+
+<p>另外，根据<a href="http://gems.ruby-china.org/">Ruby China 镜像</a>，你可以用 Bundler 的 <a href="http://bundler.io/v1.5/bundle_config.html#gem-source-mirrors">Gem 源代码镜像命令</a>：</p>
+
+<pre><code class="language-text">$ bundle config mirror.https://rubygems.org https://gems.ruby-china.org
+</code></pre>
+<p>这样就不用改你的 Gemfile 中的 source了。</p>
+
+<pre><code class="language-text">source "https://rubygems.org"
+...
+</code></pre>
+
+<hr />
+
+<p>用jekyll新建一个site:</p>
+
+<pre><code class="language-text">$ jekyll new myblog
+$ cd myblog
+$ bundle exec jekyll serve
+</code></pre>
+
+<p>打开http://localhost:4000测试。</p>
+
+<p>默认使用的是Minima theme. 目前基于jekyll 3.x的themes还比较少。
+因为我是自己新建的theme，就不用这样方式了。</p>
+
+<hr />
+
+<p>启动服务：</p>
+
+<pre><code class="language-text"># 启动服务
+$ jekyll serve
+
+# 启动服务(gem-based theme)
+$ bundle exec jekyll serve
+
+# 脱离终端在后台运行
+# 如果你想关闭服务器，可以使用`kill -9 1234`命令，"1234" 是进程号（PID）。
+# 如果你找不到进程号，那么就用`ps aux | grep jekyll`命令来查看，然后关闭服务器。
+$ jekyll serve --detach
+
+# 和jekyll serve相同，但是会查看变更并且自动再生成。
+$ jekyll serve --watch
+</code></pre>
+
+<h2 id="部署到vps">部署到VPS</h2>
+
+<p>网上清一色都是通过github pages来发布的站点，然后通过修改<code class="highlighter-rouge">CNAME</code>文件来达到绑定域名的目的。</p>
+
+<p>我这里是放到VPS上，需要自己搭建web server环境。</p>
+
+<blockquote>
+  <p>Jekyll is a static site generator, not a webserver. You may generate the static files and serve with webserver like <code class="highlighter-rouge">nginx</code>, which provides such abilities.</p>
+</blockquote>
+
+<p>参考：</p>
+
+<ul>
+  <li><a href="https://www.digitalocean.com/community/tutorials/how-to-get-started-with-jekyll-on-an-ubuntu-vps">How To Get Started with Jekyll on an Ubuntu VPS</a></li>
+  <li><a href="https://thomasroest.com/2016/11/05/set-up-a-jekyll-site-on-a-vps-with-ubuntu-nginx-and-letsencrypt.html">Set up a Jekyll site on a vps with Ubuntu, Nginx and Letsencrypt</a></li>
+</ul>
+
+<p>因为是静态网站，所以Jekyll其实安装在本地就可以，静态页面也放在本地。然后将Jekyll生成的静态HTML文件（<code class="highlighter-rouge">_site</code>目录下）通过类似FTP的方式上传到VPS就行。</p>
+
+<p>而是由，并放在，</p>
+
+<ul>
+  <li><a href="http://jekyllrb.com/">Jekyll</a> for write our content</li>
+  <li><a href="http://nginx.org/en/">nginx</a> to serve our content</li>
+  <li><a href="http://www.capistranorb.com/">Capistrano</a> to deploy</li>
+</ul>
+
+<pre><code class="language-text">sudo gem install capistrano
+</code></pre>
+
+<p>scp</p>
+
+<p><code class="highlighter-rouge">rsync</code>命令是一个远程数据同步工具，可通过LAN/WAN快速同步多台主机间的文件。rsync使用所谓的“rsync算法”来使本地和远程两个主机之间的文件达到同步，这个算法只传送两个文件的不同部分，而不是每次都整份传送，因此速度相当快。</p>
+
+<h2 id="create-new-theme-from-scratch">Create New Theme From Scratch</h2>
 
 <p>用<code class="highlighter-rouge">jekyll new-theme</code>命令，就可以创建出一个theme需要的基本目录项。</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>jekyll new-theme jekyll-theme-awesome
+<pre><code class="language-text">jekyll new-theme jekyll-theme-awesome
+</code></pre>
+
+<h3 id="目录结构">目录结构</h3>
+
+<pre><code class="language-text">.
+├── _config.yml
+├── _drafts
+|   ├── begin-with-the-crazy-ideas.textile
+|   └── on-simplicity-in-technology.markdown
+├── _includes
+|   ├── footer.html
+|   └── header.html
+├── _layouts
+|   ├── default.html
+|   ├── post.html
+├── _posts
+|   ├── 2007-10-29-why-every-programmer-should-play-nethack.textile
+|   └── 2009-04-26-barcamp-boston-4-roundup.textile
+├── _data
+|   └── members.yml
+├── _site
+└── index.html
+</code></pre>
+
+<p>说明：</p>
+
+<p><code class="highlighter-rouge">_config.yml</code> 是配置文件。默认配置参见：https://jekyllrb.com/docs/configuration/#default-configuration</p>
+
+<p><code class="highlighter-rouge">_includes</code> 里的文件为了布局重用。</p>
+
+<p><code class="highlighter-rouge">_layouts</code> 站点布局模板。布局可以在 <a href="http://jekyll.com.cn/docs/frontmatter/">YAML 头信息</a>中根据不同文章进行选择。</p>
+
+<p><code class="highlighter-rouge">_posts</code> 将md文件以<code class="highlighter-rouge">2017-08-01-welcome-to-jekyll.md</code>的格式放到该目录中。</p>
+
+<p><code class="highlighter-rouge">_drafts</code> 中的md文件直接以<code class="highlighter-rouge">title.md</code>命名，并不会发布出来。当运行<code class="highlighter-rouge">jekyll serve</code>或者<code class="highlighter-rouge">jekyll build --drafts</code>时，草稿文章会被加上日期值并发布出来。</p>
+
+<p><code class="highlighter-rouge">_site</code> 存放jekyll转化完成的html文件。有时修改效果不生效，可以尝试删除该目录。</p>
+
+<h3 id="说明">说明</h3>
+
+<p>若在<code class="highlighter-rouge">index.html</code>的YAML头信息中加入：</p>
+
+<pre><code class="language-text">---
+layout: post
+...
+---
+</code></pre>
+
+<p>则在<code class="highlighter-rouge">default.html</code>中调用<code class="highlighter-rouge"><span class="p">{</span><span class="err">{</span><span class="w"> </span><span class="err">content</span><span class="w"> </span><span class="p">}</span><span class="err">}</span></code>，就会把<code class="highlighter-rouge">index.html</code>中的所有内容放到此处。</p>
+
+<h3 id="bootstrap">Bootstrap</h3>
+
+<p>使用Bootstrap前端框架真是省了很多事。</p>
+
+<p>下载<a href="https://github.com/twbs/bootstrap/releases/download/v3.3.7/bootstrap-3.3.7-dist.zip">Bootstrp</a>，我这里将解压后的文件放到了<code class="highlighter-rouge">assets/bootstrap-3.3.7-dist</code> 目录下。</p>
+
+<p>参考Bootstrap官网里给的<a href="http://getbootstrap.com/getting-started/#template">基本HTML模板</a>，</p>
+
+<p>（1）将下面这行代码改成自己的相应路径后，放到<code class="highlighter-rouge">head.html</code> 的<code class="highlighter-rouge">&lt;head&gt;&lt;/head&gt;</code> 标签中。</p>
+
+<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="c">&lt;!-- Bootstrap --&gt;</span>
+<span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">href=</span><span class="s">"/assets/bootstrap-3.3.7-dist/css/bootstrap.min.css"</span><span class="nt">&gt;</span>
 </code></pre>
 </div>
 
-<p><code class="highlighter-rouge">_config.yml</code>是配置文件。</p>
+<p>（2）将下两行改成自己的相应路径后，放到<code class="highlighter-rouge">default.html</code> 的<code class="highlighter-rouge">&lt;body&gt;&lt;/body&gt;</code> 标签中的最下方，为了最后加载。</p>
 
-<p>默认配置参见：https://jekyllrb.com/docs/configuration/#default-configuration</p>
+<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="c">&lt;!-- jQuery (necessary for Bootstrap's JavaScript plugins) --&gt;</span>
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="c">&lt;!-- Include all compiled plugins (below), or include individual files as needed --&gt;</span>
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"/assets/bootstrap-3.3.7-dist/js/bootstrap.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+</code></pre>
+</div>
+
+<p>若没效果，删除 <code class="highlighter-rouge">_site</code> 目录再试试，或者用命令重新 build。</p>
+
+<h3 id="导航条">导航条</h3>
+
+<p>参考Bootstrap官网给的<a href="http://getbootstrap.com/components/#navbar">示例代码</a>，写入<code class="highlighter-rouge">header.html</code>文件中。</p>
+
+<p>然后在<code class="highlighter-rouge">default.html</code>的<code class="highlighter-rouge">&lt;body&gt;&lt;/body&gt;</code>标签中引入<code class="highlighter-rouge"><span class="p">{</span><span class="err">%</span><span class="w"> </span><span class="err">include</span><span class="w"> </span><span class="err">header.html</span><span class="w"> </span><span class="err">%</span><span class="p">}</span></code>。</p>
+
+<h3 id="搜索框">搜索框</h3>
+
+<p>参考：<a href="http://getbootstrap.com/components/#input-groups-buttons">Button addons</a> &amp; <a href="http://getbootstrap.com/components/#navbar-forms">Forms</a></p>
+
+<p>将下面代码加入<code class="highlighter-rouge">header.html</code>中：</p>
+
+<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;form</span> <span class="na">class=</span><span class="s">"navbar-form navbar-left"</span> <span class="na">role=</span><span class="s">"search"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"input-group"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"input-group-btn"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;button</span> <span class="na">class=</span><span class="s">"btn btn-default"</span> <span class="na">type=</span><span class="s">"button"</span><span class="nt">&gt;</span>Go!<span class="nt">&lt;/button&gt;</span>
+    <span class="nt">&lt;/span&gt;</span>
+    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">class=</span><span class="s">"form-control"</span> <span class="na">placeholder=</span><span class="s">"Search"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/form&gt;</span>
+</code></pre>
+</div>
+
+<h3 id="文章摘要">文章摘要</h3>
+
+<p>在<code class="highlighter-rouge">index.html</code> 中显示文章摘要。参见<a href="https://jekyllrb.com/docs/posts/#post-excerpts">https://jekyllrb.com/docs/posts/#post-excerpts</a>。</p>
+
+<p>（1）自带的<code class="highlighter-rouge"><span class="p">{</span><span class="err">{</span><span class="w"> </span><span class="err">post.excerpt</span><span class="w"> </span><span class="p">}</span><span class="err">}</span></code> 会自动取第一段的内容作为摘要。</p>
+
+<p>若想自定义，</p>
+
+<p>（2）在<code class="highlighter-rouge">_config.yml</code> 文件中指定摘要的分隔符：</p>
+
+<pre><code class="language-text">excerpt_separator: &lt;!-- more --&gt;
+</code></pre>
+
+<p>这样会覆盖自带的<code class="highlighter-rouge"><span class="p">{</span><span class="err">{</span><span class="w"> </span><span class="err">post.excerpt</span><span class="w"> </span><span class="p">}</span><span class="err">}</span></code>功能，然后在文章内容需要分隔的摘要后面加上<code class="highlighter-rouge">&lt;!-- more --&gt;</code>。而<code class="highlighter-rouge">&lt;!-- more --&gt;</code> 本身作为注释，不会影响 markdown 的显示。</p>
+
+<p>（3）或者采用这样的方式：</p>
+
+<pre><code class="language-text">{{ post.content | strip_html | truncatewords:75 }}
+</code></pre>
+
+<h3 id="分页功能">分页功能</h3>
+
+<p>用于<code class="highlighter-rouge">index.html</code> 里对文章的分页显示功能。</p>
+
+<p>（1）首先安装<code class="highlighter-rouge">jekyll-paginate</code>：</p>
+
+<pre><code class="language-text">$ sudo gem install jekyll-paginate
+</code></pre>
+
+<p>在配置文件<code class="highlighter-rouge">_config.yml</code>中添加：</p>
+
+<pre><code class="language-text">plugins:
+  - jekyll-paginate
+paginate: 5
+paginate_path: "/pages:num/"
+</code></pre>
+
+<p>其中，<code class="highlighter-rouge">paginate: 5</code> 设置的是分页数；
+<code class="highlighter-rouge">paginate_path: "/pages:num/"</code> 设置的是URL的显示格式，如 http://localhost:4000/pages2/。</p>
+
+<p>（2）然后参考<a href="https://jekyllrb.com/docs/pagination/">https://jekyllrb.com/docs/pagination/</a>在<code class="highlighter-rouge">index.html</code>添加分页功能，并结合Bootstrap里的分页样式修改：<a href="http://getbootstrap.com/components/#pagination">http://getbootstrap.com/components/#pagination</a>。</p>
+
+<h3 id="添加about-me-边栏">添加about me 边栏</h3>
+
+<h3 id="设置固定链接">设置固定链接</h3>
+
+<h3 id="首页添加最近文章">首页添加最近文章</h3>
+
+<h3 id="首页为每篇文章添加分类标签发表日期以及评论连接">首页为每篇文章添加分类、标签、发表日期以及评论连接</h3>
+
+<h3 id="添加返回顶部功能">添加返回顶部功能</h3>
+
+<h3 id="文章版权说明">文章版权说明</h3>
+
+<h3 id="添加404页面">添加404页面</h3>
+
+<h3 id="使用多说评论">使用多说评论</h3>
+
+<h3 id="分类">分类</h3>
+
+<h3 id="tags">tags</h3>
+
+<h3 id="相关文章">相关文章</h3>
+
+<h3 id="页面宽度">页面宽度</h3>
+
+<pre><code class="language-text">.container {
+    max-width: 970px;
+}
+</code></pre>
+
+<h3 id="_configyml-配置">_config.yml 配置</h3>
+
+<p><code class="highlighter-rouge">_config.yml</code>里的默认配置参见：https://jekyllrb.com/docs/configuration/#default-configuration</p>
 
 <p>下面对自己的<code class="highlighter-rouge">_config.yml</code>文件中的内容做一些说明：</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>markdown: kramdown
+<pre><code class="language-text">markdown: kramdown
 </code></pre>
-</div>
 
 <p>使用<code class="highlighter-rouge">kramdown</code>作为markdown的解析器。</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>plugins:
-  - jekyll-paginate
-paginate: 5
-paginate_path: "/pages:num/"
-</code></pre>
-</div>
-
-<h3 id="分页显示">分页显示</h3>
-
-<p>用于index.html里对文章的分页显示功能。参见https://jekyllrb.com/docs/pagination/。</p>
-
-<p>在配置文件<code class="highlighter-rouge">_config.yml</code>中添加：</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>plugins:
-  - jekyll-paginate
-paginate: 5
-paginate_path: "/pages:num/"
-</code></pre>
-</div>
-
-<p>其中，paginate: 5 设置的是分页数；
-paginate_path: “/pages:num/” 设置的是URL的显示格式，如http://localhost:4000/pages2/。</p>
+<h2 id="extras">Extras</h2>
 
 <h3 id="latex支持">LaTex支持</h3>
 
+<p>参考：<a href="https://jekyllrb.com/docs/extras/#math-support">https://jekyllrb.com/docs/extras/#math-support</a></p>
+
+<p>我这里为了避免所有pages都引入mathjax相关js代码，采用了不同的设置：</p>
+
 <p>在配置文件<code class="highlighter-rouge">_config.yml</code>中添加：</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>mathjax: false
+<pre><code class="language-text">mathjax: false
 </code></pre>
-</div>
+
+<p>在<code class="highlighter-rouge">head.html</code>中添加：</p>
+
+<p>然后在需要引入mathjax的md文件头中加入<code class="highlighter-rouge">mathjax: true</code>，如：</p>
+
+<pre><code class="language-text">---
+layout: post
+...
+mathjax: true
+---
+</code></pre>
+
+<h4 id="单公式的支持">单$公式的支持</h4>
+
+<pre><code class="language-text">&lt;script type="text/x-mathjax-config"&gt;
+  MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+      inlineMath: [ ['$','$'] ],
+      displayMath: [ ['$$','$$'] ],
+      processEscapes: true,
+    }
+  });
+&lt;/script&gt;
+</code></pre>
+
+<h4 id="mathjax转义问题">mathjax转义问题</h4>
+
+<p>若latex公式中包含<code class="highlighter-rouge">|</code>符，如<code class="highlighter-rouge">|a|</code>，会被markdown解析器当成<code class="highlighter-rouge">&lt;table&gt;&lt;/table&gt;</code>来处理。</p>
+
+<p>又如，定义矩阵时，其中的换行<code class="highlighter-rouge">\\</code>也会被解析出问题，把第一个<code class="highlighter-rouge">\</code>当成了转义符。</p>
+
+<p>解决方式：</p>
+
+<p>对第一种情况，根据 <a href="https://kramdown.gettalong.org/syntax.html#math-blocks">Syntax | Kramdown</a> 上的说明，将<code class="highlighter-rouge">|</code>用<code class="highlighter-rouge">\vert</code>来代替。</p>
+
+<p>对第二种情况，用双<code class="highlighter-rouge">$$</code>符解决转义问题。</p>
+
+<h3 id="code-highlighting">Code Highlighting</h3>
 
 <h3 id="修改markdown解析器">修改markdown解析器</h3>
 
 <p>在配置文件<code class="highlighter-rouge">_config.yml</code>中，默认使用的是<code class="highlighter-rouge">kramdown</code>解析器。</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>markdown: kramdown
+<pre><code class="language-text">markdown: kramdown
 </code></pre>
-</div>
+
+<p><code class="highlighter-rouge">#404145</code></p>
+
+<p>sudo lsof -i :4000
+kill -9 进程id</p>
+
+<h2 id="问题">问题</h2>
+
+<p><code class="highlighter-rouge"><span class="p">{</span><span class="err">{</span><span class="w"> </span><span class="err">xxx</span><span class="w"> </span><span class="p">}</span><span class="err">}</span></code> 或者 <code class="highlighter-rouge"><span class="p">{</span><span class="err">%</span><span class="w"> </span><span class="err">xxx</span><span class="w"> </span><span class="err">%</span><span class="p">}</span></code> 显示不出来。</p>
+
+<p>解决方式：</p>
+
+<p>（1）</p>
+
+<pre><code class="language-text">\{\{ xxx \}\}
+</code></pre>
+
+<p>（2）参考：<a href="https://stackoverflow.com/questions/24102498/escaping-double-curly-braces-inside-a-markdown-code-block-in-jekyll">Escaping double curly braces inside a markdown code block in Jekyll</a></p>
+
+<pre><code class="language-text">{% raw %}    
+This is a test: {{ xxx }}
+{% endraw %}
+</code></pre>
+<p>（3）那么问题又来了，如何显示上面的 raw 和 endraw 呢？参考：<a href="http://www.cnblogs.com/OceanHeaven/p/6959669.html">jekyll 如何转义字符</a></p>
 
 
+  <br><br>
+
+  <footer class="post-meta">
+      <div class="post-info">
+        <a class="author" href="http://localhost:4000">lszero</a>
+        <time class="post-date"><a href="">01 Aug 2017</a></time>
+        <a class="category" href="#">类别</a>
+        <a class="comments" href="#">No Comments</a>
+      </div>
+      <hr />
+    </footer>
 </article>
 
 
+<aside class="related">
+  <h3>Related Posts</h3>
+  <ul class="related-posts">
+    
+      <li>
+        <a href="/algorithm/2017/04/27/computational-geometry.html">
+          计算几何
+          <small><time datetime="2017-04-27T17:16:00+08:00">27 Apr 2017</time></small>
+        </a>
+      </li>
+    
+  </ul>
+</aside>
 
-      </main>
 
+        </main>
+      </div>
       <footer class="footer">
-        <small>
-          &copy; <time datetime="2017-08-02T16:31:47+08:00">2017</time>. All rights reserved.
-        </small>
-      </footer>
+          <small>
+            &copy; <time datetime="2017-08-04T03:19:42+08:00">2017</time>. All rights reserved.
+          </small>
+        </footer>
     </div>
 
     

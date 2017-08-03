@@ -9,7 +9,7 @@ categories: coding4fun
 
 作为一个极简主义者，越来越受不了WordPress的臃肿。主要自己平时都是用Markdown来做记录，而WordPress支持的不是很好，另外有时写的md长文通过三方软件导出的html也不造放在wp的什么地方才合适，管理起来还不如几个静态页面来得方便。于是有了某天来个大整顿的想法。
 
-对前端只停留在css的我，花了整三天时间，从Hexo到Jekyll再到Bootstrap，以及各种markdown2html解析器...最后基本算是从头写了一个基于Jekyll的website theme 😥
+对前端只停留在css的我，花了整三天时间，从Hexo到Jekyll再到Bootstrap，以及各种markdown2html解析器...最后基本算是从头写了一个基于Jekyll的website theme 😥<!-- more -->
 
 # Hexo
 
@@ -30,7 +30,6 @@ $ npm install hexo-renderer-kramed --save
 ```
 
 
-
 # Jekyll
 
 其实用Hexo/Jekyll+现成的主题，很方便就能搭出一个静态网站出来。只是除了代码高亮、LaTex这些功能之外，我还想能区分出code blocks和普通无需highlighting的<pre>部分，还有其他一些改动。因为markdown解析的原因，基本所有themes出的效果都是将两者统一处理了。强迫症（其实就是zuo），主题挑来挑去都没找到个合心意的，比如next这种，太复杂，让我一个前端白痴改，哈，那还是自己从头写一个比较符合程序员造轮子的习惯吧。。。（捂脸
@@ -41,7 +40,135 @@ $ npm install hexo-renderer-kramed --save
 
 [Jekyll Doc](https://jekyllrb.com/docs/home/) ([中文版](http://jekyll.com.cn/docs/home/)，内容比较旧)
 
-## Create Theme From Scratch
+本来在本地用Homebrew安装一路顺畅，但放到服务器就各种问题。
+
+首先直接用apt-get下载的Ruby版本比较旧。
+
+```shell
+# Install Ruby & RubyGems
+$ sudo apt-add-repository ppa:brightbox/ruby-ng
+$ sudo apt-get update
+$ sudo apt-get install ruby2.4
+
+# Install Jekyll and Bundler gems
+$ sudo gem install jekyll bundler
+```
+然后在`gem install jekyll`时会报错：
+
+```
+error: could not find a valid gem (>= 0) in any repository
+```
+
+参考[github issues](https://github.com/jekyll/jekyll/issues/1409)，F*k GWF，需要将https://rubygems.org/换成其他可访问的镜像，如[Ruby China 镜像](http://gems.ruby-china.org/)。
+
+```shell
+$ gem sources --remove https://rubygems.org/
+$ gem sources -a https://gems.ruby-china.org/
+$ gem sources -l
+*** CURRENT SOURCES ***
+https://gems.ruby-china.org/   
+# 确保只有 gems.ruby-china.org
+```
+
+重新尝试 install jekyll，还是报错：
+
+```
+current directory: /var/lib/gems/2.4.0/gems/ffi-1.9.18/ext/ffi_c
+/usr/bin/ruby2.4 -r ./siteconf20170801-1836-1n75umz.rb extconf.rb
+mkmf.rb can't find header files for ruby at /usr/lib/ruby/include/ruby.h
+```
+
+解决方式：
+
+```shell
+$ sudo apt-get install ruby2.4-dev
+```
+
+之后就可以正常安装jekyll了。
+
+另外，根据[Ruby China 镜像](http://gems.ruby-china.org/)，你可以用 Bundler 的 [Gem 源代码镜像命令](http://bundler.io/v1.5/bundle_config.html#gem-source-mirrors)：
+
+```
+$ bundle config mirror.https://rubygems.org https://gems.ruby-china.org
+```
+这样就不用改你的 Gemfile 中的 source了。
+
+```
+source "https://rubygems.org"
+...
+```
+
+---
+
+用jekyll新建一个site:
+
+```
+$ jekyll new myblog
+$ cd myblog
+$ bundle exec jekyll serve
+```
+
+打开http://localhost:4000测试。
+
+默认使用的是Minima theme. 目前基于jekyll 3.x的themes还比较少。
+因为我是自己新建的theme，就不用这样方式了。
+
+---
+
+启动服务：
+
+```
+# 启动服务
+$ jekyll serve
+
+# 启动服务(gem-based theme)
+$ bundle exec jekyll serve
+
+# 脱离终端在后台运行
+# 如果你想关闭服务器，可以使用`kill -9 1234`命令，"1234" 是进程号（PID）。
+# 如果你找不到进程号，那么就用`ps aux | grep jekyll`命令来查看，然后关闭服务器。
+$ jekyll serve --detach
+
+# 和jekyll serve相同，但是会查看变更并且自动再生成。
+$ jekyll serve --watch
+```
+
+## 部署到VPS
+
+网上清一色都是通过github pages来发布的站点，然后通过修改`CNAME`文件来达到绑定域名的目的。
+
+我这里是放到VPS上，需要自己搭建web server环境。
+
+> Jekyll is a static site generator, not a webserver. You may generate the static files and serve with webserver like `nginx`, which provides such abilities.
+
+参考：
+
+* [How To Get Started with Jekyll on an Ubuntu VPS](https://www.digitalocean.com/community/tutorials/how-to-get-started-with-jekyll-on-an-ubuntu-vps)
+* [Set up a Jekyll site on a vps with Ubuntu, Nginx and Letsencrypt](https://thomasroest.com/2016/11/05/set-up-a-jekyll-site-on-a-vps-with-ubuntu-nginx-and-letsencrypt.html)
+
+因为是静态网站，所以Jekyll其实安装在本地就可以，静态页面也放在本地。然后将Jekyll生成的静态HTML文件（`_site`目录下）通过类似FTP的方式上传到VPS就行。
+
+而是由，并放在，
+
+- [Jekyll](http://jekyllrb.com/) for write our content
+- [nginx](http://nginx.org/en/) to serve our content
+- [Capistrano](http://www.capistranorb.com/) to deploy
+
+```
+sudo gem install capistrano
+```
+
+
+
+scp
+
+`rsync`命令是一个远程数据同步工具，可通过LAN/WAN快速同步多台主机间的文件。rsync使用所谓的“rsync算法”来使本地和远程两个主机之间的文件达到同步，这个算法只传送两个文件的不同部分，而不是每次都整份传送，因此速度相当快。 
+
+
+
+
+
+## Create New Theme From Scratch
 
 用`jekyll new-theme`命令，就可以创建出一个theme需要的基本目录项。
 
@@ -49,11 +176,189 @@ $ npm install hexo-renderer-kramed --save
 jekyll new-theme jekyll-theme-awesome
 ```
 
+### 目录结构
+
+```
+.
+├── _config.yml
+├── _drafts
+|   ├── begin-with-the-crazy-ideas.textile
+|   └── on-simplicity-in-technology.markdown
+├── _includes
+|   ├── footer.html
+|   └── header.html
+├── _layouts
+|   ├── default.html
+|   ├── post.html
+├── _posts
+|   ├── 2007-10-29-why-every-programmer-should-play-nethack.textile
+|   └── 2009-04-26-barcamp-boston-4-roundup.textile
+├── _data
+|   └── members.yml
+├── _site
+└── index.html
+```
+
+说明：
+
+`_config.yml` 是配置文件。默认配置参见：https://jekyllrb.com/docs/configuration/#default-configuration
+
+`_includes` 里的文件为了布局重用。
+
+`_layouts` 站点布局模板。布局可以在 [YAML 头信息](http://jekyll.com.cn/docs/frontmatter/)中根据不同文章进行选择。 
+
+`_posts` 将md文件以`2017-08-01-welcome-to-jekyll.md`的格式放到该目录中。
+
+`_drafts` 中的md文件直接以`title.md`命名，并不会发布出来。当运行`jekyll serve`或者`jekyll build --drafts`时，草稿文章会被加上日期值并发布出来。
+
+`_site` 存放jekyll转化完成的html文件。有时修改效果不生效，可以尝试删除该目录。
+
+### 说明
+
+若在`index.html`的YAML头信息中加入：
+
+```
+---
+layout: post
+...
+---
+```
+
+则在`default.html`中调用{% raw %}`{{ content }}`{% endraw %}，就会把`index.html`中的所有内容放到此处。
+
+### Bootstrap
+
+使用Bootstrap前端框架真是省了很多事。
+
+下载[Bootstrp](https://github.com/twbs/bootstrap/releases/download/v3.3.7/bootstrap-3.3.7-dist.zip)，我这里将解压后的文件放到了`assets/bootstrap-3.3.7-dist` 目录下。
+
+参考Bootstrap官网里给的[基本HTML模板](http://getbootstrap.com/getting-started/#template)，
+
+（1）将下面这行代码改成自己的相应路径后，放到`head.html` 的`<head></head>` 标签中。
+
+```  html
+<!-- Bootstrap -->
+<link rel="stylesheet" href="/assets/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+```
+
+（2）将下两行改成自己的相应路径后，放到`default.html` 的`<body></body>` 标签中的最下方，为了最后加载。
+
+```html
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/assets/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+```
+
+若没效果，删除 `_site` 目录再试试，或者用命令重新 build。
+
+### 导航条
+
+参考Bootstrap官网给的[示例代码](http://getbootstrap.com/components/#navbar)，写入`header.html`文件中。
+
+然后在`default.html`的`<body></body>`标签中引入{% raw %}`{% include header.html %}`{% endraw %}。
+
+### 搜索框
+
+参考：[Button addons](http://getbootstrap.com/components/#input-groups-buttons) & [Forms](http://getbootstrap.com/components/#navbar-forms)
+
+将下面代码加入`header.html`中：
+
+```html
+<form class="navbar-form navbar-left" role="search">
+  <div class="input-group">
+    <span class="input-group-btn">
+      <button class="btn btn-default" type="button">Go!</button>
+    </span>
+    <input type="text" class="form-control" placeholder="Search">
+  </div>
+</form>
+```
+
+### 文章摘要
+
+在`index.html` 中显示文章摘要。参见[https://jekyllrb.com/docs/posts/#post-excerpts](https://jekyllrb.com/docs/posts/#post-excerpts)。
+
+（1）自带的{% raw %}`{{ post.excerpt }}`{% endraw %} 会自动取第一段的内容作为摘要。
+
+若想自定义，
+
+（2）在`_config.yml` 文件中指定摘要的分隔符：
+
+```
+excerpt_separator: <!-- more -->
+```
+
+这样会覆盖自带的{% raw %}`{{ post.excerpt }}`{% endraw %}功能，然后在文章内容需要分隔的摘要后面加上`<!-- more -->`。而`<!-- more -->` 本身作为注释，不会影响 markdown 的显示。
+
+（3）或者采用这样的方式：
+
+```
+{% raw %}{{ post.content | strip_html | truncatewords:75 }}{% endraw %}
+```
+
+### 分页功能
+
+用于`index.html` 里对文章的分页显示功能。
+
+（1）首先安装`jekyll-paginate`：
+
+```
+$ sudo gem install jekyll-paginate
+```
+
+在配置文件`_config.yml`中添加：
+
+```
+plugins:
+  - jekyll-paginate
+paginate: 5
+paginate_path: "/pages:num/"
+```
+
+其中，`paginate: 5` 设置的是分页数；
+`paginate_path: "/pages:num/"` 设置的是URL的显示格式，如 http://localhost:4000/pages2/。
+
+（2）然后参考[https://jekyllrb.com/docs/pagination/](https://jekyllrb.com/docs/pagination/)在`index.html`添加分页功能，并结合Bootstrap里的分页样式修改：[http://getbootstrap.com/components/#pagination](http://getbootstrap.com/components/#pagination)。
 
 
-`_config.yml`是配置文件。
+### 添加about me 边栏
 
-默认配置参见：https://jekyllrb.com/docs/configuration/#default-configuration
+### 设置固定链接
+
+### 首页添加最近文章
+
+### 首页为每篇文章添加分类、标签、发表日期以及评论连接
+
+### 添加返回顶部功能
+
+### 文章版权说明
+
+### 添加404页面
+
+### 使用多说评论
+
+### 分类
+
+### tags
+
+### 相关文章
+
+
+
+### 页面宽度
+
+```
+.container {
+    max-width: 970px;
+}
+```
+
+
+
+###  _config.yml 配置
+
+`_config.yml`里的默认配置参见：https://jekyllrb.com/docs/configuration/#default-configuration
 
 下面对自己的`_config.yml`文件中的内容做一些说明：
 
@@ -63,38 +368,69 @@ markdown: kramdown
 
 使用`kramdown`作为markdown的解析器。
 
-```
-plugins:
-  - jekyll-paginate
-paginate: 5
-paginate_path: "/pages:num/"
-```
-
-
-
-### 分页显示
-
-用于index.html里对文章的分页显示功能。参见https://jekyllrb.com/docs/pagination/。
-
-在配置文件`_config.yml`中添加：
-
-```
-plugins:
-  - jekyll-paginate
-paginate: 5
-paginate_path: "/pages:num/"
-```
-
-其中，paginate: 5 设置的是分页数；
-paginate_path: "/pages:num/" 设置的是URL的显示格式，如http://localhost:4000/pages2/。
+## Extras
 
 ### LaTex支持
+
+参考：[https://jekyllrb.com/docs/extras/#math-support](https://jekyllrb.com/docs/extras/#math-support)
+
+我这里为了避免所有pages都引入mathjax相关js代码，采用了不同的设置：
 
 在配置文件`_config.yml`中添加：
 
 ```
 mathjax: false
 ```
+
+在`head.html`中添加：
+
+    {% if page.mathjax %}
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+    {% endif %}
+然后在需要引入mathjax的md文件头中加入`mathjax: true`，如：
+
+```
+---
+layout: post
+...
+mathjax: true
+---
+```
+
+####  单$公式的支持
+
+```
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+      inlineMath: [ ['$','$'] ],
+      displayMath: [ ['$$','$$'] ],
+      processEscapes: true,
+    }
+  });
+</script>
+```
+
+#### mathjax转义问题
+
+若latex公式中包含`|`符，如`|a|`，会被markdown解析器当成`<table></table>`来处理。
+
+又如，定义矩阵时，其中的换行`\\`也会被解析出问题，把第一个`\`当成了转义符。
+
+解决方式：
+
+对第一种情况，根据 [Syntax \| Kramdown](https://kramdown.gettalong.org/syntax.html#math-blocks) 上的说明，将`|`用`\vert`来代替。
+
+对第二种情况，用双`$$`符解决转义问题。
+
+### Code Highlighting
+
+
 
 ### 修改markdown解析器
 
@@ -103,4 +439,36 @@ mathjax: false
 ```
 markdown: kramdown
 ```
+
+
+
+`#404145`
+
+
+
+sudo lsof -i :4000
+kill -9 进程id
+
+
+
+## 问题
+
+{% raw %}`{{ xxx }}`{% endraw %} 或者 {% raw %}`{% xxx %}`{% endraw %} 显示不出来。
+
+解决方式：
+
+（1）
+
+```
+\{\{ xxx \}\}
+```
+
+（2）参考：[Escaping double curly braces inside a markdown code block in Jekyll](https://stackoverflow.com/questions/24102498/escaping-double-curly-braces-inside-a-markdown-code-block-in-jekyll)
+
+```
+{% assign openTag = '{%' %}{{ openTag }} raw %}    
+This is a test: {% raw %}{{ xxx }}{% endraw %}
+{{ openTag }} endraw %}
+```
+（3）那么问题又来了，如何显示上面的 raw 和 endraw 呢？参考：[jekyll 如何转义字符](http://www.cnblogs.com/OceanHeaven/p/6959669.html)
 

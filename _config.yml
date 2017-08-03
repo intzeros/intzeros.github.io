@@ -14,12 +14,14 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 title: Soki's Blog
+author: lszero
 email: intzero@outlook.com
 description: > # this means to ignore newlines until "baseurl:"
   Write an awesome description for your new site here. You can edit this
   line in _config.yml. It will appear in your document head meta (for
   Google search results) and in your feed.xml site description.
 url: lszero.com # the base hostname & protocol for your site, e.g. http://example.com
+baseurl: "" # the subpath of your site, e.g. /blog
 twitter_username: lszero
 github_username:  lszero
 
@@ -39,6 +41,10 @@ paginate: 5
 paginate_path: "/pages:num/"
 
 mathjax: false
+
+excerpt_separator: <!-- more -->
+
+highlighter: rouge
 
 
 # Exclude from processing.
