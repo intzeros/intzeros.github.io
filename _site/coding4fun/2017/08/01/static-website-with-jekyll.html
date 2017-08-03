@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <title>
+    
+      从WordPress到静态网站 &middot; Soki's Blog
+    
+  </title>
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="/assets/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+
+  <link rel="stylesheet" href="/assets/main.css">
+ 
+  <!-- MathJax -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      TeX: {
+        equationNumbers: {
+          autoNumber: "AMS"
+        }
+      },
+      tex2jax: {
+        inlineMath: [ ['$','$'] ],
+        displayMath: [ ['$$','$$'] ],
+        processEscapes: true,
+      }
+    });
+  </script>
+  
+
+  <!-- code highlighting-->
+  <link rel="stylesheet" href="/lib/highlight/styles/hybrid.css">
+  <script src="/lib/highlight/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <script>hljs.configure({ ignore: ['text'] });</script>
+  
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+  <body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand page-scroll" href="#page-top">Soki's Blog</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#services">Services</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#portfolio">Portfolio</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#about">About</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#team">Team</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+  
+    <div class="container content">
+      <header class="masthead">
+        <h3 class="masthead-title">
+          <a href="/" title="Home">Soki's Blog</a>
+          <small></small>
+        </h3>
+      </header>
+
+      <main>
+        <article class="post">
+  <h1 class="post-title">从WordPress到静态网站</h1>
+  <time datetime="2017-08-01T20:00:00+08:00" class="post-date">01 Aug 2017</time>
+  <p>[TOC]</p>
+
+<p>作为一个极简主义者，越来越受不了WordPress的臃肿。主要自己平时都是用Markdown来做记录，而WordPress支持的不是很好，另外有时写的md长文通过三方软件导出的html也不造放在wp的什么地方才合适，管理起来还不如几个静态页面来得方便。于是有了某天来个大整顿的想法。</p>
+
+<p>对前端只停留在css的我，花了整三天时间，从Hexo到Jekyll再到Bootstrap，以及各种markdown2html解析器…最后基本算是从头写了一个基于Jekyll的website theme 😥</p>
+
+<h1 id="hexo">Hexo</h1>
+
+<p>主流的静态页面生成器有俩，一个Jekyll，一个Hexo，都支持Markdown。 前者用的是Ruby，后者为Node.js。</p>
+
+<p>Hexo会比Jekyll搭建起来更方便一些，而且各种配置项的设计也很便捷，网站themes还很丰富，所以我一开始弄的就是这个。</p>
+
+<ul>
+  <li><a href="https://hexo.io/zh-cn/docs/">Hexo官方文档</a></li>
+  <li><a href="https://github.com/iissnan/hexo-theme-next">next</a> : 一款优雅并且功能强大的主题. <a href="http://theme-next.iissnan.com/getting-started.html">[doc]</a> <a href="[http://notes.iissnan.com](http://notes.iissnan.com/)">[demo]</a></li>
+</ul>
+
+<p>搭建方法上面这两个链接写的很详细。</p>
+
+<p>这里主要记录一下让Hexo支持LaTex的注意地方。Hexo用MathJax时会有一些<a href="http://2wildkids.com/2016/10/06/%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86Hexo%E5%92%8CMathJax%E7%9A%84%E5%85%BC%E5%AE%B9%E9%97%AE%E9%A2%98/#">转义问题</a>，经我自己测试，最好的方式是用hexo-renderer-pandoc渲染器代替原有的hexo-renderer-marked。而网上说的用hexo-renderer-kramed，对矩阵的情况显示的不好。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ npm uninstall hexo-renderer-marked --save
+$ npm install hexo-renderer-kramed --save
+</code></pre>
+</div>
+
+<h1 id="jekyll">Jekyll</h1>
+
+<p>其实用Hexo/Jekyll+现成的主题，很方便就能搭出一个静态网站出来。只是除了代码高亮、LaTex这些功能之外，我还想能区分出code blocks和普通无需highlighting的&lt;pre&gt;部分，还有其他一些改动。因为markdown解析的原因，基本所有themes出的效果都是将两者统一处理了。强迫症（其实就是zuo），主题挑来挑去都没找到个合心意的，比如next这种，太复杂，让我一个前端白痴改，哈，那还是自己从头写一个比较符合程序员造轮子的习惯吧。。。（捂脸</p>
+
+<p>（至于为啥从Hexo转到了Jekyll，原因未明）</p>
+
+<h2 id="get-started">Get Started</h2>
+
+<p><a href="https://jekyllrb.com/docs/home/">Jekyll Doc</a> (<a href="http://jekyll.com.cn/docs/home/">中文版</a>，内容比较旧)</p>
+
+<h2 id="create-theme-from-scratch">Create Theme From Scratch</h2>
+
+<p>用<code class="highlighter-rouge">jekyll new-theme</code>命令，就可以创建出一个theme需要的基本目录项。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>jekyll new-theme jekyll-theme-awesome
+</code></pre>
+</div>
+
+<p><code class="highlighter-rouge">_config.yml</code>是配置文件。</p>
+
+<p>默认配置参见：https://jekyllrb.com/docs/configuration/#default-configuration</p>
+
+<p>下面对自己的<code class="highlighter-rouge">_config.yml</code>文件中的内容做一些说明：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>markdown: kramdown
+</code></pre>
+</div>
+
+<p>使用<code class="highlighter-rouge">kramdown</code>作为markdown的解析器。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>plugins:
+  - jekyll-paginate
+paginate: 5
+paginate_path: "/pages:num/"
+</code></pre>
+</div>
+
+<h3 id="分页显示">分页显示</h3>
+
+<p>用于index.html里对文章的分页显示功能。参见https://jekyllrb.com/docs/pagination/。</p>
+
+<p>在配置文件<code class="highlighter-rouge">_config.yml</code>中添加：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>plugins:
+  - jekyll-paginate
+paginate: 5
+paginate_path: "/pages:num/"
+</code></pre>
+</div>
+
+<p>其中，paginate: 5 设置的是分页数；
+paginate_path: “/pages:num/” 设置的是URL的显示格式，如http://localhost:4000/pages2/。</p>
+
+<h3 id="latex支持">LaTex支持</h3>
+
+<p>在配置文件<code class="highlighter-rouge">_config.yml</code>中添加：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>mathjax: false
+</code></pre>
+</div>
+
+<h3 id="修改markdown解析器">修改markdown解析器</h3>
+
+<p>在配置文件<code class="highlighter-rouge">_config.yml</code>中，默认使用的是<code class="highlighter-rouge">kramdown</code>解析器。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>markdown: kramdown
+</code></pre>
+</div>
+
+
+</article>
+
+
+
+      </main>
+
+      <footer class="footer">
+        <small>
+          &copy; <time datetime="2017-08-02T16:31:47+08:00">2017</time>. All rights reserved.
+        </small>
+      </footer>
+    </div>
+
+    
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/assets/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    
+  </body>
+</html>
