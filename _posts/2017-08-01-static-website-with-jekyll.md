@@ -24,7 +24,7 @@ Hexo会比Jekyll搭建起来更方便一些，而且各种配置项的设计也�
 
 这里主要记录一下让Hexo支持LaTex的注意地方。Hexo用MathJax时会有一些[转义问题](http://2wildkids.com/2016/10/06/%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86Hexo%E5%92%8CMathJax%E7%9A%84%E5%85%BC%E5%AE%B9%E9%97%AE%E9%A2%98/#)，经我自己测试，最好的方式是用hexo-renderer-pandoc渲染器代替原有的hexo-renderer-marked。而网上说的用hexo-renderer-kramed，对矩阵的情况显示的不好。
 
-```
+```shell
 $ npm uninstall hexo-renderer-marked --save
 $ npm install hexo-renderer-kramed --save
 ```
@@ -354,7 +354,13 @@ paginate_path: "/pages:num/"
 }
 ```
 
+### Permalinks
 
+在`_config.yml`中设置，如：
+
+```
+permalink: /:categories/:year/:month/:day/:title.html
+```
 
 ###  _config.yml 配置
 
@@ -430,26 +436,96 @@ mathjax: true
 
 ### Code Highlighting
 
+Jekyll 3.x 自带了rouge代码高亮的功能，但是不造为啥一直not working（难道又被看脸了。。
 
+于是这里用的是[highlightjs](https://highlightjs.org/)。在`head.html`里添加：
+
+```html
+<link rel="stylesheet" href="/lib/highlight/styles/hybrid.css">
+<script src="/lib/highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+```
+
+我这里把下载的`highlightjs`的相关文件放在了`lib`目录下，样式选的是`hybrid.css`。（monokai-sublime 和 hybrid 配色也不错。）
+
+`highlightjs`会解析并高亮`<pre><code>...</code></pre>`中的内容。如
+
+```html
+<pre><code class="html">...</code></pre>
+```
+
+若不需要高亮则设为：
+
+```nohighlight
+<pre><code class="nohighlight">...</code></pre>
+```
+
+这里有个麻烦的地方，若md里没有指明语言，`highlightjs`也会自动检测是什么语言。如果不想对某个code block进行高亮，有两种解决方式：（当然了，我比较折腾，一般人也不需要这个。。（捂脸）
+
+（1）每次手动加入`nohighlight`。
+
+```
+​```nohighlight
+xxx
+​```
+```
+
+（2）修改markdown解析器。
+
+第一种方式比较麻烦，但`highlightjs`又没有提供关闭`highlightAuto`的接口。
 
 ### 修改markdown解析器
 
-在配置文件`_config.yml`中，默认使用的是`kramdown`解析器。
+在`_config.yml`中可以看到，默认使用的是`kramdown`解析器。
 
 ```
 markdown: kramdown
 ```
 
+https://jekyllrb.com/docs/configuration/#custom-markdown-processors
 
+关于[Custom Markdown Processors](https://jekyllrb.com/docs/configuration/#custom-markdown-processors)官网有一些说明，好吧，没看懂，毕竟不会Ruby。kramdown也不能以overwrited的方式改写相应的convert方法，然后又写了段js代码试图修改kramdown解析出的html，但还是没成功。真是艰辛，网上找了好久都无果，最后还不如直接看代码改来得快。。。
 
-`#404145`
+好在`highlightjs`提供了这个：
 
+```
+// ignore languages
+<script>hljs.configure({ ignore: ['text'] });</script>
+```
 
+然后看Jekyll源码，找到了 `jekyll/lib/jekyll/converters/markdown/kramdown_parser.rb` (see [code](https://github.com/jekyll/jekyll/blob/57fd5f887da1189a16bdfbb982d75f725c38d725/lib/jekyll/converters/markdown/kramdown_parser.rb)) 
 
-sudo lsof -i :4000
-kill -9 进程id
+```ruby
+def convert(content)
+  Kramdown::Document.new(content, @config).to_html
+end
+```
 
+接着看kramdown源码，找到了`kramdown/lib/kramdown/converter/html.rb` (see [code](https://github.com/gettalong/kramdown/blob/f4cdae257159ce0addf542739fed262e4a2cf401/lib/kramdown/converter/html.rb)) 
 
+在我的本地电脑中，相关文件位于`/usr/local/lib/ruby/gems/2.4.0/gems/kramdown-1.14.0/lib/kramdown/converter/html.rb`。
+
+找到`def convert_codeblock(el, indent)`函数进行修改：
+
+在代码`code_attr['class'] = "language-#{lang}" if lang` 前添加：
+
+```ruby
+if lang.nil?
+  lang = "text"
+end
+```
+
+并将代码`if highlighted_code` 改为 `if highlighted_code && lang`。
+
+（其中，`nil`是判空的意思。）
+
+这样在不指明语言的时候，不高亮显示。
+
+接着改，
+
+在`if highlighted_code && lang`后添加：
+
+这样当语言设为`auto`的时候，自动显示高亮。
 
 ## 问题
 

@@ -35,11 +35,11 @@
   
 
   <!-- code highlighting-->
- <!--  <link rel="stylesheet" href="/lib/highlight/styles/hybrid.css">
+  <link rel="stylesheet" href="/lib/highlight/styles/hybrid.css">
   <script src="/lib/highlight/highlight.pack.js"></script>
   <script>hljs.initHighlightingOnLoad();</script>
   <script>hljs.configure({ ignore: ['text'] });</script>
-  --> 
+  
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -62,7 +62,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="" style="color:#333">Soki's Blog</a>
+        <a class="navbar-brand" href="http://localhost:4000" style="color:#333">Soki's Blog</a>
         <p class="navbar-text">God does not play dice.</p>
       </div>
 
@@ -124,9 +124,10 @@
 
 <p>这里主要记录一下让Hexo支持LaTex的注意地方。Hexo用MathJax时会有一些<a href="http://2wildkids.com/2016/10/06/%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86Hexo%E5%92%8CMathJax%E7%9A%84%E5%85%BC%E5%AE%B9%E9%97%AE%E9%A2%98/#">转义问题</a>，经我自己测试，最好的方式是用hexo-renderer-pandoc渲染器代替原有的hexo-renderer-marked。而网上说的用hexo-renderer-kramed，对矩阵的情况显示的不好。</p>
 
-<pre><code class="language-text">$ npm uninstall hexo-renderer-marked --save
-$ npm install hexo-renderer-kramed --save
+<div class="language-shell highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>npm uninstall hexo-renderer-marked --save
+<span class="gp">$ </span>npm install hexo-renderer-kramed --save
 </code></pre>
+</div>
 
 <h1 id="jekyll">Jekyll</h1>
 
@@ -434,6 +435,13 @@ paginate_path: "/pages:num/"
 }
 </code></pre>
 
+<h3 id="permalinks">Permalinks</h3>
+
+<p>在<code class="highlighter-rouge">_config.yml</code>中设置，如：</p>
+
+<pre><code class="language-text">permalink: /:categories/:year/:month/:day/:title.html
+</code></pre>
+
 <h3 id="_configyml-配置">_config.yml 配置</h3>
 
 <p><code class="highlighter-rouge">_config.yml</code>里的默认配置参见：https://jekyllrb.com/docs/configuration/#default-configuration</p>
@@ -501,17 +509,92 @@ mathjax: true
 
 <h3 id="code-highlighting">Code Highlighting</h3>
 
+<p>Jekyll 3.x 自带了rouge代码高亮的功能，但是不造为啥一直not working（难道又被看脸了。。</p>
+
+<p>于是这里用的是<a href="https://highlightjs.org/">highlightjs</a>。在<code class="highlighter-rouge">head.html</code>里添加：</p>
+
+<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">href=</span><span class="s">"/lib/highlight/styles/hybrid.css"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"/lib/highlight/highlight.pack.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script&gt;</span><span class="nx">hljs</span><span class="p">.</span><span class="nx">initHighlightingOnLoad</span><span class="p">();</span><span class="nt">&lt;/script&gt;</span>
+</code></pre>
+</div>
+
+<p>我这里把下载的<code class="highlighter-rouge">highlightjs</code>的相关文件放在了<code class="highlighter-rouge">lib</code>目录下，样式选的是<code class="highlighter-rouge">hybrid.css</code>。（monokai-sublime 和 hybrid 配色也不错。）</p>
+
+<p><code class="highlighter-rouge">highlightjs</code>会解析并高亮<code class="highlighter-rouge">&lt;pre&gt;&lt;code&gt;...&lt;/code&gt;&lt;/pre&gt;</code>中的内容。如</p>
+
+<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;pre&gt;&lt;code</span> <span class="na">class=</span><span class="s">"html"</span><span class="nt">&gt;</span>...<span class="nt">&lt;/code&gt;&lt;/pre&gt;</span>
+</code></pre>
+</div>
+
+<p>若不需要高亮则设为：</p>
+
+<pre><code class="language-nohighlight">&lt;pre&gt;&lt;code class="nohighlight"&gt;...&lt;/code&gt;&lt;/pre&gt;
+</code></pre>
+
+<p>这里有个麻烦的地方，若md里没有指明语言，<code class="highlighter-rouge">highlightjs</code>也会自动检测是什么语言。如果不想对某个code block进行高亮，有两种解决方式：（当然了，我比较折腾，一般人也不需要这个。。（捂脸）</p>
+
+<p>（1）每次手动加入<code class="highlighter-rouge">nohighlight</code>。</p>
+
+<pre><code class="language-text">​```nohighlight
+xxx
+​```
+</code></pre>
+
+<p>（2）修改markdown解析器。</p>
+
+<p>第一种方式比较麻烦，但<code class="highlighter-rouge">highlightjs</code>又没有提供关闭<code class="highlighter-rouge">highlightAuto</code>的接口。</p>
+
 <h3 id="修改markdown解析器">修改markdown解析器</h3>
 
-<p>在配置文件<code class="highlighter-rouge">_config.yml</code>中，默认使用的是<code class="highlighter-rouge">kramdown</code>解析器。</p>
+<p>在<code class="highlighter-rouge">_config.yml</code>中可以看到，默认使用的是<code class="highlighter-rouge">kramdown</code>解析器。</p>
 
 <pre><code class="language-text">markdown: kramdown
 </code></pre>
 
-<p><code class="highlighter-rouge">#404145</code></p>
+<p>https://jekyllrb.com/docs/configuration/#custom-markdown-processors</p>
 
-<p>sudo lsof -i :4000
-kill -9 进程id</p>
+<p>关于<a href="https://jekyllrb.com/docs/configuration/#custom-markdown-processors">Custom Markdown Processors</a>官网有一些说明，好吧，没看懂，毕竟不会Ruby。kramdown也不能以overwrited的方式改写相应的convert方法，然后又写了段js代码试图修改kramdown解析出的html，但还是没成功。真是艰辛，网上找了好久都无果，最后还不如直接看代码改来得快。。。</p>
+
+<p>好在<code class="highlighter-rouge">highlightjs</code>提供了这个：</p>
+
+<pre><code class="language-text">// ignore languages
+&lt;script&gt;hljs.configure({ ignore: ['text'] });&lt;/script&gt;
+</code></pre>
+
+<p>然后看Jekyll源码，找到了 <code class="highlighter-rouge">jekyll/lib/jekyll/converters/markdown/kramdown_parser.rb</code> (see <a href="https://github.com/jekyll/jekyll/blob/57fd5f887da1189a16bdfbb982d75f725c38d725/lib/jekyll/converters/markdown/kramdown_parser.rb">code</a>)</p>
+
+<div class="language-ruby highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">convert</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+  <span class="no">Kramdown</span><span class="o">::</span><span class="no">Document</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="vi">@config</span><span class="p">).</span><span class="nf">to_html</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>接着看kramdown源码，找到了<code class="highlighter-rouge">kramdown/lib/kramdown/converter/html.rb</code> (see <a href="https://github.com/gettalong/kramdown/blob/f4cdae257159ce0addf542739fed262e4a2cf401/lib/kramdown/converter/html.rb">code</a>)</p>
+
+<p>在我的本地电脑中，相关文件位于<code class="highlighter-rouge">/usr/local/lib/ruby/gems/2.4.0/gems/kramdown-1.14.0/lib/kramdown/converter/html.rb</code>。</p>
+
+<p>找到<code class="highlighter-rouge">def convert_codeblock(el, indent)</code>函数进行修改：</p>
+
+<p>在代码<code class="highlighter-rouge">code_attr['class'] = "language-#{lang}" if lang</code> 前添加：</p>
+
+<div class="language-ruby highlighter-rouge"><pre class="highlight"><code><span class="k">if</span> <span class="n">lang</span><span class="p">.</span><span class="nf">nil?</span>
+  <span class="n">lang</span> <span class="o">=</span> <span class="s2">"text"</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>并将代码<code class="highlighter-rouge">if highlighted_code</code> 改为 <code class="highlighter-rouge">if highlighted_code &amp;&amp; lang</code>。</p>
+
+<p>（其中，<code class="highlighter-rouge">nil</code>是判空的意思。）</p>
+
+<p>这样在不指明语言的时候，不高亮显示。</p>
+
+<p>接着改，</p>
+
+<p>在<code class="highlighter-rouge">if highlighted_code &amp;&amp; lang</code>后添加：</p>
+
+<p>这样当语言设为<code class="highlighter-rouge">auto</code>的时候，自动显示高亮。</p>
 
 <h2 id="问题">问题</h2>
 
@@ -552,7 +635,7 @@ This is a test: {{ xxx }}
   <ul class="related-posts">
     
       <li>
-        <a href="/algorithm/2017/04/27/computational-geometry.html">
+        <a href="/algorithm/computational-geometry.html">
           计算几何
           <small><time datetime="2017-04-27T17:16:00+08:00">27 Apr 2017</time></small>
         </a>
@@ -566,7 +649,7 @@ This is a test: {{ xxx }}
       </div>
       <footer class="footer">
           <small>
-            &copy; <time datetime="2017-08-04T03:24:12+08:00">2017</time>. All rights reserved.
+            &copy; <time datetime="2017-08-04T05:23:19+08:00">2017</time>. All rights reserved.
           </small>
         </footer>
     </div>
