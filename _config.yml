@@ -44,7 +44,7 @@ mathjax: false
 
 excerpt_separator: <!-- more -->
 
-highlighter: rouge
+# highlighter: rouge
 
 
 # Exclude from processing.
