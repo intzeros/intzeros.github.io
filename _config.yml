@@ -36,15 +36,6 @@ github_username:  lszero
 # Markdown Processors
 markdown: kramdown
 
-kramdown:
-  input:               GFM
-  auto_ids:          true
-  footnote_nr:     1
-  entity_output:   as_char
-  hard_wrap:        false
-  header_offset:   1
-  math_engine:     nil
-
 plugins:
   - jekyll-paginate
 paginate: 5

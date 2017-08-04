@@ -16,9 +16,9 @@
   <link rel="stylesheet" href="/assets/bootstrap-3.3.7-dist/css/bootstrap.min.css">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="/assets/css/font-awesome.min.css">
-
+  <!-- My CSS -->
   <link rel="stylesheet" href="/assets/main.css">
- 
+
   <!-- MathJax -->
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
@@ -50,8 +50,7 @@
   <![endif]-->
 </head>
 
-  <body data-spy="scroll" data-target="#navbar-example">
-
+<body>
     <header class="header">
   <!-- Navigation -->
   <nav class="navbar navbar-default navbar-fixed-top">
@@ -115,7 +114,7 @@
 
 <p>目前找到的方法都是手动获取的，不知道<a href="http://chuansong.me/">传送门</a>是如何做到实时更新？</p>
 
-<h3 id="参数获取">参数获取</h3>
+<h2 id="参数获取">参数获取</h2>
 
 <p>1）间接爬 <a href="http://weixin.sogou.com/">搜狗微信搜索平台</a>。</p>
 
@@ -132,13 +131,13 @@
 <pre><code class="language-text">https://mp.weixin.qq.com/mp/getmasssendmsg?__biz=MjM5ODIyMTE0MA==&amp;uin=Mjg4MDM3NDY4MA%3D%3D&amp;key=c50f8b988e61749ad277ef328b1e570b39373fc2621aa3cfb7fd610ada9ab880380773ab1aa6f06714e663bbcab7261926c1432ce0dbc8f2&amp;devicetype=iPhone+OS10.0.2&amp;version=16031b10&amp;lang=zh_CN&amp;nettype=WIFI&amp;ascene=3&amp;fontScale=100&amp;pass_ticket=g%2BKftv0wh2qVWzGvLflZd6fUssx%2FounDqsAJyShoMYw5Bpzl2Nyfc8HXZzW0R8df&amp;wx_header=1#wechat_webview_type=1
 </code></pre>
 
-<h3 id="如何实时更新">如何实时更新</h3>
+<h2 id="如何实时更新">如何实时更新</h2>
 
 <p>由于key的时间限制，如何自动更新key值？</p>
 
 <p>目前想到的也就写个手机脚本定时模拟点击，然后手机抓包。</p>
 
-<h4 id="参考">参考</h4>
+<h3 id="参考">参考</h3>
 
 <ul>
   <li><a href="https://github.com/Alexis374/tech_post/blob/master/crawl%20wechat%20article.md">微信公众号抓取思路 – Alexis374/tech_post</a></li>
@@ -188,12 +187,16 @@
       </aside>
       
     </div>
-
+    
     <div class="sidebar-content col-md-3">
-      <div class="post-sidebar" id="navbar-example">
-  <div id="toc" class="affix">
+      <div class="post-sidebar">
+  <nav class="header-list-sidebar hidden-print hidden-xs hidden-sm">
+    <ul id="sideNav" class="nav headers-sidenav">
+        <!-- code will be generated in TOC.js -->
+    </ul>
 
-  </div>
+    <a href="#top" class="back-to-top">^</a>
+  </nav>
 </div>
     </div>
   </div>
@@ -201,25 +204,18 @@
 
 
     <footer class="footer">
-    <small>
-      &copy; <time datetime="2017-08-04T15:30:43+08:00">2017</time>. All rights reserved.
-    </small>
+  <div class="copyright">
+      Copyright &copy; <time datetime="2017-08-04T23:44:14+08:00">2017</time> <a href="http://localhost:4000">lszero</a> | Powered by <a href="https://github.com/jekyll/jekyll">Jekyll</a> | Designed by <a href="http://localhost:4000">lszero</a>
+  </div>
 </footer>
 
-    
+<!--      -->
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="/assets/js/jquery-3.2.1.min.js"></script>
+    <script src="/assets/js/jquery-1.12.4.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="/assets/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-    
     <!-- TOC -->
-    <script src="/assets/js/toc.js"></script>
-    <script type="text/javascript">
-      $(document).ready(function() {
-          // { listType: 'ul', showEffect: 'slideDown', minimumHeaders: 2, classes: { list: 'nav nav-stacked', item: '' } });
-          $('#toc').toc({ listType: 'ul', classes: { list: 'nav nav-stacked' } });
-      });
-    </script>
+    <script src="/assets/js/toc/TOC.js"></script>
   </body>
 </html>

@@ -16,9 +16,9 @@
   <link rel="stylesheet" href="/assets/bootstrap-3.3.7-dist/css/bootstrap.min.css">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="/assets/css/font-awesome.min.css">
-
+  <!-- My CSS -->
   <link rel="stylesheet" href="/assets/main.css">
- 
+
   <!-- MathJax -->
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
@@ -52,8 +52,7 @@
   <![endif]-->
 </head>
 
-  <body data-spy="scroll" data-target="#navbar-example">
-
+<body>
     <header class="header">
   <!-- Navigation -->
   <nav class="navbar navbar-default navbar-fixed-top">
@@ -107,16 +106,17 @@
       <article class="post">
         <h1 class="post-title">计算几何</h1>
         <hr />
-        <h3 id="点和线">点和线</h3>
-<h4 id="基础">基础</h4>
+        <h2 id="点和线">点和线</h2>
+<h3 id="基础">基础</h3>
 <p>向量  $\vec{a} = (x_1, y_1), \vec{b} = (x_2, y_2)$.</p>
 
-<p>(1) <strong>点积</strong>:  <span class="kdmath">$\vec{a}\cdot \vec{b} = x_1x_2 + y_1y_2 = \vert a \vert \vert b \vert cos\theta$</span></p>
+<p>(1) <strong>点积</strong>:  <script type="math/tex">\vec{a}\cdot \vec{b} = x_1x_2 + y_1y_2 = \vert a \vert \vert b \vert cos\theta</script></p>
 
 <p>(2) <strong>叉积</strong> (cross product):
 <img src="http://lszero.com/wp-content/uploads/2017/04/Screen-Shot-2017-04-27-at-11.20.09-AM.png" style="zoom:50%; float:right" /></p>
 
-<p><span class="kdmath">$\vert \vec{a}\times \vec{b} \vert = det\begin{bmatrix}x_1 & x_2 \\y_1 & y_2 \end{bmatrix}= x_1y_2 - x_2y_1 = \vert a \vert \vert b \vert sin\theta$</span>.</p>
+<p><script type="math/tex">% <![CDATA[
+\vert \vec{a}\times \vec{b} \vert = det\begin{bmatrix}x_1 & x_2 \\y_1 & y_2 \end{bmatrix}= x_1y_2 - x_2y_1 = \vert a \vert \vert b \vert sin\theta %]]></script>.</p>
 
 <p>$\vec{a}\times \vec{b} =  - \vec{b}\times \vec{a}$</p>
 
@@ -140,7 +140,7 @@
 
 <!-- more -->
 
-<h4 id="点相对有向线段的方向">点相对有向线段的方向</h4>
+<h3 id="点相对有向线段的方向">点相对有向线段的方向</h3>
 
 <p>(1) 判断点P2相对于有向线段$\overrightarrow{P_0P_1}$ 的方向:</p>
 
@@ -156,7 +156,7 @@
 
 <p>(4) 判断线段与直线相交: 同理.</p>
 
-<h4 id="常用代码模板">常用代码模板</h4>
+<h3 id="常用代码模板">常用代码模板</h3>
 
 <div class="language-c++ highlighter-rouge"><pre class="highlight"><code><span class="c1">// 计算 向量p0p1 叉乘 向量p0p2
 </span><span class="kt">double</span> <span class="n">xmulti</span><span class="p">(</span><span class="n">Point</span> <span class="n">p0</span><span class="p">,</span> <span class="n">Point</span> <span class="n">p1</span><span class="p">,</span> <span class="n">Point</span> <span class="n">p2</span><span class="p">){</span>
@@ -197,9 +197,9 @@
 </code></pre>
 </div>
 
-<h3 id="凸包-convex-hull">凸包 Convex Hull</h3>
+<h2 id="凸包-convex-hull">凸包 Convex Hull</h2>
 
-<h4 id="graham扫描法求凸包">Graham扫描法求凸包</h4>
+<h3 id="graham扫描法求凸包">Graham扫描法求凸包</h3>
 
 <p><strong>时间复杂度: O(nlogn)</strong> (主要是排序)
 空间复杂度: stack.</p>
@@ -274,7 +274,7 @@
 </code></pre>
 </div>
 
-<h4 id="凸包面积">凸包面积</h4>
+<h3 id="凸包面积">凸包面积</h3>
 
 <p>(1) 三角形面积</p>
 
@@ -306,7 +306,7 @@
 </code></pre>
 </div>
 
-<h3 id="最近点对">最近点对</h3>
+<h2 id="最近点对">最近点对</h2>
 
 <pre><code class="language-text">求二维平面上的最近点对. 详见《编程之美》-&gt; 分治思想.
 </code></pre>
@@ -325,7 +325,7 @@
 <pre><code class="language-text">求二维平面上的最远点对. 思路: 先求凸包, 后求凸包直径.
 </code></pre>
 
-<h4 id="求凸包直径-旋转卡壳算法-rotating-calipers">求凸包直径: 旋转卡壳算法 (Rotating Calipers)</h4>
+<h3 id="求凸包直径-旋转卡壳算法-rotating-calipers">求凸包直径: 旋转卡壳算法 (Rotating Calipers)</h3>
 
 <p><img src="http://lszero.com/wp-content/uploads/2017/04/2011040318073013.gif" style="zoom:50%; float:right" /></p>
 
@@ -360,15 +360,15 @@
 
 <p>其中cross函数是计算叉积，可以想成是计算三角形面积，因为凸包上距离一条边最远的点和这条边的两个端点构成的三角形面积是最大的。之所以既要更新(ch[p],ch[q])又要更新(ch[p+1],ch[q+1])是为了处理凸包上两条边平行的特殊情况。</p>
 
-<h4 id="凸包最近点对">凸包最近点对</h4>
+<h3 id="凸包最近点对">凸包最近点对</h3>
 
 <p>…</p>
 
-<h4 id="找最小圆覆盖平面所有点">找最小圆覆盖平面所有点</h4>
+<h3 id="找最小圆覆盖平面所有点">找最小圆覆盖平面所有点</h3>
 
 <p>…</p>
 
-<h3 id="三角剖分"><strong>三角剖分</strong></h3>
+<h2 id="三角剖分"><strong>三角剖分</strong></h2>
 
 <p>待补充…</p>
 
@@ -415,12 +415,16 @@
       </aside>
       
     </div>
-
+    
     <div class="sidebar-content col-md-3">
-      <div class="post-sidebar" id="navbar-example">
-  <div id="toc" class="affix">
+      <div class="post-sidebar">
+  <nav class="header-list-sidebar hidden-print hidden-xs hidden-sm">
+    <ul id="sideNav" class="nav headers-sidenav">
+        <!-- code will be generated in TOC.js -->
+    </ul>
 
-  </div>
+    <a href="#top" class="back-to-top">^</a>
+  </nav>
 </div>
     </div>
   </div>
@@ -428,25 +432,18 @@
 
 
     <footer class="footer">
-    <small>
-      &copy; <time datetime="2017-08-04T15:30:43+08:00">2017</time>. All rights reserved.
-    </small>
+  <div class="copyright">
+      Copyright &copy; <time datetime="2017-08-04T23:44:14+08:00">2017</time> <a href="http://localhost:4000">lszero</a> | Powered by <a href="https://github.com/jekyll/jekyll">Jekyll</a> | Designed by <a href="http://localhost:4000">lszero</a>
+  </div>
 </footer>
 
-    
+<!--      -->
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="/assets/js/jquery-3.2.1.min.js"></script>
+    <script src="/assets/js/jquery-1.12.4.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="/assets/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-    
     <!-- TOC -->
-    <script src="/assets/js/toc.js"></script>
-    <script type="text/javascript">
-      $(document).ready(function() {
-          // { listType: 'ul', showEffect: 'slideDown', minimumHeaders: 2, classes: { list: 'nav nav-stacked', item: '' } });
-          $('#toc').toc({ listType: 'ul', classes: { list: 'nav nav-stacked' } });
-      });
-    </script>
+    <script src="/assets/js/toc/TOC.js"></script>
   </body>
 </html>

@@ -8,7 +8,7 @@
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
   <title>
     
-      Soki's Blog &middot; 
+      爬取微信公众号历史文章 &middot; Soki's Blog
     
   </title>
 
@@ -100,15 +100,11 @@
   
     <div class="container">
   <div class="row-fluid main">
-    <div class="content posts col-md-9">
-      
-      <article class="post-preview">
-        <h1 class="post-title">
-          <a href="/algorithm/crawl-wechat-history-articles2.html">爬取微信公众号历史文章</a>
-        </h1>
-
-        <div class="content">
-          <p>想要获取微信公众号的历史文章，需要三个参数：<code class="highlighter-rouge">__biz</code>、<code class="highlighter-rouge">uin</code>、<code class="highlighter-rouge">key</code></p>
+    <div class="content col-md-9">
+      <article class="post">
+        <h1 class="post-title">爬取微信公众号历史文章</h1>
+        <hr />
+        <p>想要获取微信公众号的历史文章，需要三个参数：<code class="highlighter-rouge">__biz</code>、<code class="highlighter-rouge">uin</code>、<code class="highlighter-rouge">key</code></p>
 
 <p>这里困难的是<code class="highlighter-rouge">key</code>参数不是固定不变的，存在有效期（大概几十分钟）。那么就有两个问题：</p>
 
@@ -130,40 +126,25 @@
 
 <p>(b) 让手机和电脑处于同一局域网，通过手机抓包获取链接，工具如fiddler（可参见 <a href="http://lszero.com/884/fiddler-with-iphone/">《Fiddler手机抓包》</a>）。</p>
 
-<p>url一般为如下形式：</p>
+<p>url一般为如下形式：<!-- more --></p>
 
+<pre><code class="language-text">https://mp.weixin.qq.com/mp/getmasssendmsg?__biz=MjM5ODIyMTE0MA==&amp;uin=Mjg4MDM3NDY4MA%3D%3D&amp;key=c50f8b988e61749ad277ef328b1e570b39373fc2621aa3cfb7fd610ada9ab880380773ab1aa6f06714e663bbcab7261926c1432ce0dbc8f2&amp;devicetype=iPhone+OS10.0.2&amp;version=16031b10&amp;lang=zh_CN&amp;nettype=WIFI&amp;ascene=3&amp;fontScale=100&amp;pass_ticket=g%2BKftv0wh2qVWzGvLflZd6fUssx%2FounDqsAJyShoMYw5Bpzl2Nyfc8HXZzW0R8df&amp;wx_header=1#wechat_webview_type=1
+</code></pre>
 
-        </div>
+<h2 id="如何实时更新1">如何实时更新1</h2>
 
-        <footer class="post-meta">
-          <div class="post-info">
-            <a class="author" href="http://localhost:4000">lszero</a>
-            <time class="post-date"><a href="/algorithm/crawl-wechat-history-articles2.html">10 Jun 2016</a></time>
-            <a class="category" href="#">类别</a>
-            <a class="comments" href="#">No Comments</a>
-            <a class="read-more" href="/algorithm/crawl-wechat-history-articles2.html">Read More</a>
-          </div>
-          <hr />
-        </footer>
-      </article>
-      
-      <article class="post-preview">
-        <h1 class="post-title">
-          <a href="/algorithm/crawl-wechat-history-articles.html">爬取微信公众号历史文章</a>
-        </h1>
+<p>由于key的时间限制，如何自动更新key值？</p>
 
-        <div class="content">
-          <p>想要获取微信公众号的历史文章，需要三个参数：<code class="highlighter-rouge">__biz</code>、<code class="highlighter-rouge">uin</code>、<code class="highlighter-rouge">key</code></p>
+<p>目前想到的也就写个手机脚本定时模拟点击，然后手机抓包。</p>
 
-<p>这里困难的是<code class="highlighter-rouge">key</code>参数不是固定不变的，存在有效期（大概几十分钟）。那么就有两个问题：</p>
+<h3 id="参考1">参考1</h3>
 
-<p>1）如何获取这三个参数？</p>
+<ul>
+  <li><a href="https://github.com/Alexis374/tech_post/blob/master/crawl%20wechat%20article.md">微信公众号抓取思路 – Alexis374/tech_post</a></li>
+  <li><a href="http://www.songluyi.com/%E6%89%B9%E9%87%8F%E6%8A%93%E5%8F%96%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%E6%96%87%E7%AB%A0/">批量抓取微信公众号文章</a></li>
+</ul>
 
-<p>2）如何实时更新文章列表？（更新key）</p>
-
-<p>目前找到的方法都是手动获取的，不知道<a href="http://chuansong.me/">传送门</a>是如何做到实时更新？</p>
-
-<h2 id="参数获取">参数获取</h2>
+<h2 id="参数获取2">参数获取2</h2>
 
 <p>1）间接爬 <a href="http://weixin.sogou.com/">搜狗微信搜索平台</a>。</p>
 
@@ -175,82 +156,111 @@
 
 <p>(b) 让手机和电脑处于同一局域网，通过手机抓包获取链接，工具如fiddler（可参见 <a href="http://lszero.com/884/fiddler-with-iphone/">《Fiddler手机抓包》</a>）。</p>
 
-<p>url一般为如下形式：</p>
+<p>url一般为如下形式：<!-- more --></p>
 
+<pre><code class="language-text">https://mp.weixin.qq.com/mp/getmasssendmsg?__biz=MjM5ODIyMTE0MA==&amp;uin=Mjg4MDM3NDY4MA%3D%3D&amp;key=c50f8b988e61749ad277ef328b1e570b39373fc2621aa3cfb7fd610ada9ab880380773ab1aa6f06714e663bbcab7261926c1432ce0dbc8f2&amp;devicetype=iPhone+OS10.0.2&amp;version=16031b10&amp;lang=zh_CN&amp;nettype=WIFI&amp;ascene=3&amp;fontScale=100&amp;pass_ticket=g%2BKftv0wh2qVWzGvLflZd6fUssx%2FounDqsAJyShoMYw5Bpzl2Nyfc8HXZzW0R8df&amp;wx_header=1#wechat_webview_type=1
+</code></pre>
 
-        </div>
+<h2 id="如何实时更新2">如何实时更新2</h2>
+
+<p>由于key的时间限制，如何自动更新key值？</p>
+
+<p>目前想到的也就写个手机脚本定时模拟点击，然后手机抓包。</p>
+
+<h3 id="参考2">参考2</h3>
+
+<ul>
+  <li><a href="https://github.com/Alexis374/tech_post/blob/master/crawl%20wechat%20article.md">微信公众号抓取思路 – Alexis374/tech_post</a></li>
+  <li>[批量抓取微信公众号文章</li>
+</ul>
+
+<h2 id="参数获取3">参数获取3</h2>
+
+<p>1）间接爬 <a href="http://weixin.sogou.com/">搜狗微信搜索平台</a>。</p>
+
+<p>这个方式我没试过，据说不稳定，而且搜狗貌似做了隐藏。</p>
+
+<p>2）通过手机微信客户端或mac微信客户端，进入某个公众号，点击“查看历史消息”，获取链接。这里又有两种方式：</p>
+
+<p>(a) 利用微信客户端自带的分享功能，通过邮件或QQ分享出链接（直接复制链接不行）。</p>
+
+<p>(b) 让手机和电脑处于同一局域网，通过手机抓包获取链接，工具如fiddler（可参见 <a href="http://lszero.com/884/fiddler-with-iphone/">《Fiddler手机抓包》</a>）。</p>
+
+<p>url一般为如下形式：<!-- more --></p>
+
+<pre><code class="language-text">https://mp.weixin.qq.com/mp/getmasssendmsg?__biz=MjM5ODIyMTE0MA==&amp;uin=Mjg4MDM3NDY4MA%3D%3D&amp;key=c50f8b988e61749ad277ef328b1e570b39373fc2621aa3cfb7fd610ada9ab880380773ab1aa6f06714e663bbcab7261926c1432ce0dbc8f2&amp;devicetype=iPhone+OS10.0.2&amp;version=16031b10&amp;lang=zh_CN&amp;nettype=WIFI&amp;ascene=3&amp;fontScale=100&amp;pass_ticket=g%2BKftv0wh2qVWzGvLflZd6fUssx%2FounDqsAJyShoMYw5Bpzl2Nyfc8HXZzW0R8df&amp;wx_header=1#wechat_webview_type=1
+</code></pre>
+
+<h2 id="如何实时更新3">如何实时更新3</h2>
+
+<p>由于key的时间限制，如何自动更新key值？</p>
+
+<p>目前想到的也就写个手机脚本定时模拟点击，然后手机抓包。</p>
+
+<h3 id="参考3">参考3</h3>
+
+<ul>
+  <li><a href="https://github.com/Alexis374/tech_post/blob/master/crawl%20wechat%20article.md">微信公众号抓取思路 – Alexis374/tech_post</a></li>
+  <li>[批量抓取微信公众号文章</li>
+</ul>
+
+        <br><br>
 
         <footer class="post-meta">
           <div class="post-info">
             <a class="author" href="http://localhost:4000">lszero</a>
-            <time class="post-date"><a href="/algorithm/crawl-wechat-history-articles.html">10 Jun 2016</a></time>
+            <time class="post-date"><a href="">10 Jun 2016</a></time>
             <a class="category" href="#">类别</a>
             <a class="comments" href="#">No Comments</a>
-            <a class="read-more" href="/algorithm/crawl-wechat-history-articles.html">Read More</a>
           </div>
           <hr />
         </footer>
       </article>
-      
 
       
-      <nav aria-label="Page navigation">
-        <ul class="pagination">
+      <aside class="related">
+        <h3>Related Posts</h3>
+        <ul class="related-posts">
           
-            <li><a href="/">&laquo;</a></li>
+            <li>
+              <a href="/coding4fun/static-website-with-jekyll.html">
+                从WordPress到静态网站
+                <small><time datetime="2017-08-01T20:00:00+08:00">01 Aug 2017</time></small>
+              </a>
+            </li>
           
-
+            <li>
+              <a href="/algorithm/computational-geometry.html">
+                计算几何
+                <small><time datetime="2017-04-27T17:16:00+08:00">27 Apr 2017</time></small>
+              </a>
+            </li>
           
-            
-              <li><a href="/">1</a>
-              </li>
-            
-          
-            
-              <li class="active"><a>2</a></li>
-            
-          
-
-          
-            <li><span>&raquo;</span></li>
+            <li>
+              <a href="/algorithm/alibaba-interview-201704.html">
+                阿里笔试两道编程题
+                <small><time datetime="2017-04-26T18:36:00+08:00">26 Apr 2017</time></small>
+              </a>
+            </li>
           
         </ul>
-      </nav>
+      </aside>
       
     </div>
-
-    <div class="sidebar-content col-md-3">
-      <div class="main-sidebar">
-  <div class="auther-avatar">
-    <img src="/assets/img/author_avatar.jpg" alt="lszero">
-  </div>
-
-  <div class="brief-intro">
-    <div class="auther-name">
-      lszero
-    </div>
-    <div class="auther-bio">
-      Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
-
-    </div>
-  </div>
-
-  <div class="posts-count">
     
-  </div>
+    <div class="sidebar-content col-md-3">
+      <div class="post-sidebar">
+  <nav class="header-list-sidebar hidden-print hidden-xs hidden-sm">
+    <ul id="sideNav" class="nav headers-sidenav">
+        <!-- code will be generated in TOC.js -->
+    </ul>
 
-  <div class="social-icons">
-    <a href="https://github.com/lszero" class="btn" title="Github"><i class="fa fa-fw fa-github fa-2x" aria-hidden="true"></i></a>
-    <a href="http://weibo.com/u/2313016370" class="btn" title="Weibo"><i class="fa fa-fw fa-weibo fa-2x" aria-hidden="true"></i></a>
-    <a href="https://www.zhihu.com/people/lszero" class="btn" title="Zhihu"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa  fa-stack-1x fa-inverse">知</i></span></a>
-    <a href="https://twitter.com/_lszero" class="btn" title="Twitter"><i class="fa fa-twitter-square fa-2x" aria-hidden="true"></i></a>
-    <a href="http://intzero.lofter.com/" class="btn" title="Lofter"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa  fa-stack-1x fa-inverse">L</i></span></a>
-  </div>
+    <a href="#top" class="back-to-top">^</a>
+  </nav>
 </div>
     </div>
   </div>
 </div>
-
 
 
     <footer class="footer">

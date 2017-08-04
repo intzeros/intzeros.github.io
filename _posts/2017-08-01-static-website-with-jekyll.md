@@ -11,8 +11,6 @@ categories: coding4fun
 
 对前端只停留在css的我，花了整三天时间，从Hexo到Jekyll再到Bootstrap，以及各种markdown2html解析器...最后基本算是从头写了一个基于Jekyll的website theme 😥<!-- more -->
 
-* 目录
-{:toc}
 
 # Hexo
 
@@ -35,7 +33,7 @@ $ npm install hexo-renderer-kramed --save
 
 # Jekyll
 
-其实用Hexo/Jekyll+现成的主题，很方便就能搭出一个静态网站出来。只是除了代码高亮、LaTex这些功能之外，我还想能区分出code blocks和普通无需highlighting的<pre>部分，还有其他一些改动。因为markdown解析的原因，基本所有themes出的效果都是将两者统一处理了。强迫症（其实就是zuo），主题挑来挑去都没找到个合心意的，比如next这种，太复杂，让我一个前端白痴改，哈，那还是自己从头写一个比较符合程序员造轮子的习惯吧。。。（捂脸
+其实用Hexo/Jekyll+现成的主题，很方便就能搭出一个静态网站出来。只是除了代码高亮、LaTex这些功能之外，我还想能区分出code blocks和普通无需highlighting的`<pre>`部分，还有其他一些改动。因为markdown解析的原因，基本所有themes出的效果都是将两者统一处理了。强迫症（其实就是zuo），主题挑来挑去都没找到个合心意的，比如next这种，太复杂，让我一个前端白痴改，哈，那还是自己从头写一个比较符合程序员造轮子的习惯吧。。。（捂脸
 
 （至于为啥从Hexo转到了Jekyll，原因未明）
 
@@ -136,7 +134,7 @@ $ jekyll serve --detach
 $ jekyll serve --watch
 ```
 
-## 部署到VPS
+## Set up Your Site on VPS
 
 网上清一色都是通过github pages来发布的站点，然后通过修改`CNAME`文件来达到绑定域名的目的。
 
@@ -179,7 +177,7 @@ scp
 jekyll new-theme jekyll-theme-awesome
 ```
 
-### 目录结构
+### Directory Structure
 
 ```
 .
@@ -216,7 +214,7 @@ jekyll new-theme jekyll-theme-awesome
 
 `_site` 存放jekyll转化完成的html文件。有时修改效果不生效，可以尝试删除该目录。
 
-### 说明
+### Basic
 
 若在`index.html`的YAML头信息中加入：
 
@@ -255,7 +253,7 @@ layout: post
 
 若没效果，删除 `_site` 目录再试试，或者用命令重新 build。
 
-### 导航条
+### NavBar
 
 参考Bootstrap官网给的[示例代码](http://getbootstrap.com/components/#navbar)，写入`header.html`文件中。
 
@@ -269,7 +267,7 @@ layout: post
 body { padding-top: 70px; }
 ```
 
-### 搜索框
+### Search
 
 参考：[Button addons](http://getbootstrap.com/components/#input-groups-buttons) & [Forms](http://getbootstrap.com/components/#navbar-forms)
 
@@ -286,7 +284,7 @@ body { padding-top: 70px; }
 </form>
 ```
 
-### 文章摘要
+### Post Excerpt
 
 在`index.html` 中显示文章摘要。参见[https://jekyllrb.com/docs/posts/#post-excerpts](https://jekyllrb.com/docs/posts/#post-excerpts)。
 
@@ -308,7 +306,7 @@ excerpt_separator: <!-- more -->
 {% raw %}{{ post.content | strip_html | truncatewords:75 }}{% endraw %}
 ```
 
-### 分页功能
+### Pagination
 
 用于`index.html` 里对文章的分页显示功能。
 
@@ -332,30 +330,19 @@ paginate_path: "/pages:num/"
 
 （2）然后参考[https://jekyllrb.com/docs/pagination/](https://jekyllrb.com/docs/pagination/)在`index.html`添加分页功能，并结合Bootstrap里的分页样式修改：[http://getbootstrap.com/components/#pagination](http://getbootstrap.com/components/#pagination)。
 
+### Back to Top
 
-### 添加about me 边栏
+### 404 Page
 
-### 设置固定链接
+### Comments
 
-### 首页添加最近文章
-
-### 首页为每篇文章添加分类、标签、发表日期以及评论连接
-
-### 添加返回顶部功能
-
-### 文章版权说明
-
-### 添加404页面
-
-### 使用多说评论
-
-### 分类
+### Category
 
 ### tags
 
-### 相关文章
 
-### 侧边栏
+
+### SideBar
 
 这里利用了 bootstrap 的栅格布局，栅格布局将一个页面分割成12个等宽的列。(详见 [example](http://getbootstrap.com/css/#grid-example-basic))
 
@@ -372,7 +359,7 @@ paginate_path: "/pages:num/"
 
 让侧边栏固定住，不随页面滚动而滚动：加入`class="affix"`。
 
-### 目录结构
+### Table of Content
 
 kramdown自带了解析目录的功能。详见：[https://kramdown.gettalong.org/converter/html.html#toc](https://kramdown.gettalong.org/converter/html.html#toc)
 
@@ -403,13 +390,21 @@ kramdown:
 
 它的思想也是先利用了kramdown已生成的目录数据。
 
-#### 侧边栏目录滚动
+#### Scrollspy
 
-侧边栏目录随浏览内容动态滚动功能，利用Bootstrap的[ScrollSpy](http://getbootstrap.com/javascript/#scrollspy)来实现。
-
-
+侧边栏目录随浏览内容动态滚动功能，利用Bootstrap的[Scrollspy](http://getbootstrap.com/javascript/#scrollspy)来实现。
 
 http://getbootstrap.com/javascript/#scrollspy
+
+https://afeld.github.io/bootstrap-toc/
+
+[bootstrap-toc](https://github.com/afeld/bootstrap-toc)
+
+sudo gem install redcarpet
+
+markdown: redcarpet
+
+
 
 ### Permalinks
 
@@ -419,7 +414,7 @@ http://getbootstrap.com/javascript/#scrollspy
 permalink: /:categories/:year/:month/:day/:title.html
 ```
 
-###  _config.yml 配置
+###  _config.yml 
 
 `_config.yml`里的默认配置参见：https://jekyllrb.com/docs/configuration/#default-configuration
 
@@ -431,9 +426,9 @@ markdown: kramdown
 
 使用`kramdown`作为markdown的解析器。
 
-### 社交媒体icon
+### Social Media
 
-用的是 [fontawesome](http://fontawesome.io/)。我这里将解压后的 `fonts`和`css`文件夹赋值到了`assets`目录下。
+icon用的是 [fontawesome](http://fontawesome.io/)。我这里将解压后的 `fonts`和`css`文件夹赋值到了`assets`目录下。
 
 在`head.html`中添加：
 
@@ -455,7 +450,7 @@ markdown: kramdown
 
 ## Extras
 
-### LaTex支持
+### LaTex
 
 参考：[https://jekyllrb.com/docs/extras/#math-support](https://jekyllrb.com/docs/extras/#math-support)
 
@@ -482,7 +477,9 @@ mathjax: true
 ---
 ```
 
-####  单$公式的支持
+####  Support $
+
+默认只支持双`$`符，修改：
 
 ```
 <script type="text/x-mathjax-config">
@@ -501,7 +498,7 @@ mathjax: true
 </script>
 ```
 
-#### mathjax转义问题
+#### Mathjax Rendering Problem
 
 若latex公式中包含`|`符，如`|a|`，会被markdown解析器当成`<table></table>`来处理。
 
@@ -553,7 +550,7 @@ xxx
 
 第一种方式比较麻烦，但`highlightjs`又没有提供关闭`highlightAuto`的接口。
 
-### 修改markdown解析器
+### Custom Markdown Parser
 
 在`_config.yml`中可以看到，默认使用的是`kramdown`解析器。
 
@@ -606,7 +603,7 @@ end
 
 这样当语言设为`auto`的时候，自动显示高亮。
 
-## 问题
+## Problems
 
 {% raw %}`{{ xxx }}`{% endraw %} 或者 {% raw %}`{% xxx %}`{% endraw %} 显示不出来。
 

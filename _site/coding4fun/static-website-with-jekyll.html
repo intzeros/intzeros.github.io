@@ -16,9 +16,9 @@
   <link rel="stylesheet" href="/assets/bootstrap-3.3.7-dist/css/bootstrap.min.css">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="/assets/css/font-awesome.min.css">
-
+  <!-- My CSS -->
   <link rel="stylesheet" href="/assets/main.css">
- 
+
   <!-- MathJax -->
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
@@ -50,8 +50,7 @@
   <![endif]-->
 </head>
 
-  <body data-spy="scroll" data-target="#navbar-example">
-
+<body>
     <header class="header">
   <!-- Navigation -->
   <nav class="navbar navbar-default navbar-fixed-top">
@@ -111,56 +110,7 @@
 
 <p>对前端只停留在css的我，花了整三天时间，从Hexo到Jekyll再到Bootstrap，以及各种markdown2html解析器…最后基本算是从头写了一个基于Jekyll的website theme 😥<!-- more --></p>
 
-<ul id="markdown-toc">
-  <li><a href="#hexo" id="markdown-toc-hexo">Hexo</a></li>
-  <li><a href="#jekyll" id="markdown-toc-jekyll">Jekyll</a>    <ul>
-      <li><a href="#get-started" id="markdown-toc-get-started">Get Started</a></li>
-      <li><a href="#部署到vps" id="markdown-toc-部署到vps">部署到VPS</a></li>
-      <li><a href="#create-new-theme-from-scratch" id="markdown-toc-create-new-theme-from-scratch">Create New Theme From Scratch</a>        <ul>
-          <li><a href="#目录结构" id="markdown-toc-目录结构">目录结构</a></li>
-          <li><a href="#说明" id="markdown-toc-说明">说明</a></li>
-          <li><a href="#bootstrap" id="markdown-toc-bootstrap">Bootstrap</a></li>
-          <li><a href="#导航条" id="markdown-toc-导航条">导航条</a></li>
-          <li><a href="#搜索框" id="markdown-toc-搜索框">搜索框</a></li>
-          <li><a href="#文章摘要" id="markdown-toc-文章摘要">文章摘要</a></li>
-          <li><a href="#分页功能" id="markdown-toc-分页功能">分页功能</a></li>
-          <li><a href="#添加about-me-边栏" id="markdown-toc-添加about-me-边栏">添加about me 边栏</a></li>
-          <li><a href="#设置固定链接" id="markdown-toc-设置固定链接">设置固定链接</a></li>
-          <li><a href="#首页添加最近文章" id="markdown-toc-首页添加最近文章">首页添加最近文章</a></li>
-          <li><a href="#首页为每篇文章添加分类标签发表日期以及评论连接" id="markdown-toc-首页为每篇文章添加分类标签发表日期以及评论连接">首页为每篇文章添加分类、标签、发表日期以及评论连接</a></li>
-          <li><a href="#添加返回顶部功能" id="markdown-toc-添加返回顶部功能">添加返回顶部功能</a></li>
-          <li><a href="#文章版权说明" id="markdown-toc-文章版权说明">文章版权说明</a></li>
-          <li><a href="#添加404页面" id="markdown-toc-添加404页面">添加404页面</a></li>
-          <li><a href="#使用多说评论" id="markdown-toc-使用多说评论">使用多说评论</a></li>
-          <li><a href="#分类" id="markdown-toc-分类">分类</a></li>
-          <li><a href="#tags" id="markdown-toc-tags">tags</a></li>
-          <li><a href="#相关文章" id="markdown-toc-相关文章">相关文章</a></li>
-          <li><a href="#侧边栏" id="markdown-toc-侧边栏">侧边栏</a></li>
-          <li><a href="#目录结构-1" id="markdown-toc-目录结构-1">目录结构</a>            <ul>
-              <li><a href="#侧边栏目录滚动" id="markdown-toc-侧边栏目录滚动">侧边栏目录滚动</a></li>
-            </ul>
-          </li>
-          <li><a href="#permalinks" id="markdown-toc-permalinks">Permalinks</a></li>
-          <li><a href="#_configyml-配置" id="markdown-toc-_configyml-配置">_config.yml 配置</a></li>
-          <li><a href="#社交媒体icon" id="markdown-toc-社交媒体icon">社交媒体icon</a></li>
-        </ul>
-      </li>
-      <li><a href="#extras" id="markdown-toc-extras">Extras</a>        <ul>
-          <li><a href="#latex支持" id="markdown-toc-latex支持">LaTex支持</a>            <ul>
-              <li><a href="#单公式的支持" id="markdown-toc-单公式的支持">单$公式的支持</a></li>
-              <li><a href="#mathjax转义问题" id="markdown-toc-mathjax转义问题">mathjax转义问题</a></li>
-            </ul>
-          </li>
-          <li><a href="#code-highlighting" id="markdown-toc-code-highlighting">Code Highlighting</a></li>
-          <li><a href="#修改markdown解析器" id="markdown-toc-修改markdown解析器">修改markdown解析器</a></li>
-        </ul>
-      </li>
-      <li><a href="#问题" id="markdown-toc-问题">问题</a></li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="hexo">Hexo</h2>
+<h1 id="hexo">Hexo</h1>
 
 <p>主流的静态页面生成器有俩，一个Jekyll，一个Hexo，都支持Markdown。 前者用的是Ruby，后者为Node.js。</p>
 
@@ -180,13 +130,13 @@
 </code></pre>
 </div>
 
-<h2 id="jekyll">Jekyll</h2>
+<h1 id="jekyll">Jekyll</h1>
 
-<p>其实用Hexo/Jekyll+现成的主题，很方便就能搭出一个静态网站出来。只是除了代码高亮、LaTex这些功能之外，我还想能区分出code blocks和普通无需highlighting的&lt;pre&gt;部分，还有其他一些改动。因为markdown解析的原因，基本所有themes出的效果都是将两者统一处理了。强迫症（其实就是zuo），主题挑来挑去都没找到个合心意的，比如next这种，太复杂，让我一个前端白痴改，哈，那还是自己从头写一个比较符合程序员造轮子的习惯吧。。。（捂脸</p>
+<p>其实用Hexo/Jekyll+现成的主题，很方便就能搭出一个静态网站出来。只是除了代码高亮、LaTex这些功能之外，我还想能区分出code blocks和普通无需highlighting的<code class="highlighter-rouge">&lt;pre&gt;</code>部分，还有其他一些改动。因为markdown解析的原因，基本所有themes出的效果都是将两者统一处理了。强迫症（其实就是zuo），主题挑来挑去都没找到个合心意的，比如next这种，太复杂，让我一个前端白痴改，哈，那还是自己从头写一个比较符合程序员造轮子的习惯吧。。。（捂脸</p>
 
 <p>（至于为啥从Hexo转到了Jekyll，原因未明）</p>
 
-<h3 id="get-started">Get Started</h3>
+<h2 id="get-started">Get Started</h2>
 
 <p><a href="https://jekyllrb.com/docs/home/">Jekyll Doc</a> (<a href="http://jekyll.com.cn/docs/home/">中文版</a>，内容比较旧)</p>
 
@@ -277,7 +227,7 @@ $ jekyll serve --detach
 $ jekyll serve --watch
 </code></pre>
 
-<h3 id="部署到vps">部署到VPS</h3>
+<h2 id="set-up-your-site-on-vps">Set up Your Site on VPS</h2>
 
 <p>网上清一色都是通过github pages来发布的站点，然后通过修改<code class="highlighter-rouge">CNAME</code>文件来达到绑定域名的目的。</p>
 
@@ -311,14 +261,14 @@ $ jekyll serve --watch
 
 <p><code class="highlighter-rouge">rsync</code>命令是一个远程数据同步工具，可通过LAN/WAN快速同步多台主机间的文件。rsync使用所谓的“rsync算法”来使本地和远程两个主机之间的文件达到同步，这个算法只传送两个文件的不同部分，而不是每次都整份传送，因此速度相当快。</p>
 
-<h3 id="create-new-theme-from-scratch">Create New Theme From Scratch</h3>
+<h2 id="create-new-theme-from-scratch">Create New Theme From Scratch</h2>
 
 <p>用<code class="highlighter-rouge">jekyll new-theme</code>命令，就可以创建出一个theme需要的基本目录项。</p>
 
 <pre><code class="language-text">jekyll new-theme jekyll-theme-awesome
 </code></pre>
 
-<h4 id="目录结构">目录结构</h4>
+<h3 id="directory-structure">Directory Structure</h3>
 
 <pre><code class="language-text">.
 ├── _config.yml
@@ -354,7 +304,7 @@ $ jekyll serve --watch
 
 <p><code class="highlighter-rouge">_site</code> 存放jekyll转化完成的html文件。有时修改效果不生效，可以尝试删除该目录。</p>
 
-<h4 id="说明">说明</h4>
+<h3 id="basic">Basic</h3>
 
 <p>若在<code class="highlighter-rouge">index.html</code>的YAML头信息中加入：</p>
 
@@ -366,7 +316,7 @@ layout: post
 
 <p>则在<code class="highlighter-rouge">default.html</code>中调用<code class="highlighter-rouge"><span class="p">{</span><span class="err">{</span><span class="w"> </span><span class="err">content</span><span class="w"> </span><span class="p">}</span><span class="err">}</span></code>，就会把<code class="highlighter-rouge">index.html</code>中的所有内容放到此处。</p>
 
-<h4 id="bootstrap">Bootstrap</h4>
+<h3 id="bootstrap">Bootstrap</h3>
 
 <p>使用Bootstrap前端框架真是省了很多事。</p>
 
@@ -392,7 +342,7 @@ layout: post
 
 <p>若没效果，删除 <code class="highlighter-rouge">_site</code> 目录再试试，或者用命令重新 build。</p>
 
-<h4 id="导航条">导航条</h4>
+<h3 id="navbar">NavBar</h3>
 
 <p>参考Bootstrap官网给的<a href="http://getbootstrap.com/components/#navbar">示例代码</a>，写入<code class="highlighter-rouge">header.html</code>文件中。</p>
 
@@ -405,7 +355,7 @@ layout: post
 <pre><code class="language-text">body { padding-top: 70px; }
 </code></pre>
 
-<h4 id="搜索框">搜索框</h4>
+<h3 id="search">Search</h3>
 
 <p>参考：<a href="http://getbootstrap.com/components/#input-groups-buttons">Button addons</a> &amp; <a href="http://getbootstrap.com/components/#navbar-forms">Forms</a></p>
 
@@ -422,7 +372,7 @@ layout: post
 </code></pre>
 </div>
 
-<h4 id="文章摘要">文章摘要</h4>
+<h3 id="post-excerpt">Post Excerpt</h3>
 
 <p>在<code class="highlighter-rouge">index.html</code> 中显示文章摘要。参见<a href="https://jekyllrb.com/docs/posts/#post-excerpts">https://jekyllrb.com/docs/posts/#post-excerpts</a>。</p>
 
@@ -442,7 +392,7 @@ layout: post
 <pre><code class="language-text">{{ post.content | strip_html | truncatewords:75 }}
 </code></pre>
 
-<h4 id="分页功能">分页功能</h4>
+<h3 id="pagination">Pagination</h3>
 
 <p>用于<code class="highlighter-rouge">index.html</code> 里对文章的分页显示功能。</p>
 
@@ -464,29 +414,17 @@ paginate_path: "/pages:num/"
 
 <p>（2）然后参考<a href="https://jekyllrb.com/docs/pagination/">https://jekyllrb.com/docs/pagination/</a>在<code class="highlighter-rouge">index.html</code>添加分页功能，并结合Bootstrap里的分页样式修改：<a href="http://getbootstrap.com/components/#pagination">http://getbootstrap.com/components/#pagination</a>。</p>
 
-<h4 id="添加about-me-边栏">添加about me 边栏</h4>
+<h3 id="back-to-top">Back to Top</h3>
 
-<h4 id="设置固定链接">设置固定链接</h4>
+<h3 id="404-page">404 Page</h3>
 
-<h4 id="首页添加最近文章">首页添加最近文章</h4>
+<h3 id="comments">Comments</h3>
 
-<h4 id="首页为每篇文章添加分类标签发表日期以及评论连接">首页为每篇文章添加分类、标签、发表日期以及评论连接</h4>
+<h3 id="category">Category</h3>
 
-<h4 id="添加返回顶部功能">添加返回顶部功能</h4>
+<h3 id="tags">tags</h3>
 
-<h4 id="文章版权说明">文章版权说明</h4>
-
-<h4 id="添加404页面">添加404页面</h4>
-
-<h4 id="使用多说评论">使用多说评论</h4>
-
-<h4 id="分类">分类</h4>
-
-<h4 id="tags">tags</h4>
-
-<h4 id="相关文章">相关文章</h4>
-
-<h4 id="侧边栏">侧边栏</h4>
+<h3 id="sidebar">SideBar</h3>
 
 <p>这里利用了 bootstrap 的栅格布局，栅格布局将一个页面分割成12个等宽的列。(详见 <a href="http://getbootstrap.com/css/#grid-example-basic">example</a>)</p>
 
@@ -502,7 +440,7 @@ paginate_path: "/pages:num/"
 
 <p>让侧边栏固定住，不随页面滚动而滚动：加入<code class="highlighter-rouge">class="affix"</code>。</p>
 
-<h4 id="目录结构-1">目录结构</h4>
+<h3 id="table-of-content">Table of Content</h3>
 
 <p>kramdown自带了解析目录的功能。详见：<a href="https://kramdown.gettalong.org/converter/html.html#toc">https://kramdown.gettalong.org/converter/html.html#toc</a></p>
 
@@ -530,20 +468,28 @@ paginate_path: "/pages:num/"
 
 <p>它的思想也是先利用了kramdown已生成的目录数据。</p>
 
-<h5 id="侧边栏目录滚动">侧边栏目录滚动</h5>
+<h4 id="scrollspy">Scrollspy</h4>
 
-<p>侧边栏目录随浏览内容动态滚动功能，利用Bootstrap的<a href="http://getbootstrap.com/javascript/#scrollspy">ScrollSpy</a>来实现。</p>
+<p>侧边栏目录随浏览内容动态滚动功能，利用Bootstrap的<a href="http://getbootstrap.com/javascript/#scrollspy">Scrollspy</a>来实现。</p>
 
 <p>http://getbootstrap.com/javascript/#scrollspy</p>
 
-<h4 id="permalinks">Permalinks</h4>
+<p>https://afeld.github.io/bootstrap-toc/</p>
+
+<p><a href="https://github.com/afeld/bootstrap-toc">bootstrap-toc</a></p>
+
+<p>sudo gem install redcarpet</p>
+
+<p>markdown: redcarpet</p>
+
+<h3 id="permalinks">Permalinks</h3>
 
 <p>在<code class="highlighter-rouge">_config.yml</code>中设置，如：</p>
 
 <pre><code class="language-text">permalink: /:categories/:year/:month/:day/:title.html
 </code></pre>
 
-<h4 id="_configyml-配置">_config.yml 配置</h4>
+<h3 id="_configyml">_config.yml</h3>
 
 <p><code class="highlighter-rouge">_config.yml</code>里的默认配置参见：https://jekyllrb.com/docs/configuration/#default-configuration</p>
 
@@ -554,9 +500,9 @@ paginate_path: "/pages:num/"
 
 <p>使用<code class="highlighter-rouge">kramdown</code>作为markdown的解析器。</p>
 
-<h4 id="社交媒体icon">社交媒体icon</h4>
+<h3 id="social-media">Social Media</h3>
 
-<p>用的是 <a href="http://fontawesome.io/">fontawesome</a>。我这里将解压后的 <code class="highlighter-rouge">fonts</code>和<code class="highlighter-rouge">css</code>文件夹赋值到了<code class="highlighter-rouge">assets</code>目录下。</p>
+<p>icon用的是 <a href="http://fontawesome.io/">fontawesome</a>。我这里将解压后的 <code class="highlighter-rouge">fonts</code>和<code class="highlighter-rouge">css</code>文件夹赋值到了<code class="highlighter-rouge">assets</code>目录下。</p>
 
 <p>在<code class="highlighter-rouge">head.html</code>中添加：</p>
 
@@ -575,9 +521,9 @@ paginate_path: "/pages:num/"
 &lt;i class="fa fa-camera-retro fa-3x"&gt;&lt;/i&gt; fa-3x
 </code></pre>
 
-<h3 id="extras">Extras</h3>
+<h2 id="extras">Extras</h2>
 
-<h4 id="latex支持">LaTex支持</h4>
+<h3 id="latex">LaTex</h3>
 
 <p>参考：<a href="https://jekyllrb.com/docs/extras/#math-support">https://jekyllrb.com/docs/extras/#math-support</a></p>
 
@@ -599,7 +545,9 @@ mathjax: true
 ---
 </code></pre>
 
-<h5 id="单公式的支持">单$公式的支持</h5>
+<h4 id="support-">Support $</h4>
+
+<p>默认只支持双<code class="highlighter-rouge">$</code>符，修改：</p>
 
 <pre><code class="language-text">&lt;script type="text/x-mathjax-config"&gt;
   MathJax.Hub.Config({
@@ -617,7 +565,7 @@ mathjax: true
 &lt;/script&gt;
 </code></pre>
 
-<h5 id="mathjax转义问题">mathjax转义问题</h5>
+<h4 id="mathjax-rendering-problem">Mathjax Rendering Problem</h4>
 
 <p>若latex公式中包含<code class="highlighter-rouge">|</code>符，如<code class="highlighter-rouge">|a|</code>，会被markdown解析器当成<code class="highlighter-rouge">&lt;table&gt;&lt;/table&gt;</code>来处理。</p>
 
@@ -629,7 +577,7 @@ mathjax: true
 
 <p>对第二种情况，用双<code class="highlighter-rouge">$$</code>符解决转义问题。</p>
 
-<h4 id="code-highlighting">Code Highlighting</h4>
+<h3 id="code-highlighting">Code Highlighting</h3>
 
 <p>Jekyll 3.x 自带了rouge代码高亮的功能，但是不造为啥一直not working（难道又被看脸了。。</p>
 
@@ -667,7 +615,7 @@ xxx
 
 <p>第一种方式比较麻烦，但<code class="highlighter-rouge">highlightjs</code>又没有提供关闭<code class="highlighter-rouge">highlightAuto</code>的接口。</p>
 
-<h4 id="修改markdown解析器">修改markdown解析器</h4>
+<h3 id="custom-markdown-parser">Custom Markdown Parser</h3>
 
 <p>在<code class="highlighter-rouge">_config.yml</code>中可以看到，默认使用的是<code class="highlighter-rouge">kramdown</code>解析器。</p>
 
@@ -718,7 +666,7 @@ xxx
 
 <p>这样当语言设为<code class="highlighter-rouge">auto</code>的时候，自动显示高亮。</p>
 
-<h3 id="问题">问题</h3>
+<h2 id="problems">Problems</h2>
 
 <p><code class="highlighter-rouge"><span class="p">{</span><span class="err">{</span><span class="w"> </span><span class="err">xxx</span><span class="w"> </span><span class="p">}</span><span class="err">}</span></code> 或者 <code class="highlighter-rouge"><span class="p">{</span><span class="err">%</span><span class="w"> </span><span class="err">xxx</span><span class="w"> </span><span class="err">%</span><span class="p">}</span></code> 显示不出来。</p>
 
@@ -781,12 +729,16 @@ This is a test: {{ xxx }}
       </aside>
       
     </div>
-
+    
     <div class="sidebar-content col-md-3">
-      <div class="post-sidebar" id="navbar-example">
-  <div id="toc" class="affix">
+      <div class="post-sidebar">
+  <nav class="header-list-sidebar hidden-print hidden-xs hidden-sm">
+    <ul id="sideNav" class="nav headers-sidenav">
+        <!-- code will be generated in TOC.js -->
+    </ul>
 
-  </div>
+    <a href="#top" class="back-to-top">^</a>
+  </nav>
 </div>
     </div>
   </div>
@@ -794,25 +746,18 @@ This is a test: {{ xxx }}
 
 
     <footer class="footer">
-    <small>
-      &copy; <time datetime="2017-08-04T15:30:43+08:00">2017</time>. All rights reserved.
-    </small>
+  <div class="copyright">
+      Copyright &copy; <time datetime="2017-08-04T23:44:14+08:00">2017</time> <a href="http://localhost:4000">lszero</a> | Powered by <a href="https://github.com/jekyll/jekyll">Jekyll</a> | Designed by <a href="http://localhost:4000">lszero</a>
+  </div>
 </footer>
 
-    
+<!--      -->
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="/assets/js/jquery-3.2.1.min.js"></script>
+    <script src="/assets/js/jquery-1.12.4.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="/assets/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-    
     <!-- TOC -->
-    <script src="/assets/js/toc.js"></script>
-    <script type="text/javascript">
-      $(document).ready(function() {
-          // { listType: 'ul', showEffect: 'slideDown', minimumHeaders: 2, classes: { list: 'nav nav-stacked', item: '' } });
-          $('#toc').toc({ listType: 'ul', classes: { list: 'nav nav-stacked' } });
-      });
-    </script>
+    <script src="/assets/js/toc/TOC.js"></script>
   </body>
 </html>

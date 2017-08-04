@@ -16,9 +16,9 @@
   <link rel="stylesheet" href="/assets/bootstrap-3.3.7-dist/css/bootstrap.min.css">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="/assets/css/font-awesome.min.css">
-
+  <!-- My CSS -->
   <link rel="stylesheet" href="/assets/main.css">
- 
+
   <!-- MathJax -->
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
@@ -52,8 +52,7 @@
   <![endif]-->
 </head>
 
-  <body data-spy="scroll" data-target="#navbar-example">
-
+<body>
     <header class="header">
   <!-- Navigation -->
   <nav class="navbar navbar-default navbar-fixed-top">
@@ -188,12 +187,16 @@
       </aside>
       
     </div>
-
+    
     <div class="sidebar-content col-md-3">
-      <div class="post-sidebar" id="navbar-example">
-  <div id="toc" class="affix">
+      <div class="post-sidebar">
+  <nav class="header-list-sidebar hidden-print hidden-xs hidden-sm">
+    <ul id="sideNav" class="nav headers-sidenav">
+        <!-- code will be generated in TOC.js -->
+    </ul>
 
-  </div>
+    <a href="#top" class="back-to-top">^</a>
+  </nav>
 </div>
     </div>
   </div>
@@ -201,25 +204,18 @@
 
 
     <footer class="footer">
-    <small>
-      &copy; <time datetime="2017-08-04T15:30:43+08:00">2017</time>. All rights reserved.
-    </small>
+  <div class="copyright">
+      Copyright &copy; <time datetime="2017-08-04T23:44:14+08:00">2017</time> <a href="http://localhost:4000">lszero</a> | Powered by <a href="https://github.com/jekyll/jekyll">Jekyll</a> | Designed by <a href="http://localhost:4000">lszero</a>
+  </div>
 </footer>
 
-    
+<!--      -->
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="/assets/js/jquery-3.2.1.min.js"></script>
+    <script src="/assets/js/jquery-1.12.4.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="/assets/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-    
     <!-- TOC -->
-    <script src="/assets/js/toc.js"></script>
-    <script type="text/javascript">
-      $(document).ready(function() {
-          // { listType: 'ul', showEffect: 'slideDown', minimumHeaders: 2, classes: { list: 'nav nav-stacked', item: '' } });
-          $('#toc').toc({ listType: 'ul', classes: { list: 'nav nav-stacked' } });
-      });
-    </script>
+    <script src="/assets/js/toc/TOC.js"></script>
   </body>
 </html>

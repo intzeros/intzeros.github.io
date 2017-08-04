@@ -16,9 +16,9 @@
   <link rel="stylesheet" href="/assets/bootstrap-3.3.7-dist/css/bootstrap.min.css">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="/assets/css/font-awesome.min.css">
-
+  <!-- My CSS -->
   <link rel="stylesheet" href="/assets/main.css">
- 
+
   <!-- MathJax -->
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
@@ -50,8 +50,7 @@
   <![endif]-->
 </head>
 
-  <body data-spy="scroll" data-target="#navbar-example">
-
+<body>
     <header class="header">
   <!-- Navigation -->
   <nav class="navbar navbar-default navbar-fixed-top">
@@ -136,16 +135,17 @@
         </h1>
 
         <div class="content">
-          <h3 id="点和线">点和线</h3>
-<h4 id="基础">基础</h4>
+          <h2 id="点和线">点和线</h2>
+<h3 id="基础">基础</h3>
 <p>向量  $\vec{a} = (x_1, y_1), \vec{b} = (x_2, y_2)$.</p>
 
-<p>(1) <strong>点积</strong>:  <span class="kdmath">$\vec{a}\cdot \vec{b} = x_1x_2 + y_1y_2 = \vert a \vert \vert b \vert cos\theta$</span></p>
+<p>(1) <strong>点积</strong>:  <script type="math/tex">\vec{a}\cdot \vec{b} = x_1x_2 + y_1y_2 = \vert a \vert \vert b \vert cos\theta</script></p>
 
 <p>(2) <strong>叉积</strong> (cross product):
 <img src="http://lszero.com/wp-content/uploads/2017/04/Screen-Shot-2017-04-27-at-11.20.09-AM.png" style="zoom:50%; float:right" /></p>
 
-<p><span class="kdmath">$\vert \vec{a}\times \vec{b} \vert = det\begin{bmatrix}x_1 & x_2 \\y_1 & y_2 \end{bmatrix}= x_1y_2 - x_2y_1 = \vert a \vert \vert b \vert sin\theta$</span>.</p>
+<p><script type="math/tex">% <![CDATA[
+\vert \vec{a}\times \vec{b} \vert = det\begin{bmatrix}x_1 & x_2 \\y_1 & y_2 \end{bmatrix}= x_1y_2 - x_2y_1 = \vert a \vert \vert b \vert sin\theta %]]></script>.</p>
 
 <p>$\vec{a}\times \vec{b} =  - \vec{b}\times \vec{a}$</p>
 
@@ -285,7 +285,7 @@
         </h1>
 
         <div class="content">
-          <h2 id="unordered_map">unordered_map</h2>
+          <h1 id="unordered_map">unordered_map</h1>
 
 <ul>
   <li>map是基于红黑树实现的，查找时间O(logn);</li>
@@ -387,25 +387,18 @@ From the <a href="http://en.wikipedia.org/wiki/Standard_Template_Library">STL</a
 
 
     <footer class="footer">
-    <small>
-      &copy; <time datetime="2017-08-04T15:30:43+08:00">2017</time>. All rights reserved.
-    </small>
+  <div class="copyright">
+      Copyright &copy; <time datetime="2017-08-04T23:44:14+08:00">2017</time> <a href="http://localhost:4000">lszero</a> | Powered by <a href="https://github.com/jekyll/jekyll">Jekyll</a> | Designed by <a href="http://localhost:4000">lszero</a>
+  </div>
 </footer>
 
-    
+<!--      -->
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="/assets/js/jquery-3.2.1.min.js"></script>
+    <script src="/assets/js/jquery-1.12.4.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="/assets/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-    
     <!-- TOC -->
-    <script src="/assets/js/toc.js"></script>
-    <script type="text/javascript">
-      $(document).ready(function() {
-          // { listType: 'ul', showEffect: 'slideDown', minimumHeaders: 2, classes: { list: 'nav nav-stacked', item: '' } });
-          $('#toc').toc({ listType: 'ul', classes: { list: 'nav nav-stacked' } });
-      });
-    </script>
+    <script src="/assets/js/toc/TOC.js"></script>
   </body>
 </html>
