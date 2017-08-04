@@ -344,7 +344,20 @@ paginate_path: "/pages:num/"
 
 ### 相关文章
 
+### Sidebar
 
+这里利用了 bootstrap 的栅格布局，栅格布局将一个页面分割成12个等宽的列。(详见 [example](http://getbootstrap.com/css/#grid-example-basic))
+
+```
+<div class="row-fluid">
+  <div class="col-md-9">
+    <h2>Content</h2>
+  </div>
+  <div class="col-md-3">
+    <h2>Sidebar</h2>  
+  </div>
+</div>
+```
 
 ### 页面宽度
 
@@ -373,6 +386,28 @@ markdown: kramdown
 ```
 
 使用`kramdown`作为markdown的解析器。
+
+### 社交媒体icon
+
+用的是 [fontawesome](http://fontawesome.io/)。我这里将解压后的 `fonts`和`css`文件夹赋值到了`assets`目录下。
+
+在`head.html`中添加：
+
+```html
+<link rel="stylesheet" href="/assets/css/font-awesome.min.css">
+```
+
+要使用哪个图标，直接去[官网](http://fontawesome.io/icons/)搜代码就行。
+
+使用`color `修改图标颜色。
+
+修改图标大小，如：
+
+```
+<i class="fa fa-camera-retro"></i> fa-camera-retro
+<i class="fa fa-camera-retro fa-2x"></i> fa-2x
+<i class="fa fa-camera-retro fa-3x"></i> fa-3x
+```
 
 ## Extras
 

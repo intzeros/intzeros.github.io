@@ -28,3 +28,25 @@ pre.highlight {
   color: #ffffff;
   background-color: #5bc0de;
   float: right; }
+
+.sidebar-content {
+  margin-top: 20px; }
+
+.main-sidebar .auther-avatar img {
+  border-radius: 50%;
+  max-width: 200px;
+  border: 1px solid #f2f3f3;
+  padding: 5px;
+  margin: 10px auto;
+  display: block; }
+
+.brief-intro .auther-name {
+  font-size: 25px;
+  margin-bottom: 10px;
+  text-align: center; }
+
+.social-icons .fa-github, .social-icons .fa-weibo, .social-icons .fa-twitter, .social-icons .fa-twitter-square, .social-icons .fa-circle {
+  color: #777; }
+
+.social-icons .btn {
+  padding: 6px 4px; }

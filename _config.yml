@@ -48,6 +48,13 @@ excerpt_separator: <!-- more -->
 
 permalink: /:categories/:title.html
 
+social_media:
+  github_url: https://github.com/lszero
+  weibo_url: http://weibo.com/u/2313016370
+  zhihu_url: https://www.zhihu.com/people/lszero
+  twitter_url: https://twitter.com/_lszero
+  lofter_url: http://intzero.lofter.com/
+  
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
 # to override the default setting.

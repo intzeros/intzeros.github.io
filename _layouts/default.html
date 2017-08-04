@@ -7,17 +7,22 @@
 
     {% include {{ site.baseurl }}header.html %}
   
-    <div class="container main">
-      <div class="container content">
-        <main>
+    <div class="container">
+      <div class="row-fluid main">
+        <div class="content col-md-9">
           {{ content }}
-        </main>
+
+          <footer class="footer">
+            <small>
+              &copy; <time datetime="{{ site.time | date_to_xmlschema }}">{{ site.time | date: '%Y' }}</time>. All rights reserved.
+            </small>
+          </footer>
+        </div>
+
+        <div class="sidebar-content col-md-3">
+          {% include {{ site.baseurl }}main_sidebar.html %}
+        </div>
       </div>
-      <footer class="footer">
-          <small>
-            &copy; <time datetime="{{ site.time | date_to_xmlschema }}">{{ site.time | date: '%Y' }}</time>. All rights reserved.
-          </small>
-        </footer>
     </div>
 
     {% if site.analytics_id %}
