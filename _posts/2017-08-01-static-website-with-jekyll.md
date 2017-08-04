@@ -11,6 +11,9 @@ categories: coding4fun
 
 对前端只停留在css的我，花了整三天时间，从Hexo到Jekyll再到Bootstrap，以及各种markdown2html解析器...最后基本算是从头写了一个基于Jekyll的website theme 😥<!-- more -->
 
+* 目录
+{:toc}
+
 # Hexo
 
 主流的静态页面生成器有俩，一个Jekyll，一个Hexo，都支持Markdown。 前者用的是Ruby，后者为Node.js。
@@ -24,10 +27,10 @@ Hexo会比Jekyll搭建起来更方便一些，而且各种配置项的设计也�
 
 这里主要记录一下让Hexo支持LaTex的注意地方。Hexo用MathJax时会有一些[转义问题](http://2wildkids.com/2016/10/06/%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86Hexo%E5%92%8CMathJax%E7%9A%84%E5%85%BC%E5%AE%B9%E9%97%AE%E9%A2%98/#)，经我自己测试，最好的方式是用hexo-renderer-pandoc渲染器代替原有的hexo-renderer-marked。而网上说的用hexo-renderer-kramed，对矩阵的情况显示的不好。
 
-```shell
+~~~shell
 $ npm uninstall hexo-renderer-marked --save
 $ npm install hexo-renderer-kramed --save
-```
+~~~
 
 
 # Jekyll
@@ -44,7 +47,7 @@ $ npm install hexo-renderer-kramed --save
 
 首先直接用apt-get下载的Ruby版本比较旧。
 
-```shell
+~~~shell
 # Install Ruby & RubyGems
 $ sudo apt-add-repository ppa:brightbox/ruby-ng
 $ sudo apt-get update
@@ -52,7 +55,7 @@ $ sudo apt-get install ruby2.4
 
 # Install Jekyll and Bundler gems
 $ sudo gem install jekyll bundler
-```
+~~~
 然后在`gem install jekyll`时会报错：
 
 ```
@@ -258,6 +261,14 @@ layout: post
 
 然后在`default.html`的`<body></body>`标签中引入{% raw %}`{% include header.html %}`{% endraw %}。
 
+注意的点是，
+
+若使用了`.navbar-fixed-top` 类，这个固定的导航条会遮住页面上的其它内容，除非你给 `<body>` 元素底部设置了 `padding`，例如：
+
+```
+body { padding-top: 70px; }
+```
+
 ### 搜索框
 
 参考：[Button addons](http://getbootstrap.com/components/#input-groups-buttons) & [Forms](http://getbootstrap.com/components/#navbar-forms)
@@ -344,7 +355,7 @@ paginate_path: "/pages:num/"
 
 ### 相关文章
 
-### Sidebar
+### 侧边栏
 
 这里利用了 bootstrap 的栅格布局，栅格布局将一个页面分割成12个等宽的列。(详见 [example](http://getbootstrap.com/css/#grid-example-basic))
 
@@ -359,13 +370,46 @@ paginate_path: "/pages:num/"
 </div>
 ```
 
-### 页面宽度
+让侧边栏固定住，不随页面滚动而滚动：加入`class="affix"`。
+
+### 目录结构
+
+kramdown自带了解析目录的功能。详见：[https://kramdown.gettalong.org/converter/html.html#toc](https://kramdown.gettalong.org/converter/html.html#toc)
+
+在md文件中加入：
 
 ```
-.container {
-    max-width: 970px;
-}
+# 无序列表
+* TOC
+{:toc}
+{: .this-is-my-class}
 ```
+
+或者：
+
+```
+# 有序列表
+1. TOC
+{:toc}
+{: .this-is-my-class}
+```
+
+并且可在`_config.yml`中设置要显示的标题级别：
+
+```
+kramdown: 
+  toc_levels: "2,3" 
+```
+
+它的思想也是先利用了kramdown已生成的目录数据。
+
+#### 侧边栏目录滚动
+
+侧边栏目录随浏览内容动态滚动功能，利用Bootstrap的[ScrollSpy](http://getbootstrap.com/javascript/#scrollspy)来实现。
+
+
+
+http://getbootstrap.com/javascript/#scrollspy
 
 ### Permalinks
 

@@ -3,27 +3,13 @@
 
   {% include head.html %}
 
-  <body>
+  <body data-spy="scroll" data-target="#navbar-example">
 
     {% include {{ site.baseurl }}header.html %}
   
-    <div class="container">
-      <div class="row-fluid main">
-        <div class="content col-md-9">
-          {{ content }}
+    {{ content }}
 
-          <footer class="footer">
-            <small>
-              &copy; <time datetime="{{ site.time | date_to_xmlschema }}">{{ site.time | date: '%Y' }}</time>. All rights reserved.
-            </small>
-          </footer>
-        </div>
-
-        <div class="sidebar-content col-md-3">
-          {% include {{ site.baseurl }}main_sidebar.html %}
-        </div>
-      </div>
-    </div>
+    {% include {{ site.baseurl }}footer.html %}
 
     {% if site.analytics_id %}
      <script>
@@ -37,9 +23,17 @@
     {% endif %}
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="/assets/js/jquery-3.2.1.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="/assets/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
     
+    <!-- TOC -->
+    <script src="/assets/js/toc.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+          // { listType: 'ul', showEffect: 'slideDown', minimumHeaders: 2, classes: { list: 'nav nav-stacked', item: '' } });
+          $('#toc').toc({ listType: 'ul', classes: { list: 'nav nav-stacked' } });
+      });
+    </script>
   </body>
 </html>

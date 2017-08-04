@@ -3,7 +3,10 @@
 ---
 
 
-body { padding-top: 70px; }
+body { 
+    padding-top: 70px;
+    position: relative;
+}
 
 pre.highlight {
     font-size: 90%;
@@ -65,3 +68,5 @@ pre.highlight {
 .social-icons .btn {
     padding: 6px 4px;
 }
+
+

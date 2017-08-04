@@ -50,7 +50,7 @@
   <![endif]-->
 </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#navbar-example">
 
     <header class="header">
   <!-- Navigation -->
@@ -100,54 +100,52 @@
 
   
     <div class="container">
-      <div class="row-fluid main">
-        <div class="content col-md-9">
-          <div class="posts">
-  
-  <article class="post-preview">
-    <h1 class="post-title">
-      <a href="/coding4fun/static-website-with-jekyll.html">从WordPress到静态网站</a>
-    </h1>
+  <div class="row-fluid main">
+    <div class="content posts col-md-9">
+      
+      <article class="post-preview">
+        <h1 class="post-title">
+          <a href="/coding4fun/static-website-with-jekyll.html">从WordPress到静态网站</a>
+        </h1>
 
-    <div class="content">
-      <p>[TOC]</p>
+        <div class="content">
+          <p>[TOC]</p>
 
 <p>作为一个极简主义者，越来越受不了WordPress的臃肿。主要自己平时都是用Markdown来做记录，而WordPress支持的不是很好，另外有时写的md长文通过三方软件导出的html也不造放在wp的什么地方才合适，管理起来还不如几个静态页面来得方便。于是有了某天来个大整顿的想法。</p>
 
 <p>对前端只停留在css的我，花了整三天时间，从Hexo到Jekyll再到Bootstrap，以及各种markdown2html解析器…最后基本算是从头写了一个基于Jekyll的website theme 😥</p>
 
 
-    </div>
+        </div>
 
-    <footer class="post-meta">
-      <div class="post-info">
-        <a class="author" href="http://localhost:4000">lszero</a>
-        <time class="post-date"><a href="/coding4fun/static-website-with-jekyll.html">01 Aug 2017</a></time>
-        <a class="category" href="#">类别</a>
-        <a class="comments" href="#">No Comments</a>
-        <a class="read-more" href="/coding4fun/static-website-with-jekyll.html">Read More</a>
-      </div>
-      <hr />
-    </footer>
-  </article>
-  
-  <article class="post-preview">
-    <h1 class="post-title">
-      <a href="/algorithm/computational-geometry.html">计算几何</a>
-    </h1>
+        <footer class="post-meta">
+          <div class="post-info">
+            <a class="author" href="http://localhost:4000">lszero</a>
+            <time class="post-date"><a href="/coding4fun/static-website-with-jekyll.html">01 Aug 2017</a></time>
+            <a class="category" href="#">类别</a>
+            <a class="comments" href="#">No Comments</a>
+            <a class="read-more" href="/coding4fun/static-website-with-jekyll.html">Read More</a>
+          </div>
+          <hr />
+        </footer>
+      </article>
+      
+      <article class="post-preview">
+        <h1 class="post-title">
+          <a href="/algorithm/computational-geometry.html">计算几何</a>
+        </h1>
 
-    <div class="content">
-      <h2 id="点和线">点和线</h2>
-<h3 id="基础">基础</h3>
+        <div class="content">
+          <h3 id="点和线">点和线</h3>
+<h4 id="基础">基础</h4>
 <p>向量  $\vec{a} = (x_1, y_1), \vec{b} = (x_2, y_2)$.</p>
 
-<p>(1) <strong>点积</strong>:  <script type="math/tex">\vec{a}\cdot \vec{b} = x_1x_2 + y_1y_2 = \vert a \vert \vert b \vert cos\theta</script></p>
+<p>(1) <strong>点积</strong>:  <span class="kdmath">$\vec{a}\cdot \vec{b} = x_1x_2 + y_1y_2 = \vert a \vert \vert b \vert cos\theta$</span></p>
 
 <p>(2) <strong>叉积</strong> (cross product):
 <img src="http://lszero.com/wp-content/uploads/2017/04/Screen-Shot-2017-04-27-at-11.20.09-AM.png" style="zoom:50%; float:right" /></p>
 
-<p><script type="math/tex">% <![CDATA[
-\vert \vec{a}\times \vec{b} \vert = det\begin{bmatrix}x_1 & x_2 \\y_1 & y_2 \end{bmatrix}= x_1y_2 - x_2y_1 = \vert a \vert \vert b \vert sin\theta %]]></script>.</p>
+<p><span class="kdmath">$\vert \vec{a}\times \vec{b} \vert = det\begin{bmatrix}x_1 & x_2 \\y_1 & y_2 \end{bmatrix}= x_1y_2 - x_2y_1 = \vert a \vert \vert b \vert sin\theta$</span>.</p>
 
 <p>$\vec{a}\times \vec{b} =  - \vec{b}\times \vec{a}$</p>
 
@@ -170,33 +168,192 @@
 <p>(7) 判断两直线平行: <code class="highlighter-rouge">叉乘==0</code>.</p>
 
 
-    </div>
-
-    <footer class="post-meta">
-      <div class="post-info">
-        <a class="author" href="http://localhost:4000">lszero</a>
-        <time class="post-date"><a href="/algorithm/computational-geometry.html">27 Apr 2017</a></time>
-        <a class="category" href="#">类别</a>
-        <a class="comments" href="#">No Comments</a>
-        <a class="read-more" href="/algorithm/computational-geometry.html">Read More</a>
-      </div>
-      <hr />
-    </footer>
-  </article>
-  
-</div>
-
-
-
-          <footer class="footer">
-            <small>
-              &copy; <time datetime="2017-08-04T09:31:59+08:00">2017</time>. All rights reserved.
-            </small>
-          </footer>
         </div>
 
-        <div class="sidebar-content col-md-3">
-          <div class="main-sidebar">
+        <footer class="post-meta">
+          <div class="post-info">
+            <a class="author" href="http://localhost:4000">lszero</a>
+            <time class="post-date"><a href="/algorithm/computational-geometry.html">27 Apr 2017</a></time>
+            <a class="category" href="#">类别</a>
+            <a class="comments" href="#">No Comments</a>
+            <a class="read-more" href="/algorithm/computational-geometry.html">Read More</a>
+          </div>
+          <hr />
+        </footer>
+      </article>
+      
+      <article class="post-preview">
+        <h1 class="post-title">
+          <a href="/algorithm/alibaba-interview-201704.html">阿里笔试两道编程题</a>
+        </h1>
+
+        <div class="content">
+          <p>阿里笔试没做啊, 感谢同学过来分享讨论.</p>
+
+<p>感觉其中的概率题还是挺有意思的, 赶紧记录一下。思路不一定对… (汗…</p>
+
+<hr />
+
+<p>第一道.</p>
+
+<pre><code class="language-text">给一个矩形, 再给一堆矩形里的线段, 问是否存在一条路线可以从左下角走到右上角(要求不穿过线段).
+</code></pre>
+
+<p>思路: 用并查集把两条相交的线段作为一个集合, 然后对每个集合求上下左右边界, 判断这个子矩阵是否截断了从左下角走到右上角的路径.</p>
+
+<hr />
+
+<p>第二道.</p>
+
+<pre><code class="language-text">小伙纸要去跟 n 个妹纸相亲, 每次随机见一个妹纸(可能是之前已经见过的). 问至少相亲几次使得这 n 个妹纸都见过.
+</code></pre>
+
+<p>思路: 得益于之前做的<a href="http://lszero.com/1595/2017-microsoft-intern-hihocoder/">微软第一题</a>, 感觉有点像, 但也不知道是不是最优解法…</p>
+
+<p>假如当前已经见了 k 个妹纸, 要见第 k+1个妹纸时, 相亲次数的期望值为:  ∑∞i=1i(kn)i−1n−kn. (这个公式怎么来? 参考之前<a href="http://lszero.com/1595/2017-microsoft-intern-hihocoder/">微软</a>那张树的图就能推出来)</p>
+
+<p>另 p=k/n, 则上式为</p>
+
+<p>$(1-p)\sum_{i=1}^\infty i*p^{i-1}=(1-p)(\sum_{i=1}^\infty p^i)’=(1-p)(\lim_{n \rightarrow \infty}p\frac{1-p^n}{1-p})’=(1-p)(\frac{p}{1-p})’=1-p$</p>
+
+
+        </div>
+
+        <footer class="post-meta">
+          <div class="post-info">
+            <a class="author" href="http://localhost:4000">lszero</a>
+            <time class="post-date"><a href="/algorithm/alibaba-interview-201704.html">26 Apr 2017</a></time>
+            <a class="category" href="#">类别</a>
+            <a class="comments" href="#">No Comments</a>
+            <a class="read-more" href="/algorithm/alibaba-interview-201704.html">Read More</a>
+          </div>
+          <hr />
+        </footer>
+      </article>
+      
+      <article class="post-preview">
+        <h1 class="post-title">
+          <a href="/algorithm/reservoir-sampling.html">水塘抽样</a>
+        </h1>
+
+        <div class="content">
+          <p>先看几个问题：</p>
+
+<ul>
+  <li>从一个很大的源代码中随机选取一行。</li>
+  <li>对一个长度未知的链表随机选取其中的k个节点。</li>
+</ul>
+
+<p><strong>水塘抽样</strong>(<a href="https://en.wikipedia.org/wiki/Reservoir_sampling">Reservoir sampling</a>) 是随机算法的一种。其目的在于从包含n个项目的集合S中选取k个样本，其中n为一很大或未知的数量，尤其适用于不能把所有n个项目都存放到主内存的情况。</p>
+
+<p>考虑k=1的情况。算法如下：</p>
+
+<ul>
+  <li>Keep the first item in memory.</li>
+  <li>When the <em>i</em>-th item arrives (for <em>i</em>&gt;1):with probability 1/<em>i</em>, keep the new item (discard the old one)with probability 1-1/<em>i</em>, keep the old item (ignore the new one)</li>
+</ul>
+
+<p>So:</p>
+
+<ul>
+  <li>when there is only one item, it is kept with probability 1;</li>
+  <li>when there are 2 items, each of them is kept with probability 1/2;</li>
+  <li>when there are 3 items, the third item is kept with probability 1/3, and each of the previous 2 items is also kept with probability (1/2)(1-1/3) = (1/2)(2/3) = 1/3;</li>
+  <li>by induction, it is easy to prove that when there are <em>n</em> items, each item is kept with probability 1/<em>n</em>.</li>
+</ul>
+
+<p>考虑一般情况，<em>Algorithm R</em> by <a href="https://en.wikipedia.org/wiki/Jeffrey_Vitter">Jeffrey Vitter</a>：</p>
+
+
+        </div>
+
+        <footer class="post-meta">
+          <div class="post-info">
+            <a class="author" href="http://localhost:4000">lszero</a>
+            <time class="post-date"><a href="/algorithm/reservoir-sampling.html">21 Oct 2016</a></time>
+            <a class="category" href="#">类别</a>
+            <a class="comments" href="#">No Comments</a>
+            <a class="read-more" href="/algorithm/reservoir-sampling.html">Read More</a>
+          </div>
+          <hr />
+        </footer>
+      </article>
+      
+      <article class="post-preview">
+        <h1 class="post-title">
+          <a href="/cpp/unordered-map-cplusplus11.html">unordered_map & C++11配置</a>
+        </h1>
+
+        <div class="content">
+          <h2 id="unordered_map">unordered_map</h2>
+
+<ul>
+  <li>map是基于红黑树实现的，查找时间O(logn);</li>
+  <li>hash_map是基于hash表实现的，查找时间O(1).</li>
+</ul>
+
+<p><strong>hash_map是STL的一部分，但不属于C++ Standard Library.</strong></p>
+
+<p>Quoting Wikipedia (emphasis added):
+From the <a href="http://en.wikipedia.org/wiki/Standard_Template_Library">STL</a> page:</p>
+
+<blockquote>
+  <p>The Standard Template Library (STL) is a software library <strong>partially</strong> included in the C++ Standard Library.</p>
+</blockquote>
+
+<p>…and then from the <a href="http://en.wikipedia.org/wiki/Hash_map_%28C++%29">hash_map</a> page:</p>
+
+<blockquote>
+  <p>In the C++ programming language, <code class="highlighter-rouge">hash_map</code> <strong>is the name of a hashed associative container in the Standard Template Library</strong>. It is provided by several implementors, such as the GNU C++ compiler and Microsoft’s Visual C++. <strong>It is not part of the C++ Standard Library</strong>, but the C++ Technical Report 1 contains the very similar container <code class="highlighter-rouge">unordered_map</code>, which will be included in the upcoming C++0x standard.</p>
+</blockquote>
+
+<p>参考：<a href="http://stackoverflow.com/questions/16136142/c11-functionality-with-mingw">stackoverflow</a></p>
+
+<p>由于之前的#include <hash_map>已过时，被#include <unordered_map>代替。</unordered_map></hash_map></p>
+
+
+        </div>
+
+        <footer class="post-meta">
+          <div class="post-info">
+            <a class="author" href="http://localhost:4000">lszero</a>
+            <time class="post-date"><a href="/cpp/unordered-map-cplusplus11.html">28 Jun 2016</a></time>
+            <a class="category" href="#">类别</a>
+            <a class="comments" href="#">No Comments</a>
+            <a class="read-more" href="/cpp/unordered-map-cplusplus11.html">Read More</a>
+          </div>
+          <hr />
+        </footer>
+      </article>
+      
+
+      
+      <nav aria-label="Page navigation">
+        <ul class="pagination">
+          
+            <li><span>&laquo;</span></li>
+          
+
+          
+            
+              <li class="active"><a>1</a></li>
+            
+          
+            
+              <li><a href="/pages2/">2</a></li>
+            
+          
+
+          
+            <li><a href="/pages2/">&raquo;</a></li>
+          
+        </ul>
+      </nav>
+      
+    </div>
+
+    <div class="sidebar-content col-md-3">
+      <div class="main-sidebar">
   <div class="auther-avatar">
     <img src="/assets/img/author_avatar.jpg" alt="lszero">
   </div>
@@ -223,16 +380,32 @@
     <a href="http://intzero.lofter.com/" class="btn" title="Lofter"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa  fa-stack-1x fa-inverse">L</i></span></a>
   </div>
 </div>
-        </div>
-      </div>
     </div>
+  </div>
+</div>
+
+
+
+    <footer class="footer">
+    <small>
+      &copy; <time datetime="2017-08-04T15:30:43+08:00">2017</time>. All rights reserved.
+    </small>
+</footer>
 
     
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="/assets/js/jquery-3.2.1.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="/assets/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
     
+    <!-- TOC -->
+    <script src="/assets/js/toc.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+          // { listType: 'ul', showEffect: 'slideDown', minimumHeaders: 2, classes: { list: 'nav nav-stacked', item: '' } });
+          $('#toc').toc({ listType: 'ul', classes: { list: 'nav nav-stacked' } });
+      });
+    </script>
   </body>
 </html>

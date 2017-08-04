@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <title>
+    
+      水塘抽样 &middot; Soki's Blog
+    
+  </title>
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="/assets/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="/assets/css/font-awesome.min.css">
+
+  <link rel="stylesheet" href="/assets/main.css">
+ 
+  <!-- MathJax -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      TeX: {
+        equationNumbers: {
+          autoNumber: "AMS"
+        }
+      },
+      tex2jax: {
+        inlineMath: [ ['$','$'] ],
+        displayMath: [ ['$$','$$'] ],
+        processEscapes: true,
+      }
+    });
+  </script>
+  
+
+  <!-- code highlighting-->
+  <link rel="stylesheet" href="/lib/highlight/styles/hybrid.css">
+  <script src="/lib/highlight/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <script>hljs.configure({ ignore: ['text'] });</script>
+  
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+  <body data-spy="scroll" data-target="#navbar-example">
+
+    <header class="header">
+  <!-- Navigation -->
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/" style="color:#333">Soki's Blog</a>
+        <p class="navbar-text">God does not play dice.</p>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right">
+          <li class="nav-search">
+            <form class="navbar-form navbar-left" role="search">
+              <div class="input-group">
+                  <span class="input-group-btn">
+                    <button class="btn btn-default" type="button" style="color:#777">Go!</button>
+                  </span>
+                  <input type="text" class="form-control" placeholder="Search">
+              </div>
+            </form>
+          </li>
+          <li>
+            <a href="#">Archives</a>
+          </li>
+          <li>
+            <a href="#">Links</a>
+          </li>
+          <li>
+            <a href="#">About</a>
+          </li>
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+  </nav>
+</header>
+
+  
+    <div class="container">
+  <div class="row-fluid main">
+    <div class="content col-md-9">
+      <article class="post">
+        <h1 class="post-title">水塘抽样</h1>
+        <hr />
+        <p>先看几个问题：</p>
+
+<ul>
+  <li>从一个很大的源代码中随机选取一行。</li>
+  <li>对一个长度未知的链表随机选取其中的k个节点。</li>
+</ul>
+
+<p><strong>水塘抽样</strong>(<a href="https://en.wikipedia.org/wiki/Reservoir_sampling">Reservoir sampling</a>) 是随机算法的一种。其目的在于从包含n个项目的集合S中选取k个样本，其中n为一很大或未知的数量，尤其适用于不能把所有n个项目都存放到主内存的情况。</p>
+
+<p>考虑k=1的情况。算法如下：</p>
+
+<ul>
+  <li>Keep the first item in memory.</li>
+  <li>When the <em>i</em>-th item arrives (for <em>i</em>&gt;1):with probability 1/<em>i</em>, keep the new item (discard the old one)with probability 1-1/<em>i</em>, keep the old item (ignore the new one)</li>
+</ul>
+
+<p>So:</p>
+
+<ul>
+  <li>when there is only one item, it is kept with probability 1;</li>
+  <li>when there are 2 items, each of them is kept with probability 1/2;</li>
+  <li>when there are 3 items, the third item is kept with probability 1/3, and each of the previous 2 items is also kept with probability (1/2)(1-1/3) = (1/2)(2/3) = 1/3;</li>
+  <li>by induction, it is easy to prove that when there are <em>n</em> items, each item is kept with probability 1/<em>n</em>.</li>
+</ul>
+
+<p>考虑一般情况，<em>Algorithm R</em> by <a href="https://en.wikipedia.org/wiki/Jeffrey_Vitter">Jeffrey Vitter</a>：<!-- more --></p>
+
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="cm">/*
+  S has items to sample, R will contain the result
+ */</span>
+<span class="n">ReservoirSample</span><span class="p">(</span><span class="n">S</span><span class="p">[</span><span class="mf">1.</span><span class="p">.</span><span class="n">n</span><span class="p">],</span> <span class="n">R</span><span class="p">[</span><span class="mf">1.</span><span class="p">.</span><span class="n">k</span><span class="p">])</span>
+  <span class="c1">// fill the reservoir array
+</span>  <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">k</span>
+      <span class="n">R</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">:=</span> <span class="n">S</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+ 
+  <span class="c1">// replace elements with gradually decreasing probability
+</span>  <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="n">k</span><span class="o">+</span><span class="mi">1</span> <span class="n">to</span> <span class="n">n</span>
+    <span class="n">j</span> <span class="o">:=</span> <span class="n">random</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>   <span class="c1">// important: inclusive range
+</span>    <span class="k">if</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">k</span>
+        <span class="n">R</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">:=</span> <span class="n">S</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<p>即以概率<code class="highlighter-rouge">k/i</code> 替换原水塘中的元素。</p>
+
+        <br><br>
+
+        <footer class="post-meta">
+          <div class="post-info">
+            <a class="author" href="http://localhost:4000">lszero</a>
+            <time class="post-date"><a href="">21 Oct 2016</a></time>
+            <a class="category" href="#">类别</a>
+            <a class="comments" href="#">No Comments</a>
+          </div>
+          <hr />
+        </footer>
+      </article>
+
+      
+      <aside class="related">
+        <h3>Related Posts</h3>
+        <ul class="related-posts">
+          
+            <li>
+              <a href="/coding4fun/static-website-with-jekyll.html">
+                从WordPress到静态网站
+                <small><time datetime="2017-08-01T20:00:00+08:00">01 Aug 2017</time></small>
+              </a>
+            </li>
+          
+            <li>
+              <a href="/algorithm/computational-geometry.html">
+                计算几何
+                <small><time datetime="2017-04-27T17:16:00+08:00">27 Apr 2017</time></small>
+              </a>
+            </li>
+          
+            <li>
+              <a href="/algorithm/alibaba-interview-201704.html">
+                阿里笔试两道编程题
+                <small><time datetime="2017-04-26T18:36:00+08:00">26 Apr 2017</time></small>
+              </a>
+            </li>
+          
+        </ul>
+      </aside>
+      
+    </div>
+
+    <div class="sidebar-content col-md-3">
+      <div class="post-sidebar" id="navbar-example">
+  <div id="toc" class="affix">
+
+  </div>
+</div>
+    </div>
+  </div>
+</div>
+
+
+    <footer class="footer">
+    <small>
+      &copy; <time datetime="2017-08-04T15:30:43+08:00">2017</time>. All rights reserved.
+    </small>
+</footer>
+
+    
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="/assets/js/jquery-3.2.1.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/assets/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    
+    <!-- TOC -->
+    <script src="/assets/js/toc.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+          // { listType: 'ul', showEffect: 'slideDown', minimumHeaders: 2, classes: { list: 'nav nav-stacked', item: '' } });
+          $('#toc').toc({ listType: 'ul', classes: { list: 'nav nav-stacked' } });
+      });
+    </script>
+  </body>
+</html>

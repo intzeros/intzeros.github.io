@@ -25,6 +25,7 @@ baseurl: "" # the subpath of your site, e.g. /blog
 twitter_username: lszero
 github_username:  lszero
 
+
 # Serving
 # detach:  false
 # port:    80
@@ -35,6 +36,15 @@ github_username:  lszero
 # Markdown Processors
 markdown: kramdown
 
+kramdown:
+  input:               GFM
+  auto_ids:          true
+  footnote_nr:     1
+  entity_output:   as_char
+  hard_wrap:        false
+  header_offset:   1
+  math_engine:     nil
+
 plugins:
   - jekyll-paginate
 paginate: 5
@@ -43,8 +53,6 @@ paginate_path: "/pages:num/"
 mathjax: false
 
 excerpt_separator: <!-- more -->
-
-# highlighter: rouge
 
 permalink: /:categories/:title.html
 
