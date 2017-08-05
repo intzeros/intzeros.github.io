@@ -1,70 +1,42 @@
-/*
- * Customized js for Thomas's Blog.
- * Thomas.Zhao, 2015-01-13
- */
+var postHeaderList = {
 
-
-var BlogDirectory = {
-
-    /*
-     * Side Nav Affixing
-     *
-     * reference to:
-     * https://github.com/twbs/bootstrap/blob/master/docs/assets/js/src/application.js#L35
-     */
-    setSideNavAffixing:function() {
-
-        // Scrollspy
+    setScrollspy:function(target_name) {
         var $window = $(window)
         var $body   = $(document.body)
 
         $body.scrollspy({
-            target: '.header-list-sidebar'
+            target: target_name
         })
         $window.on('load', function () {
             $body.scrollspy('refresh')
         })
+    },
 
-        // Kill links
-        // $('.bs-docs-container [href=#]').click(function (e) {
-        //     e.preventDefault()
-        // })
-
-        // Sidenav affixing
-        setTimeout(function () {
-            var $sideBar = $('.header-list-sidebar')
-
-            $sideBar.affix({
-                offset: {
-                    top: function () {
-                        var offsetTop      = $sideBar.offset().top
-                        var sideBarMargin  = parseInt($sideBar.children(0).css('margin-top'), 10)
-                        var navOuterHeight = $('.mytopbar').height()
-
-                        return (this.top = offsetTop - navOuterHeight - sideBarMargin)
-                    },
-                    bottom: function () {
-                        return (this.bottom = 0 - $('.post').outerHeight(true))
-                    }
+    setSideNavAffixing:function(element) {
+        var offset = element.offset();
+        $(window).scroll(function() {
+            if ($(window).scrollTop() > offset.top) {
+                if (window.XMLHttpRequest) {
+                    element.css({
+                        position: "fixed",
+                        top: 0
+                        // width: element.width()
+                    });
+                } else {
+                    element.css({
+                        top: scrolls
+                    });
                 }
-            })
-        }, 100)
+            } else {
+                element.css({
+                    position: "absolute",
+                    top: top
+                });
+            };
+        });
+    }, 
 
-        setTimeout(function () {
-            $('.bs-top').affix()
-        }, 100)
-    }, // end of setSideNavAffixing:function()
-
-
-    /* Generate directory tree
-     *
-     * side_nav_element: side navigation element
-     * article_body_element:  article body container.
-     *
-     * processing: search header elements(h1,h2,h3) in `article_body_element`,
-     * generate directory tree list, and put them into side_nav_element.
-     */
-    createBlogDirectory:function (side_nav_element, article_body_element){
+    createHeaderList:function (side_nav_element, article_body_element){
         if(!article_body_element || article_body_element.length < 1 ||
                 !side_nav_element) {
             return false;
@@ -120,18 +92,14 @@ var BlogDirectory = {
                 ulSideNav.append(ret_li);
             }
         })  // end of each
-
-    } //end of createBlogDirectory:function()
-
+    } 
 };
 
 
 jQuery(function($) {
     $(document).ready( function() {
-        // Generate the side navigation `ul` elements
-        BlogDirectory.createBlogDirectory($("#sideNav"), $(".post"));
-
-        // caculate affixing
-        BlogDirectory.setSideNavAffixing();
+        postHeaderList.createHeaderList($("#sideNav"), $(".post"));
+        postHeaderList.setScrollspy(".header-list-sidebar");
+        postHeaderList.setSideNavAffixing($("#sideNav"));
     });
 });

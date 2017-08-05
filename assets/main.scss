@@ -2,9 +2,8 @@
 # Only the main Sass file needs front matter (the dashes are enough)
 ---
 
-body { 
-    padding-top: 70px;
-    position: relative;
+body {
+
 }
 
 pre.highlight {
@@ -70,141 +69,82 @@ pre.highlight {
 
 /*---------------------- post-sidebar ------------------------*/
 
-.post-sidebar .header-list-a a {
-    color: #666666;
-    font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
-}
-
 .post-sidebar {
-  font-size: 14px;
-  // background-color: #F8F8F8;
-  background-color: #fff;
-  border: 1px solid #EAEAEA;
-  color: #404040;
+    background-color: #fff;
+    margin-left: 20px;
 }
 
-@media (min-width: 768px) {
-  .header-list-sidebar {
-    padding-left: 20px;
-  }
-}
-
-/* First level of nav */
 .headers-sidenav {
-  margin-top: 20px;
-  margin-bottom: 20px;
+    padding: 20px 10px;
+    padding-left: 0px;
+    border: 1px solid #EAEAEA;
+    width: 250px;
 }
 
 /* All levels of nav */
 .header-list-sidebar .nav > li > a {
-  display: block;
-  padding: 4px 20px;
-  font-size: 17px;
-  font-weight: bold;
-  color: #767676;
-  /*no wrap*/
-  overflow:hidden;
-  white-space:nowrap;
-  text-overflow:ellipsis
+    display: block;
+    padding: 2px 20px;
+    font-weight: bold;
+    color: #767676;
+    /*no wrap*/
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-weight: normal;
 }
 
 .header-list-sidebar .nav > li > a:hover,
 .header-list-sidebar .nav > li > a:focus {
-  padding-left: 19px;
-  color: #5bc0de;
-  text-decoration: none;
-  background-color: transparent;
-  border-left: 1px solid #5bc0de;
+    color: #87CEFA;
+    text-decoration: none;
+    background-color: transparent;
+    border-left: 2px solid #87CEFA;
 }
 .header-list-sidebar .nav > .active > a,
 .header-list-sidebar .nav > .active:hover > a,
 .header-list-sidebar .nav > .active:focus > a {
-  padding-left: 18px;
-  font-weight: bold;
-  color: red;
-  background-color: transparent;
-  border-left: 2px solid #563d7c;
+    font-weight: bold;
+    color: #5bc0de;
+    background-color: transparent;
+    border-left: 2px solid #5bc0de;
 }
 
 /* Nav: second level (shown on .active) */
-.header-list-sidebar .nav .nav {
-  /* display: none; Hide by default, but at >768px, show it */
-  /* padding-bottom: 10px; */
-}
 .header-list-sidebar .nav .nav > li > a {
-  padding-top: 1px;
-  padding-bottom: 1px;
-  padding-left: 30px;
-  font-size: 16px;
-  font-weight: normal;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 35px;
 }
 .header-list-sidebar .nav .nav > li > a:hover,
 .header-list-sidebar .nav .nav > li > a:focus {
-  padding-left: 29px;
+
 }
 .header-list-sidebar .nav .nav > .active > a,
 .header-list-sidebar .nav .nav > .active:hover > a,
 .header-list-sidebar .nav .nav > .active:focus > a {
-  padding-left: 28px;
-  font-weight: bold;
-  color: red;
+
 }
 
 /* Nav: 3rd level (shown on .active) */
 .header-list-sidebar .nav .nav .nav {
-  /*display: none;  Hide by default, but at >768px, show it */
-  /* padding-bottom: 10px;*/
+
 }
 .header-list-sidebar .nav .nav .nav > li > a {
-  padding-top: 1px;
-  padding-bottom: 1px;
-  padding-left: 40px;
-  font-size: 15px;
-  font-weight: normal;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 50px;
 }
 .header-list-sidebar .nav .nav .nav > li > a:hover,
 .header-list-sidebar .nav .nav .nav > li > a:focus {
-  padding-left: 39px;
+
 }
 .header-list-sidebar .nav .nav .nav > .active > a,
 .header-list-sidebar .nav .nav .nav > .active:hover > a,
 .header-list-sidebar .nav .nav .nav > .active:focus > a {
-  padding-left: 38px;
-  font-weight: bold;
-  color: red;
+
 }
 
-/* Show and affix the side nav when space allows it */
-@media (min-width: 992px) {
-  .header-list-sidebar .nav > .active > ul {
-    display: block;
-  }
-  /* Widen the fixed sidebar */
-  .header-list-sidebar.affix,
-  .header-list-sidebar.affix-bottom {
-    width: 213px;
-  }
-  .header-list-sidebar.affix {
-    position: fixed; /* Undo the static from mobile first approach */
-    top: 20px;
-  }
-  .header-list-sidebar.affix-bottom {
-    position: absolute; /* Undo the static from mobile first approach */
-  }
-  .header-list-sidebar.affix-bottom .headers-sidenav,
-  .header-list-sidebar.affix .headers-sidenav {
-    margin-top: 0;
-    margin-bottom: 0;
-  }
-}
-
-@media (min-width: 1200px) {
-  /* Widen the fixed sidebar again */
-  .header-list-sidebar.affix-bottom,
-  .header-list-sidebar.affix {
-    width: 263px;
-  }
-}
 
 /*--------- back-to-top link ---------*/
 .back-to-top {

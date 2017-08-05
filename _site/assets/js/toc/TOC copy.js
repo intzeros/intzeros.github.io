@@ -1,38 +1,19 @@
-var postHeaderList = {
-
-    setScrollspy:function(target_name) {
-        var $window = $(window)
-        var $body   = $(document.body)
-
-        $body.scrollspy({
-            target: target_name
-        })
-        $window.on('load', function () {
-            $body.scrollspy('refresh')
-        })
-    },
+var postHeaderList2 = {
 
     setSideNavAffixing:function(element) {
         var offset = element.offset();
         $(window).scroll(function() {
+            var sideBarHeight = element.height();
             if ($(window).scrollTop() > offset.top) {
                 if (window.XMLHttpRequest) {
-                    element.css({
-                        position: "fixed",
-                        top: 0
-                        // width: element.width()
-                    });
+                    element.css("position", "fixed");
+                    element.css("top", 0);
                 } else {
                     element.css({
                         top: scrolls
                     });
                 }
-            } else {
-                element.css({
-                    position: "absolute",
-                    top: top
-                });
-            };
+            }
         });
     }, 
 
@@ -92,14 +73,16 @@ var postHeaderList = {
                 ulSideNav.append(ret_li);
             }
         })  // end of each
-    } 
-};
 
+    } 
+
+};
 
 jQuery(function($) {
     $(document).ready( function() {
         postHeaderList.createHeaderList($("#sideNav"), $(".post"));
-        postHeaderList.setScrollspy(".header-list-sidebar");
-        postHeaderList.setSideNavAffixing($("#sideNav"));
+
+        // affixing
+        // postHeaderList.setSideNavAffixing($("#sideNav"));
     });
 });
