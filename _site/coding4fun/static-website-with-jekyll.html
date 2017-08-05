@@ -549,7 +549,75 @@ paginate_path: "/pages:num/"
 
 <h3 id="category">Category</h3>
 
+<p>参考<a href="https://segmentfault.com/a/1190000000406017#articleHeader2">使用Category分类</a></p>
+
+<p>首先在每个文章的YAML头信息中定义类别，如：</p>
+
+<pre><code class="language-text">---
+layout: post
+title:  "your title"
+categories: Algorithm
+---
+</code></pre>
+
+<p><code class="highlighter-rouge">site.categories.size</code> 获取总的类别数。</p>
+
+<p>输出所有类别：<code class="highlighter-rouge">for category in site.categories</code></p>
+
+<div class="language-html highlighter-rouge"><pre class="highlight"><code>
+类别：Algorithm
+(该类别文章数：4)
+<span class="nt">&lt;ul&gt;</span>
+  
+  <span class="nt">&lt;li&gt;</span>27/04/2017<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"/algorithm/computational-geometry.html"</span><span class="nt">&gt;</span>计算几何<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+    
+  <span class="nt">&lt;li&gt;</span>26/04/2017<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"/algorithm/alibaba-interview-201704.html"</span><span class="nt">&gt;</span>阿里笔试两道编程题<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+    
+  <span class="nt">&lt;li&gt;</span>20/10/2016<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"/algorithm/reservoir-sampling.html"</span><span class="nt">&gt;</span>水塘抽样<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+    
+  <span class="nt">&lt;li&gt;</span>10/06/2016<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"/algorithm/crawl-wechat-history-articles.html"</span><span class="nt">&gt;</span>爬取微信公众号历史文章<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+    
+<span class="nt">&lt;/ul&gt;</span>
+
+类别：CPP
+(该类别文章数：1)
+<span class="nt">&lt;ul&gt;</span>
+  
+  <span class="nt">&lt;li&gt;</span>27/06/2016<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"/cpp/unordered-map-cplusplus11.html"</span><span class="nt">&gt;</span>unordered_map <span class="err">&amp;</span> C++11配置<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+    
+<span class="nt">&lt;/ul&gt;</span>
+
+类别：coding4fun
+(该类别文章数：1)
+<span class="nt">&lt;ul&gt;</span>
+  
+  <span class="nt">&lt;li&gt;</span>01/08/2017<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"/coding4fun/static-website-with-jekyll.html"</span><span class="nt">&gt;</span>从WordPress到静态网站<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+    
+<span class="nt">&lt;/ul&gt;</span>
+
+</code></pre>
+</div>
+
+<p>其中，</p>
+
+<ul>
+  <li>使用``输出分类的名称</li>
+  <li>使用``输出该分类下文章的数目</li>
+  <li>遍历<code class="highlighter-rouge">category.last</code>输出所有文章的信息，构建到该文章的索引</li>
+</ul>
+
 <h3 id="tags">tags</h3>
+
+<p>首先在每个文章的YAML头信息中定义tags，如：</p>
+
+<pre><code class="language-text">---
+layout: post
+title:  "your title"
+tags: [github, jekyll]
+---
+</code></pre>
+
+<p><code class="highlighter-rouge">site.tags.size</code> 获取总的tags数。</p>
 
 <h3 id="latex">Latex</h3>
 
@@ -778,7 +846,7 @@ This is a test: {{ xxx }}
 
     <footer class="footer">
   <div class="copyright">
-      Copyright &copy; <time datetime="2017-08-06T03:00:58+08:00">2017</time> <a href="http://localhost:4000">lszero</a> | Powered by <a href="https://github.com/jekyll/jekyll">Jekyll</a> | Designed by <a href="http://localhost:4000">lszero</a>
+      Copyright &copy; <time datetime="2017-08-06T04:03:29+08:00">2017</time> <a href="http://localhost:4000">lszero</a> | Powered by <a href="https://github.com/jekyll/jekyll">Jekyll</a> | Designed by <a href="http://localhost:4000">lszero</a>
   </div>
 </footer>
 

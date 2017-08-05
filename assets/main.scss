@@ -82,6 +82,7 @@ pre.highlight {
 /*--------- site-state-count ----------*/
 .site-state {
     text-align: center;
+    padding: 5px 0;
 }
 
 .site-state a {
@@ -109,6 +110,7 @@ pre.highlight {
 /*--------- social-icons ----------*/
 .social-icons { 
     text-align: center;
+    margin-bottom: -10px;
 }
 
 .social-icons .fa-lg{ 
@@ -121,6 +123,10 @@ pre.highlight {
 
 .social-icons .btn {
     padding: 6px 4px;
+}
+
+h3.sidebar-title {
+
 }
 
 /*---------------------- post-sidebar ------------------------*/

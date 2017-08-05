@@ -3,6 +3,7 @@ layout: post
 title:  "从WordPress到静态网站"
 date:   2017-08-01 12:00:00
 categories: coding4fun
+tags: [github, jekyll, bootstrap]
 ---
 
 作为一个极简主义者，越来越受不了WordPress的臃肿。主要自己平时都是用Markdown来做记录，而WordPress支持的不是很好，另外有时写的md长文通过三方软件导出的html也不造放在wp的什么地方才合适，管理起来还不如几个静态页面来得方便。于是有了某天来个大整顿的想法。
@@ -463,9 +464,57 @@ kramdown:
 
 ### Category
 
+参考[使用Category分类](https://segmentfault.com/a/1190000000406017#articleHeader2)
+
+首先在每个文章的YAML头信息中定义类别，如：
+
+```
+---
+layout: post
+title:  "your title"
+categories: Algorithm
+---
+```
+
+
+
+`site.categories.size` 获取总的类别数。
+
+输出所有类别：`for category in site.categories`
+
+```html
+{% for category in site.categories %}
+类别：{{ category | first }}
+(该类别文章数：{{ category | last | size }})
+<ul>
+  {% for post in category.last %}
+  <li>{{ post.date | date:"%d/%m/%Y"}}<a href="{{ post.url }}">{{ post.title }}</a></li>
+    {% endfor %}
+</ul>
+{% endfor %}
+```
+
+其中，
+
+* 使用`{{ category.first }}`输出分类的名称
+* 使用`{{ category.last.size }}`输出该分类下文章的数目
+* 遍历`category.last`输出所有文章的信息，构建到该文章的索引
+
+
+
 ### tags
 
+首先在每个文章的YAML头信息中定义tags，如：
 
+```
+---
+layout: post
+title:  "your title"
+tags: [github, jekyll]
+---
+```
+
+`site.tags.size` 获取总的tags数。
 
 ### Latex
 

@@ -58,7 +58,8 @@ pre.highlight {
 
 /*--------- site-state-count ----------*/
 .site-state {
-  text-align: center; }
+  text-align: center;
+  padding: 5px 0; }
 
 .site-state a {
   color: #777; }
@@ -81,7 +82,8 @@ pre.highlight {
 
 /*--------- social-icons ----------*/
 .social-icons {
-  text-align: center; }
+  text-align: center;
+  margin-bottom: -10px; }
 
 .social-icons .fa-lg {
   font-size: 14px; }

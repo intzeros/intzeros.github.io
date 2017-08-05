@@ -21,13 +21,13 @@
     </div>
     <div class="site-state-item">
       <a href="#">
-        <span class="site-state-item-count">{{ paginator.total_posts }}</span>
+        <span class="site-state-item-count">{{ site.categories.size }}</span>
         <span>Categories</span>
       </a>
     </div>
     <div class="site-state-item">
       <a href="#">
-        <span class="site-state-item-count">{{ paginator.total_posts }}</span>
+        <span class="site-state-item-count">{{ site.tags.size }}</span>
         <span>Tags</span>
       </a>
     </div>
@@ -40,5 +40,30 @@
     <a href="{{ site.social_media.twitter_url }}" class="btn" title="Twitter"><i class="fa fa-twitter-square fa-2x" aria-hidden="true"></i></a>
     <a href="{{ site.social_media.lofter_url }}" class="btn" title="Lofter"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-stack-1x fa-inverse"><strong>L</strong></i></span></a>
   </div>
+
+  <hr />
+
+  <nav class="category-list">
+    <h3 class="sidebar-title">Categories</h3>
+    <ul>
+    {% for category in site.categories %}
+      <li><a href="#">{{ category.first }} ({{ category.last.size }})</a></li>
+    {% endfor %}
+    </ul>
+  </nav>
+
+  <hr />
+
+  <nav class="tags-list">
+    <h3 class="sidebar-title">Tags</h3>
+    <ul>
+    {% for tag in site.tags %}
+      <li><a href="/show_by_tag.html?tag={{ tag[0] }}"> {{ tag[0] }}</a></li>
+    {% endfor %}
+    </ul>
+  </nav>
+
+  <hr />
+
 </div>
 
