@@ -97,8 +97,10 @@ var postHeaderList = {
 
 jQuery(function($) {
     $(document).ready( function() {
-        postHeaderList.createHeaderList($("#sideNav"), $(".post"));
-        postHeaderList.setScrollspy(".header-list-sidebar");
-        postHeaderList.setSideNavAffixing($("#sideNav"));
+        if($("#sideNav").length > 0){
+            postHeaderList.createHeaderList($("#sideNav"), $(".post"));
+            postHeaderList.setScrollspy(".header-list-sidebar");
+            postHeaderList.setSideNavAffixing($("#sideNav"));
+        }
     });
 });

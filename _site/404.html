@@ -8,7 +8,7 @@
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
   <title>
     
-      阿里笔试两道编程题 &middot; Soki's Blog
+      404: Page not found &middot; Soki's Blog
     
   </title>
 
@@ -34,8 +34,6 @@
       }
     });
   </script>
-  
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
   
 
   <!-- code highlighting-->
@@ -100,106 +98,9 @@
 </header>
 
   
-    <div class="container">
-  <div class="row-fluid main">
-    <div class="content col-md-9">
-      <article class="post">
-        <h1 class="post-title">阿里笔试两道编程题</h1>
-        <hr />
-        <p>阿里笔试没做啊, 感谢同学过来分享讨论.</p>
-
-<p>感觉其中的概率题还是挺有意思的, 赶紧记录一下。思路不一定对… (汗…</p>
-
-<hr />
-
-<p>第一道.</p>
-
-<pre><code class="language-text">给一个矩形, 再给一堆矩形里的线段, 问是否存在一条路线可以从左下角走到右上角(要求不穿过线段).
-</code></pre>
-
-<p>思路: 用并查集把两条相交的线段作为一个集合, 然后对每个集合求上下左右边界, 判断这个子矩阵是否截断了从左下角走到右上角的路径.</p>
-
-<hr />
-
-<p>第二道.</p>
-
-<pre><code class="language-text">小伙纸要去跟 n 个妹纸相亲, 每次随机见一个妹纸(可能是之前已经见过的). 问至少相亲几次使得这 n 个妹纸都见过.
-</code></pre>
-
-<p>思路: 得益于之前做的<a href="http://lszero.com/1595/2017-microsoft-intern-hihocoder/">微软第一题</a>, 感觉有点像, 但也不知道是不是最优解法…</p>
-
-<p>假如当前已经见了 k 个妹纸, 要见第 k+1个妹纸时, 相亲次数的期望值为:  ∑∞i=1i(kn)i−1n−kn. (这个公式怎么来? 参考之前<a href="http://lszero.com/1595/2017-microsoft-intern-hihocoder/">微软</a>那张树的图就能推出来)</p>
-
-<p>另 p=k/n, 则上式为</p>
-
-<p>$(1-p)\sum_{i=1}^\infty i*p^{i-1}=(1-p)(\sum_{i=1}^\infty p^i)’=(1-p)(\lim_{n \rightarrow \infty}p\frac{1-p^n}{1-p})’=(1-p)(\frac{p}{1-p})’=1-p$</p>
-
-<!-- more -->
-
-<hr />
-
-<p>可以看出都想复杂了…</p>
-
-<p>假如当前已经见了 k 个妹纸, 则能见到第 k+1个妹纸的概率为$\frac{n-k}{n}$, 即仅相亲一次见到妹纸的个数的期望为 $1\times \frac{n-k}{n}+0 \times \frac{k}{n}=\frac{n-k}{n}$.</p>
-
-<p>故要见 n 个妹纸, 相亲次数至少为: $\sum_{i=0}^{n-1}\frac{n}{n-k}$</p>
-
-        <br><br>
-
-        <footer class="post-meta">
-          <div class="post-info">
-            <a class="author" href="http://localhost:4000">lszero</a>
-            <time class="post-date"><a href="">26 Apr 2017</a></time>
-            <a class="category" href="#">类别</a>
-            <a class="comments" href="#">No Comments</a>
-          </div>
-          <hr />
-        </footer>
-      </article>
-
-      
-      <aside class="related">
-        <h3>Related Posts</h3>
-        <ul class="related-posts">
-          
-            <li>
-              <a href="/coding4fun/static-website-with-jekyll.html">
-                从WordPress到静态网站
-                <small><time datetime="2017-08-01T20:00:00+08:00">01 Aug 2017</time></small>
-              </a>
-            </li>
-          
-            <li>
-              <a href="/algorithm/computational-geometry.html">
-                计算几何
-                <small><time datetime="2017-04-27T17:16:00+08:00">27 Apr 2017</time></small>
-              </a>
-            </li>
-          
-            <li>
-              <a href="/algorithm/reservoir-sampling.html">
-                水塘抽样
-                <small><time datetime="2016-10-21T01:30:00+08:00">21 Oct 2016</time></small>
-              </a>
-            </li>
-          
-        </ul>
-      </aside>
-      
-    </div>
-    
-    <div class="sidebar-content col-md-3">
-      <div class="post-sidebar">
-  <nav class="header-list-sidebar">
-    <ul id="sideNav" class="nav headers-sidenav">
-        <!-- code will be generated in TOC.js -->
-    </ul>
-
-    <a href="#top" class="back-to-top">^</a>
-  </nav>
-</div>
-    </div>
-  </div>
+    <div class="page">
+  <h1 class="page-title">404: Page not found</h1>
+  <p class="lead">Sorry, we've misplaced that URL or it's pointing to something that doesn't exist. <a href="/">Head back home</a> to try finding it again.</p>
 </div>
 
 

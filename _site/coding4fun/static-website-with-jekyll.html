@@ -452,9 +452,9 @@ paginate_path: "/pages:num/"
 
 <p>要使用哪个图标，直接去<a href="http://fontawesome.io/icons/">官网</a>搜代码就行。</p>
 
-<p>使用<code class="highlighter-rouge">color </code>修改图标颜色。</p>
+<p>修改图标颜色，因为其本身就是一种字体，故使用<code class="highlighter-rouge">color </code>修改即可。</p>
 
-<p>修改图标大小，如：</p>
+<p>修改图标大小也是，用<code class="highlighter-rouge">font-size</code>即可，或者：</p>
 
 <div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;i</span> <span class="na">class=</span><span class="s">"fa fa-camera-retro"</span><span class="nt">&gt;&lt;/i&gt;</span>
 <span class="nt">&lt;i</span> <span class="na">class=</span><span class="s">"fa fa-camera-retro fa-2x"</span><span class="nt">&gt;&lt;/i&gt;</span>
@@ -577,21 +577,22 @@ mathjax: true
 
 <p>默认只支持双<code class="highlighter-rouge">$</code>符，修改：</p>
 
-<pre><code class="language-text">&lt;script type="text/x-mathjax-config"&gt;
-  MathJax.Hub.Config({
-    TeX: {
-      equationNumbers: {
-        autoNumber: "AMS"
-      }
-    },
-    tex2jax: {
-      inlineMath: [ ['$','$'] ],
-      displayMath: [ ['$$','$$'] ],
-      processEscapes: true,
-    }
-  });
-&lt;/script&gt;
-</code></pre>
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="o">&lt;</span><span class="nx">script</span> <span class="nx">type</span><span class="o">=</span><span class="s2">"text/x-mathjax-config"</span><span class="o">&gt;</span>
+  <span class="nx">MathJax</span><span class="p">.</span><span class="nx">Hub</span><span class="p">.</span><span class="nx">Config</span><span class="p">({</span>
+    <span class="na">TeX</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">equationNumbers</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">autoNumber</span><span class="p">:</span> <span class="s2">"AMS"</span>
+      <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="na">tex2jax</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">inlineMath</span><span class="p">:</span> <span class="p">[</span> <span class="p">[</span><span class="s1">'$'</span><span class="p">,</span><span class="s1">'$'</span><span class="p">]</span> <span class="p">],</span>
+      <span class="na">displayMath</span><span class="p">:</span> <span class="p">[</span> <span class="p">[</span><span class="s1">'$$'</span><span class="p">,</span><span class="s1">'$$'</span><span class="p">]</span> <span class="p">],</span>
+      <span class="na">processEscapes</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+<span class="o">&lt;</span><span class="sr">/script</span><span class="err">&gt;
+</span></code></pre>
+</div>
 
 <h4 id="mathjax-rendering-problem">Mathjax Rendering Problem</h4>
 
@@ -627,8 +628,9 @@ mathjax: true
 
 <p>若不需要高亮则设为：</p>
 
-<pre><code class="language-nohighlight">&lt;pre&gt;&lt;code class="nohighlight"&gt;...&lt;/code&gt;&lt;/pre&gt;
+<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;pre&gt;&lt;code</span> <span class="na">class=</span><span class="s">"nohighlight"</span><span class="nt">&gt;</span>...<span class="nt">&lt;/code&gt;&lt;/pre&gt;</span>
 </code></pre>
+</div>
 
 <p>这里有个麻烦的地方，若md里没有指明语言，<code class="highlighter-rouge">highlightjs</code>也会自动检测是什么语言。如果不想对某个code block进行高亮，有两种解决方式：（当然了，我比较折腾，一般人也不需要这个。。（捂脸）</p>
 
@@ -650,15 +652,14 @@ xxx
 <pre><code class="language-text">markdown: kramdown
 </code></pre>
 
-<p>https://jekyllrb.com/docs/configuration/#custom-markdown-processors</p>
-
 <p>关于<a href="https://jekyllrb.com/docs/configuration/#custom-markdown-processors">Custom Markdown Processors</a>官网有一些说明，好吧，没看懂，毕竟不会Ruby。kramdown也不能以overwrited的方式改写相应的convert方法，然后又写了段js代码试图修改kramdown解析出的html，但还是没成功。真是艰辛，网上找了好久都无果，最后还不如直接看代码改来得快。。。</p>
 
 <p>好在<code class="highlighter-rouge">highlightjs</code>提供了这个：</p>
 
-<pre><code class="language-text">// ignore languages
-&lt;script&gt;hljs.configure({ ignore: ['text'] });&lt;/script&gt;
-</code></pre>
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// ignore languages</span>
+<span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span><span class="nx">hljs</span><span class="p">.</span><span class="nx">configure</span><span class="p">({</span> <span class="na">ignore</span><span class="p">:</span> <span class="p">[</span><span class="s1">'text'</span><span class="p">]</span> <span class="p">});</span><span class="o">&lt;</span><span class="sr">/script</span><span class="err">&gt;
+</span></code></pre>
+</div>
 
 <p>然后看Jekyll源码，找到了 <code class="highlighter-rouge">jekyll/lib/jekyll/converters/markdown/kramdown_parser.rb</code> (see <a href="https://github.com/jekyll/jekyll/blob/57fd5f887da1189a16bdfbb982d75f725c38d725/lib/jekyll/converters/markdown/kramdown_parser.rb">code</a>)</p>
 
@@ -687,12 +688,6 @@ xxx
 <p>（其中，<code class="highlighter-rouge">nil</code>是判空的意思。）</p>
 
 <p>这样在不指明语言的时候，不高亮显示。</p>
-
-<p>接着改，</p>
-
-<p>在<code class="highlighter-rouge">if highlighted_code &amp;&amp; lang</code>后添加：</p>
-
-<p>这样当语言设为<code class="highlighter-rouge">auto</code>的时候，自动显示高亮。</p>
 
 <h2 id="else">Else</h2>
 
@@ -783,7 +778,7 @@ This is a test: {{ xxx }}
 
     <footer class="footer">
   <div class="copyright">
-      Copyright &copy; <time datetime="2017-08-06T00:58:46+08:00">2017</time> <a href="http://localhost:4000">lszero</a> | Powered by <a href="https://github.com/jekyll/jekyll">Jekyll</a> | Designed by <a href="http://localhost:4000">lszero</a>
+      Copyright &copy; <time datetime="2017-08-06T03:00:58+08:00">2017</time> <a href="http://localhost:4000">lszero</a> | Powered by <a href="https://github.com/jekyll/jekyll">Jekyll</a> | Designed by <a href="http://localhost:4000">lszero</a>
   </div>
 </footer>
 

@@ -1,26 +1,44 @@
 <div class="main-sidebar">
-  <div class="auther-avatar">
+  <div class="author-avatar">
     <img src="{{ site.baseurl }}/assets/img/author_avatar.jpg" alt="lszero">
   </div>
 
   <div class="brief-intro">
-    <div class="auther-name">
+    <div class="author-name">
       {{ site.author }}
     </div>
-    <div class="auther-bio">
+    <div class="author-bio">
       {{ site.description }}
     </div>
   </div>
 
-  <div class="posts-count">
-    
-  </div>
+  <nav class="site-state">
+    <div class="site-state-item">
+      <a href="#">
+        <span class="site-state-item-count">{{ paginator.total_posts }}</span>
+        <span>Posts</span>
+      </a>
+    </div>
+    <div class="site-state-item">
+      <a href="#">
+        <span class="site-state-item-count">{{ paginator.total_posts }}</span>
+        <span>Categories</span>
+      </a>
+    </div>
+    <div class="site-state-item">
+      <a href="#">
+        <span class="site-state-item-count">{{ paginator.total_posts }}</span>
+        <span>Tags</span>
+      </a>
+    </div>
+  </nav>
 
   <div class="social-icons">
     <a href="{{ site.social_media.github_url }}" class="btn" title="Github"><i class="fa fa-fw fa-github fa-2x" aria-hidden="true"></i></a>
     <a href="{{ site.social_media.weibo_url }}" class="btn" title="Weibo"><i class="fa fa-fw fa-weibo fa-2x" aria-hidden="true"></i></a>
-    <a href="{{ site.social_media.zhihu_url }}" class="btn" title="Zhihu"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-stack-1x fa-inverse">知</i></span></a>
+    <a href="{{ site.social_media.zhihu_url }}" class="btn" title="Zhihu"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-stack-1x fa-inverse"><strong>知</strong></i></span></a>
     <a href="{{ site.social_media.twitter_url }}" class="btn" title="Twitter"><i class="fa fa-twitter-square fa-2x" aria-hidden="true"></i></a>
-    <a href="{{ site.social_media.lofter_url }}" class="btn" title="Lofter"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-stack-1x fa-inverse">L</i></span></a>
+    <a href="{{ site.social_media.lofter_url }}" class="btn" title="Lofter"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-stack-1x fa-inverse"><strong>L</strong></i></span></a>
   </div>
 </div>
+

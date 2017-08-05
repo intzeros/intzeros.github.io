@@ -365,9 +365,9 @@ icons用的是 [fontawesome](http://fontawesome.io/)。我这里将解压后的 
 
 要使用哪个图标，直接去[官网](http://fontawesome.io/icons/)搜代码就行。
 
-使用`color `修改图标颜色。
+修改图标颜色，因为其本身就是一种字体，故使用`color `修改即可。
 
-修改图标大小，如：
+修改图标大小也是，用`font-size`即可，或者：
 
 ```html
 <i class="fa fa-camera-retro"></i>
@@ -498,7 +498,7 @@ mathjax: true
 
 默认只支持双`$`符，修改：
 
-```
+```js
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
     TeX: {
@@ -549,7 +549,7 @@ Jekyll 3.x 自带了rouge代码高亮的功能，但是不造为啥一直not wor
 
 若不需要高亮则设为：
 
-```nohighlight
+```html
 <pre><code class="nohighlight">...</code></pre>
 ```
 
@@ -575,13 +575,11 @@ xxx
 markdown: kramdown
 ```
 
-https://jekyllrb.com/docs/configuration/#custom-markdown-processors
-
 关于[Custom Markdown Processors](https://jekyllrb.com/docs/configuration/#custom-markdown-processors)官网有一些说明，好吧，没看懂，毕竟不会Ruby。kramdown也不能以overwrited的方式改写相应的convert方法，然后又写了段js代码试图修改kramdown解析出的html，但还是没成功。真是艰辛，网上找了好久都无果，最后还不如直接看代码改来得快。。。
 
 好在`highlightjs`提供了这个：
 
-```
+```js
 // ignore languages
 <script>hljs.configure({ ignore: ['text'] });</script>
 ```
@@ -613,12 +611,6 @@ end
 （其中，`nil`是判空的意思。）
 
 这样在不指明语言的时候，不高亮显示。
-
-接着改，
-
-在`if highlighted_code && lang`后添加：
-
-这样当语言设为`auto`的时候，自动显示高亮。
 
 ## Else
 
