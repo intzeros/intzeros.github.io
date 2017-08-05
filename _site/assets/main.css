@@ -1,3 +1,6 @@
+strong {
+  font-weight: bolder; }
+
 pre.highlight {
   font-size: 90%;
   background: #272822; }
@@ -29,6 +32,7 @@ pre.highlight {
 .sidebar-content {
   margin-top: 20px; }
 
+/*---------------------- main-sidebar ------------------------*/
 .main-sidebar .auther-avatar img {
   border-radius: 50%;
   max-width: 200px;
@@ -42,6 +46,7 @@ pre.highlight {
   margin-bottom: 10px;
   text-align: center; }
 
+/*--------- social-icons ----------*/
 .social-icons .fa-github, .social-icons .fa-weibo, .social-icons .fa-twitter, .social-icons .fa-twitter-square, .social-icons .fa-circle {
   color: #777; }
 
@@ -101,16 +106,22 @@ pre.highlight {
 /*--------- back-to-top link ---------*/
 .back-to-top {
   background-color: #f0ad4e;
-  button: 20px;
   position: fixed;
   color: #FFFFFF;
   border-radius: 3px;
-  opacity: 0.8;
-  font: normal 26px/1 'Genericons';
+  opacity: 0.7;
   bottom: 20px;
   display: block;
-  text-decoration: none;
-  padding: 6px 14px; }
+  padding: 2px 14px;
+  font-size: 24px; }
+
+a.back-to-top {
+  text-decoration: none; }
+
+a.back-to-top:hover,
+a.back-to-top:focus {
+  opacity: 1;
+  color: #fff; }
 
 /*--------- footer copyright ---------*/
 .footer .copyright {

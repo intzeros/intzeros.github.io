@@ -20,7 +20,6 @@ var postHeaderList = {
                     element.css({
                         position: "fixed",
                         top: 0
-                        // width: element.width()
                     });
                 } else {
                     element.css({

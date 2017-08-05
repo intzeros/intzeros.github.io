@@ -5,11 +5,9 @@ date:   2017-08-01 12:00:00
 categories: coding4fun
 ---
 
-[TOC]
-
 作为一个极简主义者，越来越受不了WordPress的臃肿。主要自己平时都是用Markdown来做记录，而WordPress支持的不是很好，另外有时写的md长文通过三方软件导出的html也不造放在wp的什么地方才合适，管理起来还不如几个静态页面来得方便。于是有了某天来个大整顿的想法。
 
-对前端只停留在css的我，花了整三天时间，从Hexo到Jekyll再到Bootstrap，以及各种markdown2html解析器...最后基本算是从头写了一个基于Jekyll的website theme 😥<!-- more -->
+对前端只停留在css的我，花了整三天时间，从Hexo到Jekyll再到Bootstrap，以及各种markdown2html解析器...最后基本算是从头写了一个基于Jekyll的website theme 😓 <!-- more -->
 
 
 # Hexo
@@ -23,9 +21,9 @@ Hexo会比Jekyll搭建起来更方便一些，而且各种配置项的设计也�
 
 搭建方法上面这两个链接写的很详细。
 
-这里主要记录一下让Hexo支持LaTex的注意地方。Hexo用MathJax时会有一些[转义问题](http://2wildkids.com/2016/10/06/%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86Hexo%E5%92%8CMathJax%E7%9A%84%E5%85%BC%E5%AE%B9%E9%97%AE%E9%A2%98/#)，经我自己测试，最好的方式是用hexo-renderer-pandoc渲染器代替原有的hexo-renderer-marked。而网上说的用hexo-renderer-kramed，对矩阵的情况显示的不好。
+这里主要记录一下让Hexo支持LaTex的注意地方。Hexo用MathJax时会有一些[转义问题](http://2wildkids.com/2016/10/06/%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86Hexo%E5%92%8CMathJax%E7%9A%84%E5%85%BC%E5%AE%B9%E9%97%AE%E9%A2%98/#)，经我自己测试，最好的方式是用`hexo-renderer-pandoc`渲染器代替原有的`hexo-renderer-marked`。而网上说的用`hexo-renderer-kramed`，对矩阵的情况显示的不好。
 
-~~~shell
+~~~
 $ npm uninstall hexo-renderer-marked --save
 $ npm install hexo-renderer-kramed --save
 ~~~
@@ -33,19 +31,21 @@ $ npm install hexo-renderer-kramed --save
 
 # Jekyll
 
-其实用Hexo/Jekyll+现成的主题，很方便就能搭出一个静态网站出来。只是除了代码高亮、LaTex这些功能之外，我还想能区分出code blocks和普通无需highlighting的`<pre>`部分，还有其他一些改动。因为markdown解析的原因，基本所有themes出的效果都是将两者统一处理了。强迫症（其实就是zuo），主题挑来挑去都没找到个合心意的，比如next这种，太复杂，让我一个前端白痴改，哈，那还是自己从头写一个比较符合程序员造轮子的习惯吧。。。（捂脸
+其实用Hexo/Jekyll+现成的主题，很方便就能搭出一个静态网站出来。只是除了代码高亮、LaTex这些功能之外，我还想能区分出code block 和普通无需highlighting的`<pre>`部分，还有其他一些改动。因为markdown解析的原因，基本所有themes出的效果都是将两者统一处理了。强迫症（其实就是zuo），主题挑来挑去都没找到个合心意的，比如next这种，太复杂，让我一个前端白痴改，哈，那还是自己从头写一个比较符合程序员造轮子的习惯吧。。。（捂脸
 
 （至于为啥从Hexo转到了Jekyll，原因未明）
 
 ## Get Started
 
-[Jekyll Doc](https://jekyllrb.com/docs/home/) ([中文版](http://jekyll.com.cn/docs/home/)，内容比较旧)
+参考：[Jekyll Doc](https://jekyllrb.com/docs/home/) ([中文版](http://jekyll.com.cn/docs/home/)，内容比较旧)
+
+### Installation
 
 本来在本地用Homebrew安装一路顺畅，但放到服务器就各种问题。
 
 首先直接用apt-get下载的Ruby版本比较旧。
 
-~~~shell
+~~~
 # Install Ruby & RubyGems
 $ sudo apt-add-repository ppa:brightbox/ruby-ng
 $ sudo apt-get update
@@ -60,9 +60,9 @@ $ sudo gem install jekyll bundler
 error: could not find a valid gem (>= 0) in any repository
 ```
 
-参考[github issues](https://github.com/jekyll/jekyll/issues/1409)，F*k GWF，需要将https://rubygems.org/换成其他可访问的镜像，如[Ruby China 镜像](http://gems.ruby-china.org/)。
+参考[github issues](https://github.com/jekyll/jekyll/issues/1409)，F*k GWF，需要将`https://rubygems.org/`换成其他可访问的镜像，如[Ruby China 镜像](http://gems.ruby-china.org/)。
 
-```shell
+```
 $ gem sources --remove https://rubygems.org/
 $ gem sources -a https://gems.ruby-china.org/
 $ gem sources -l
@@ -81,7 +81,7 @@ mkmf.rb can't find header files for ruby at /usr/lib/ruby/include/ruby.h
 
 解决方式：
 
-```shell
+```
 $ sudo apt-get install ruby2.4-dev
 ```
 
@@ -99,7 +99,7 @@ source "https://rubygems.org"
 ...
 ```
 
----
+### Basic Command
 
 用jekyll新建一个site:
 
@@ -111,7 +111,7 @@ $ bundle exec jekyll serve
 
 打开http://localhost:4000测试。
 
-默认使用的是Minima theme. 目前基于jekyll 3.x的themes还比较少。
+默认使用的是`Minima theme`. 目前基于jekyll 3.x的themes还比较少。
 因为我是自己新建的theme，就不用这样方式了。
 
 ---
@@ -134,7 +134,19 @@ $ jekyll serve --detach
 $ jekyll serve --watch
 ```
 
-## Set up Your Site on VPS
+生成静态页面（位于`_site`目录）：
+
+```
+$ jekyll build
+```
+
+或者用：(watched for changes, and regenerated automatically.)
+
+```
+$ jekyll build --watch
+```
+
+# Set up Your Site on VPS
 
 网上清一色都是通过github pages来发布的站点，然后通过修改`CNAME`文件来达到绑定域名的目的。
 
@@ -149,35 +161,31 @@ $ jekyll serve --watch
 
 因为是静态网站，所以Jekyll其实安装在本地就可以，静态页面也放在本地。然后将Jekyll生成的静态HTML文件（`_site`目录下）通过类似FTP的方式上传到VPS就行。
 
-而是由，并放在，
+先来理清关系：
 
 - [Jekyll](http://jekyllrb.com/) for write our content
 - [nginx](http://nginx.org/en/) to serve our content
 - [Capistrano](http://www.capistranorb.com/) to deploy
 
+## Nginx
+
+## Capistrano
+
 ```
 sudo gem install capistrano
 ```
 
+将本地数据上传到远程服务用`scp`就行，后来了解到`rsync`这个命令。`rsync`只传送两个文件的不同部分，而不是每次都整份传送，因此速度很快。 
 
+# Create New Theme From Scratch
 
-scp
+既然是from scratch，就先把jekyll的目录结构理清，然后借助bootstrap框架创建主题，最后就是各种features了。
 
-`rsync`命令是一个远程数据同步工具，可通过LAN/WAN快速同步多台主机间的文件。rsync使用所谓的“rsync算法”来使本地和远程两个主机之间的文件达到同步，这个算法只传送两个文件的不同部分，而不是每次都整份传送，因此速度相当快。 
-
-
-
-
-
-## Create New Theme From Scratch
-
-用`jekyll new-theme`命令，就可以创建出一个theme需要的基本目录项。
-
-```
-jekyll new-theme jekyll-theme-awesome
-```
+## Basic
 
 ### Directory Structure
+
+用`jekyll new-theme xxx`命令，就可以创建出一个theme需要的基本目录项。
 
 ```
 .
@@ -202,7 +210,7 @@ jekyll new-theme jekyll-theme-awesome
 
 说明：
 
-`_config.yml` 是配置文件。默认配置参见：https://jekyllrb.com/docs/configuration/#default-configuration
+`_config.yml` 是配置文件。默认配置参见：[https://jekyllrb.com/docs/configuration/#default-configuration](https://jekyllrb.com/docs/configuration/#default-configuration)
 
 `_includes` 里的文件为了布局重用。
 
@@ -214,24 +222,26 @@ jekyll new-theme jekyll-theme-awesome
 
 `_site` 存放jekyll转化完成的html文件。有时修改效果不生效，可以尝试删除该目录。
 
-### Basic
+### Need to Know
 
 若在`index.html`的YAML头信息中加入：
 
 ```
 ---
-layout: post
+layout: default
 ...
 ---
 ```
 
-则在`default.html`中调用{% raw %}`{{ content }}`{% endraw %}，就会把`index.html`中的所有内容放到此处。
+则在`default.html`中调用{% raw %}`{{ content }}`{% endraw %}时，就会把`index.html`中的所有内容放到调用处。
 
-### Bootstrap
+## Bootstrap
 
-使用Bootstrap前端框架真是省了很多事。
+Bootstrap前端框架真是我这种前端白痴的福音。
 
 下载[Bootstrp](https://github.com/twbs/bootstrap/releases/download/v3.3.7/bootstrap-3.3.7-dist.zip)，我这里将解压后的文件放到了`assets/bootstrap-3.3.7-dist` 目录下。
+
+使用Bootstrap：
 
 参考Bootstrap官网里给的[基本HTML模板](http://getbootstrap.com/getting-started/#template)，
 
@@ -267,22 +277,7 @@ layout: post
 body { padding-top: 70px; }
 ```
 
-### Search
-
-参考：[Button addons](http://getbootstrap.com/components/#input-groups-buttons) & [Forms](http://getbootstrap.com/components/#navbar-forms)
-
-将下面代码加入`header.html`中：
-
-```html
-<form class="navbar-form navbar-left" role="search">
-  <div class="input-group">
-    <span class="input-group-btn">
-      <button class="btn btn-default" type="button">Go!</button>
-    </span>
-    <input type="text" class="form-control" placeholder="Search">
-  </div>
-</form>
-```
+## Features
 
 ### Post Excerpt
 
@@ -330,23 +325,11 @@ paginate_path: "/pages:num/"
 
 （2）然后参考[https://jekyllrb.com/docs/pagination/](https://jekyllrb.com/docs/pagination/)在`index.html`添加分页功能，并结合Bootstrap里的分页样式修改：[http://getbootstrap.com/components/#pagination](http://getbootstrap.com/components/#pagination)。
 
-### Back to Top
-
-### 404 Page
-
-### Comments
-
-### Category
-
-### tags
-
-
-
 ### SideBar
 
 这里利用了 bootstrap 的栅格布局，栅格布局将一个页面分割成12个等宽的列。(详见 [example](http://getbootstrap.com/css/#grid-example-basic))
 
-```
+```html
 <div class="row-fluid">
   <div class="col-md-9">
     <h2>Content</h2>
@@ -359,7 +342,48 @@ paginate_path: "/pages:num/"
 
 让侧边栏固定住，不随页面滚动而滚动：加入`class="affix"`。
 
+---
+
+**说明：**
+
+我这里设置两种sidebar：
+
+* 一种是`index.html`里的，用于显示author信息，写在`main_sidebar.html`中；
+* 另一种是`post`对应的，用于显示目录列表，写在`post_sidebar.html`中。
+
+---
+
+### Social Icons
+
+icons用的是 [fontawesome](http://fontawesome.io/)。我这里将解压后的 `fonts`和`css`文件夹复制到了`assets`目录下。
+
+在`head.html`中添加：
+
+```html
+<link rel="stylesheet" href="/assets/css/font-awesome.min.css">
+```
+
+要使用哪个图标，直接去[官网](http://fontawesome.io/icons/)搜代码就行。
+
+使用`color `修改图标颜色。
+
+修改图标大小，如：
+
+```html
+<i class="fa fa-camera-retro"></i>
+<i class="fa fa-camera-retro fa-2x"></i>
+<i class="fa fa-camera-retro fa-3x"></i>
+```
+
+对官网搜不到的社交网站图标怎么办，如“知乎”的：
+
+```html
+<a href="{{ site.social_media.zhihu_url }}" class="btn" title="Zhihu"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-stack-1x fa-inverse">知</i></span></a>
+```
+
 ### Table of Content
+
+#### post中显示目录 
 
 kramdown自带了解析目录的功能。详见：[https://kramdown.gettalong.org/converter/html.html#toc](https://kramdown.gettalong.org/converter/html.html#toc)
 
@@ -387,70 +411,63 @@ kramdown自带了解析目录的功能。详见：[https://kramdown.gettalong.or
 kramdown: 
   toc_levels: "2,3" 
 ```
+<br/>
 
-它的思想也是先利用了kramdown已生成的目录数据。
-
-#### Scrollspy
+#### sidebar中显示目录
 
 侧边栏目录随浏览内容动态滚动功能，利用Bootstrap的[Scrollspy](http://getbootstrap.com/javascript/#scrollspy)来实现。
 
-http://getbootstrap.com/javascript/#scrollspy
+* 参考 [application.js](http://www.thomaszhao.cn/2015/01/08/how-do-i-build-this-jekyll-blog/#toctable-of-content-) 获取目录结构，和标题滚动效果。
+* 参考 [JQUERY实现侧边栏随滚动条滚动并固定位置](https://www.mywpku.com/jquery-pin-elements.html) 来固定sidebar的位置，并且效果是：当滚动到指定模块时才置顶该模块。
 
-https://afeld.github.io/bootstrap-toc/
+最后写了个 [TOP.js](https://github.com/lszero/lszero.github.io/blob/master/assets/js/toc/TOC.js) 终于实现得还算满意了。（当然，还要配合 css 使用）
 
-[bootstrap-toc](https://github.com/afeld/bootstrap-toc)
+另外，其它不错的实现：
 
-sudo gem install redcarpet
+- [bootstrap-toc](https://afeld.github.io/bootstrap-toc/) ([github](https://github.com/afeld/bootstrap-toc/tree/gh-pages/dist))
+- [Tocify plugin](http://gregfranko.com/jquery.tocify.js/)
+- [TOC plugin](http://projects.jga.me/toc/)
 
-markdown: redcarpet
+### Search
 
+参考：[Button addons](http://getbootstrap.com/components/#input-groups-buttons) & [Forms](http://getbootstrap.com/components/#navbar-forms)
 
-
-### Permalinks
-
-在`_config.yml`中设置，如：
-
-```
-permalink: /:categories/:year/:month/:day/:title.html
-```
-
-###  _config.yml 
-
-`_config.yml`里的默认配置参见：https://jekyllrb.com/docs/configuration/#default-configuration
-
-下面对自己的`_config.yml`文件中的内容做一些说明：
-
-```
-markdown: kramdown
-```
-
-使用`kramdown`作为markdown的解析器。
-
-### Social Media
-
-icon用的是 [fontawesome](http://fontawesome.io/)。我这里将解压后的 `fonts`和`css`文件夹赋值到了`assets`目录下。
-
-在`head.html`中添加：
+将下面代码加入`header.html`中：
 
 ```html
-<link rel="stylesheet" href="/assets/css/font-awesome.min.css">
+<form class="navbar-form navbar-left" role="search">
+  <div class="input-group">
+    <span class="input-group-btn">
+      <button class="btn btn-default" type="button">Go!</button>
+    </span>
+    <input type="text" class="form-control" placeholder="Search">
+  </div>
+</form>
 ```
 
-要使用哪个图标，直接去[官网](http://fontawesome.io/icons/)搜代码就行。
 
-使用`color `修改图标颜色。
 
-修改图标大小，如：
+### Back to Top
 
-```
-<i class="fa fa-camera-retro"></i> fa-camera-retro
-<i class="fa fa-camera-retro fa-2x"></i> fa-2x
-<i class="fa fa-camera-retro fa-3x"></i> fa-3x
+该功能我放在了`post_sidebar.html`中：
+
+```html
+<a href="#top" class="back-to-top">^</a>
 ```
 
-## Extras
+其实就是个link，最后再用css设置样式。
 
-### LaTex
+### 404 Page
+
+### Comments
+
+### Category
+
+### tags
+
+
+
+### Latex
 
 参考：[https://jekyllrb.com/docs/extras/#math-support](https://jekyllrb.com/docs/extras/#math-support)
 
@@ -603,6 +620,15 @@ end
 
 这样当语言设为`auto`的时候，自动显示高亮。
 
+## Else
+
+### Permalinks
+
+在`_config.yml`中设置，如：
+
+```
+permalink: /:categories/:year/:month/:day/:title.html
+```
 ## Problems
 
 {% raw %}`{{ xxx }}`{% endraw %} 或者 {% raw %}`{% xxx %}`{% endraw %} 显示不出来。
@@ -623,4 +649,5 @@ This is a test: {% raw %}{{ xxx }}{% endraw %}
 {{ openTag }} endraw %}
 ```
 （3）那么问题又来了，如何显示上面的 raw 和 endraw 呢？参考：[jekyll 如何转义字符](http://www.cnblogs.com/OceanHeaven/p/6959669.html)
+
 
