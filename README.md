@@ -12,7 +12,7 @@ Zero a minimal two-column Jekyll theme based on bootstrap 3.
 
 ##  Preview
 
-See [Demo](lszero.github.io).
+See [Demo](https://lszero.github.io/).
 
 ## Usage
 
