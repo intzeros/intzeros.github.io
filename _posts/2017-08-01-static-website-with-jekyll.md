@@ -452,8 +452,6 @@ kramdown:
 </form>
 ```
 
-
-
 ### Back to Top
 
 该功能我放在了`post_sidebar.html`中：
@@ -469,8 +467,6 @@ kramdown:
 更新：
 
 为了不让footer覆盖掉 back-to-top，只能把back-to-top写在footer后面。故改在了`default.html`里。
-
-### 404 Page
 
 ### Comments
 

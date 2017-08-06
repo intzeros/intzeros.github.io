@@ -70,12 +70,13 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
           <li class="nav-search">
-            <form class="navbar-form navbar-left" role="search">
+            <form class="navbar-form navbar-left" role="search" id="search-form">
               <div class="input-group">
                   <span class="input-group-btn">
                     <button class="btn btn-default" type="button" style="color:#777">Go!</button>
                   </span>
-                  <input type="text" class="form-control" placeholder="Search">
+                  <input type="text" id="search-input" class="form-control" placeholder="Search">
+                  
               </div>
             </form>
           </li>
@@ -106,7 +107,7 @@
 
     <footer class="footer">
   <div class="copyright">
-      Copyright &copy; <time datetime="2017-08-06T16:23:08+08:00">2017</time> <a href="http://localhost:4000">lszero</a> | Powered by <a href="https://github.com/jekyll/jekyll">Jekyll</a> | Designed by <a href="http://localhost:4000">lszero</a>
+      Copyright &copy; <time datetime="2017-08-06T19:52:46+08:00">2017</time> <a href="http://localhost:4000">lszero</a> | Powered by <a href="https://github.com/jekyll/jekyll">Jekyll</a> | Designed by <a href="http://localhost:4000">lszero</a>
   </div>
 </footer>
 
@@ -120,5 +121,10 @@
     <script src="/assets/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
     <!-- TOC -->
     <script src="/assets/js/toc/TOC.js"></script>
+
+    <script>$("#search-form").submit(function(event){
+      var query = document.getElementById("search-input").value;
+      window.open("http://google.com/search?q=" + query + "%20site:" + "lszero.github.io");
+    });</script>
   </body>
 </html>

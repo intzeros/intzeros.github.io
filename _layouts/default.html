@@ -24,10 +24,15 @@
     {% endif %} -->
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="/assets/js/jquery-1.12.4.min.js"></script>
+    <script src="{{ site.baseurl }}/assets/js/jquery-1.12.4.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="/assets/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="{{ site.baseurl }}/assets/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
     <!-- TOC -->
-    <script src="/assets/js/toc/TOC.js"></script>
+    <script src="{{ site.baseurl }}/assets/js/toc/TOC.js"></script>
+
+    <script>$("#search-form").submit(function(event){
+      var query = document.getElementById("search-input").value;
+      window.open("http://google.com/search?q=" + query + "%20site:" + "lszero.github.io");
+    });</script>
   </body>
 </html>
