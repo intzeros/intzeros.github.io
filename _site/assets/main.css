@@ -162,7 +162,8 @@ pre.highlight {
   bottom: 20px;
   display: block;
   padding: 2px 14px;
-  font-size: 24px; }
+  font-size: 24px;
+  right: 20px; }
 
 a.back-to-top {
   text-decoration: none; }

@@ -549,6 +549,12 @@ paginate_path: "/pages:num/"
 
 <p>其实就是个link，最后再用css设置样式。</p>
 
+<hr />
+
+<p>更新：</p>
+
+<p>为了不让footer覆盖掉 back-to-top，只能把back-to-top写在footer后面。故改在了<code class="highlighter-rouge">default.html</code>里。</p>
+
 <h3 id="404-page">404 Page</h3>
 
 <h3 id="comments">Comments</h3>
@@ -873,8 +879,6 @@ This is a test: {{ xxx }}
     <ul id="sideNav" class="nav headers-sidenav">
         <!-- code will be generated in TOC.js -->
     </ul>
-
-    <a href="#top" class="back-to-top">^</a>
   </nav>
 </div>
     </div>
@@ -884,9 +888,11 @@ This is a test: {{ xxx }}
 
     <footer class="footer">
   <div class="copyright">
-      Copyright &copy; <time datetime="2017-08-06T11:19:42+08:00">2017</time> <a href="http://localhost:4000">lszero</a> | Powered by <a href="https://github.com/jekyll/jekyll">Jekyll</a> | Designed by <a href="http://localhost:4000">lszero</a>
+      Copyright &copy; <time datetime="2017-08-06T11:38:00+08:00">2017</time> <a href="http://localhost:4000">lszero</a> | Powered by <a href="https://github.com/jekyll/jekyll">Jekyll</a> | Designed by <a href="http://localhost:4000">lszero</a>
   </div>
 </footer>
+
+    <a href="#top" class="back-to-top">^</a>
 
 <!--      -->
 
