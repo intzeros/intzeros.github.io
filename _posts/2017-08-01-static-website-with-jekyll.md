@@ -474,6 +474,10 @@ kramdown:
 
 ### Comments
 
+使用的是[Gitment](https://imsun.net/posts/gitment-introduction/)。
+
+按照官网的说明引入js后，在其中修改自己的OAuth Application信息。
+
 ### Archives
 
 {% raw %}`{% for post in paginator.posts %}`{% endraw %} 并不能使用，因为paginator只会对`index.html`有效。
