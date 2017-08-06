@@ -7,22 +7,32 @@ layout: default
     <div class="content col-md-9">
       <article class="post">
         <h1 class="post-title">{{ page.title }}</h1>
-        <hr />
+
+        <div class="post-info">
+          <span class="post-date">{{ page.date | date_to_string }}</span>
+          {% if page.categories.size > 0 %} | 
+            <span class="fa fa-folder-open" aria-hidden="true">
+            {% for category in page.categories %}
+              <a class="categories" href="{{ site.baseurl }}/categories.html#{{ category }}">{{ category }}</a>
+            {% endfor %}
+            </span>
+          {% endif %}
+          {% if page.tags.size > 0 %} | 
+            <span class="fa fa-tag" aria-hidden="true">
+            {% for tag in page.tags %}
+              <a class="post-tags" href="{{ site.baseurl }}/tags.html#{{ tag }}">{{ tag }}</a>
+            {% endfor %}
+            </span>
+          {% endif %}
+        </div>
+
+        <hr>
         {{ content }}
         <br><br>
-
-        <footer class="post-meta">
-          <div class="post-info">
-            <a class="author" href="{{ site.url }}">{{ site.author }}</a>
-            <time class="post-date"><a href="{{ post.url }}">{{ page.date | date_to_string }}</a></time>
-            <a class="category" href="#">类别</a>
-            <a class="comments" href="#">No Comments</a>
-          </div>
-          <hr />
-        </footer>
       </article>
 
       {% if site.related_posts != empty %}
+      <hr>
       <aside class="related">
         <h3>Related Posts</h3>
         <ul class="related-posts">

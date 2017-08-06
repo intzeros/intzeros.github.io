@@ -12,21 +12,33 @@ title: Home
           <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
         </h1>
 
+        <div class="post-info">
+          <span class="post-date">{{ post.date | date_to_string }}</span>
+          {% if post.categories.size > 0 %} | 
+            <span class="fa fa-folder-open" aria-hidden="true">
+            {% for category in post.categories %}
+              <a class="categories" href="{{ site.baseurl }}/categories.html#{{ category }}">{{ category }}</a>
+            {% endfor %}
+            </span>
+          {% endif %}
+          {% if post.tags.size > 0 %} | 
+            <span class="fa fa-tag" aria-hidden="true">
+            {% for tag in post.tags %}
+              <a class="post-tags" href="{{ site.baseurl }}/tags.html#{{ tag }}">{{ tag }}</a>
+            {% endfor %}
+            </span>
+          {% endif %}
+        </div>
+
         <div class="content">
           {{ post.excerpt }}
         </div>
 
-        <footer class="post-meta">
-          <div class="post-info">
-            <a class="author" href="{{ site.baseurl }}/about.html">{{ site.author }}</a>
-            <time class="post-date"><a href="{{ post.url }}">{{ post.date | date:"%Y-%m-%d" }}</a></time>
-            <a class="category" href="#">类别</a>
-            <a class="comments" href="#">No Comments</a>
-            <a class="read-more" href="{{ post.url }}">Read More</a>
-          </div>
-          <hr />
-        </footer>
+        <div class="post-more">
+          <a class="read-more" href="{{ post.url }}">Read More</a>
+        </div>
       </article>
+      <hr />
       {% endfor %}
 
       {% if paginator.total_pages > 1 %}
