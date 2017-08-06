@@ -470,20 +470,17 @@ kramdown:
 
 ### Archives
 
-`for post in paginator.posts` 并不能使用，因为paginator只会对`index.html`有效。
+{% raw %}`{% for post in paginator.posts %}`{% endraw %} 并不能使用，因为paginator只会对`index.html`有效。
 
-sudo gem install jekyll-archives
+`site.posts | size` 获取总的文章数。
 
-`_config.yml`:
+因为jekyll不支持按日期获取，只能暂时用{% raw %}`{% for post in site.posts %}`{% endraw %}。
 
-```
-plugins:
-  - jekyll-archives
-```
+这部分待补充吧。
 
 ### Category
 
-参考[使用Category分类](https://segmentfault.com/a/1190000000406017#articleHeader2)
+参考 [使用Category分类](https://segmentfault.com/a/1190000000406017#articleHeader2)。
 
 首先在每个文章的YAML头信息中定义类别，如：
 
@@ -495,33 +492,39 @@ categories: Algorithm
 ---
 ```
 
-
-
-`site.categories.size` 获取总的类别数。
-
-输出所有类别：`for category in site.categories`
+**获取所有类别：**
 
 ```html
-{% for category in site.categories %}
-类别：{{ category | first }}
-(该类别文章数：{{ category | last | size }})
-<ul>
-  {% for post in category.last %}
-  <li>{{ post.date | date:"%d/%m/%Y"}}<a href="{{ post.url }}">{{ post.title }}</a></li>
-    {% endfor %}
-</ul>
-{% endfor %}
+{% raw %}{% for category in site.categories %}
+  <h2>{{ category[0] }} ({{ category[1].size }})</h2>
+  <ul>
+  {% for post in category[1] %}
+    <li>{{ post.date | date:"%d/%m/%Y"}}<a href="{{ post.url }}">{{ post.title }}</a></li>
+  {% endfor %}
+  </ul>
+{% endfor %}{% endraw %}
 ```
 
-其中，
+使用：
 
-* 使用`{{ category.first }}`输出分类的名称
-* 使用`{{ category.last.size }}`输出该分类下文章的数目
-* 遍历`category.last`输出所有文章的信息，构建到该文章的索引
+* `site.categories.size` 获取总的类别数。
+* `category[0]` 获取分类名称。
+* `category[1].size` 获取该分类下文章的数目。
+* `site.categories.CATEGORY` 可得到某个特定类别的所有文章。
 
-输出某个特定类别的所有文章：`site.categories.CATEGORY`
+更多变量可参见：[http://jekyllrb.com/docs/variables/#site-variables](http://jekyllrb.com/docs/variables/#site-variables).
 
-### tags
+输出单个分类下的所有文章：
+
+`site.categories.CATEGORY` 需要手动指定，并不是很方便。
+
+[使用Category分类](https://segmentfault.com/a/1190000000406017#articleHeader2)这篇文章里使用js来实现。
+
+我这里是先生成好`categories.html`，里面列出了所有的文章。然后利用锚点`categories.html#xxx`进行跳转到指定的类别。
+
+### Tags
+
+参考[使用文章标签索引文章](https://segmentfault.com/a/1190000000406017#articleHeader5)。
 
 首先在每个文章的YAML头信息中定义tags，如：
 
@@ -533,13 +536,7 @@ tags: [github, jekyll]
 ---
 ```
 
-`site.tags.size` 获取总的tags数。
-
-`for tag in site.tags`
-
-`{{ tag[0] }}`
-
-`{{ tag[1].size }}`
+和[category](#category)的设置方法差不多，就不赘述了。
 
 ### Latex
 
@@ -555,9 +552,11 @@ mathjax: false
 
 在`head.html`中添加：
 
-    {% if page.mathjax %}
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-    {% endif %}
+```html
+{% raw %}{% if page.mathjax %}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+{% endif %}{% endraw %}
+```
 然后在需要引入mathjax的md文件头中加入`mathjax: true`，如：
 
 ```

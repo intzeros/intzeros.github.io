@@ -6,7 +6,7 @@ title: Categories
 <div class="container">
   <div class="row">
     <h1>Categories</h1>
-
+    
     <div class="archive-cloud categories-cloud">
       {% for category in site.categories %}
         <a href="#{{ category[0] }}" title="{{ category[0] }}" rel="{{ category[1].size }}">{{ category[0] }} ({{ category[1].size }})</a>
