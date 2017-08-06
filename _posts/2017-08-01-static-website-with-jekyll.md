@@ -478,6 +478,8 @@ kramdown:
 
 按照官网的说明引入js后，在其中修改自己的OAuth Application信息。
 
+另外，自建评论系统：[Debian 8.x / Ubuntu 16.04.x 搭建 Isso 评论系统教程](https://sb.sb/debian-8-ubuntu-16-04-install-isso/)，有时间再弄。
+
 ### Archives
 
 {% raw %}`{% for post in paginator.posts %}`{% endraw %} 并不能使用，因为paginator只会对`index.html`有效。
