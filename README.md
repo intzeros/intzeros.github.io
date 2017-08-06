@@ -4,9 +4,10 @@ Zero a minimal two-column Jekyll theme based on bootstrap 3.
 
 ## Features
 
+- Tags & Categories
 - SideBar
 - Table of Contents
-- Latax support (MathJax)
+- Latex support (MathJax)
 - Social icons
 - Code block highlighting
 
