@@ -81,10 +81,13 @@
             </form>
           </li>
           <li>
-            <a href="#">Archives</a>
+            <a href="/archives.html">Archives</a>
           </li>
           <li>
-            <a href="#">Links</a>
+            <a href="categories.html">Categories</a>
+          </li>
+          <li>
+            <a href="tags.html">Tags</a>
           </li>
           <li>
             <a href="#">About</a>
@@ -312,6 +315,12 @@ $ jekyll serve --watch
 <p><code class="highlighter-rouge">_drafts</code> 中的md文件直接以<code class="highlighter-rouge">title.md</code>命名，并不会发布出来。当运行<code class="highlighter-rouge">jekyll serve</code>或者<code class="highlighter-rouge">jekyll build --drafts</code>时，草稿文章会被加上日期值并发布出来。</p>
 
 <p><code class="highlighter-rouge">_site</code> 存放jekyll转化完成的html文件。有时修改效果不生效，可以尝试删除该目录。</p>
+
+<h3 id="variables">Variables</h3>
+
+<p>自带的变量详见：<a href="http://jekyllrb.com/docs/variables/">Variables</a>。</p>
+
+<p>或者通过<code class="highlighter-rouge">_config.yml</code>添加。</p>
 
 <h3 id="need-to-know">Need to Know</h3>
 
@@ -547,6 +556,18 @@ paginate_path: "/pages:num/"
 
 <h3 id="comments">Comments</h3>
 
+<h3 id="archives">Archives</h3>
+
+<p><code class="highlighter-rouge">for post in paginator.posts</code> 并不能使用，因为paginator只会对<code class="highlighter-rouge">index.html</code>有效。</p>
+
+<p>sudo gem install jekyll-archives</p>
+
+<p><code class="highlighter-rouge">_config.yml</code>:</p>
+
+<pre><code class="language-text">plugins:
+  - jekyll-archives
+</code></pre>
+
 <h3 id="category">Category</h3>
 
 <p>参考<a href="https://segmentfault.com/a/1190000000406017#articleHeader2">使用Category分类</a></p>
@@ -606,6 +627,8 @@ categories: Algorithm
   <li>遍历<code class="highlighter-rouge">category.last</code>输出所有文章的信息，构建到该文章的索引</li>
 </ul>
 
+<p>输出某个特定类别的所有文章：<code class="highlighter-rouge">site.categories.CATEGORY</code></p>
+
 <h3 id="tags">tags</h3>
 
 <p>首先在每个文章的YAML头信息中定义tags，如：</p>
@@ -618,6 +641,12 @@ tags: [github, jekyll]
 </code></pre>
 
 <p><code class="highlighter-rouge">site.tags.size</code> 获取总的tags数。</p>
+
+<p><code class="highlighter-rouge">for tag in site.tags</code></p>
+
+<p>``</p>
+
+<p>``</p>
 
 <h3 id="latex">Latex</h3>
 
@@ -765,6 +794,35 @@ xxx
 
 <pre><code class="language-text">permalink: /:categories/:year/:month/:day/:title.html
 </code></pre>
+<h3 id="footer">footer</h3>
+
+<p>当页面内容长度不够时，footer显示位置可能有问题。</p>
+
+<p>让footer内容永远处于最末端：</p>
+
+<div class="language-html highlighter-rouge"><pre class="highlight"><code>$height-footer: 40px;
+
+html {
+    height: 100%;
+}
+
+body {
+    min-height: 100%;
+    position: relative;
+    padding-bottom: $height-footer;
+}
+
+.footer {
+    bottom: 0;
+    width: 100%;
+    position: absolute;
+    height: $height-footer;
+}
+</code></pre>
+</div>
+
+<p>子元素的百分比高度也可以基于父元素的百分比高度，前提是父元素的父元素必须有一个明确的高度。要使<code class="highlighter-rouge">min-height</code>的百分比值生效，其父元素的<code class="highlighter-rouge">height</code>值必须为一个固定的高度或者是一个有效的百分比高度。</p>
+
 <h2 id="problems">Problems</h2>
 
 <p><code class="highlighter-rouge"><span class="p">{</span><span class="err">{</span><span class="w"> </span><span class="err">xxx</span><span class="w"> </span><span class="p">}</span><span class="err">}</span></code> 或者 <code class="highlighter-rouge"><span class="p">{</span><span class="err">%</span><span class="w"> </span><span class="err">xxx</span><span class="w"> </span><span class="err">%</span><span class="p">}</span></code> 显示不出来。</p>
@@ -846,7 +904,7 @@ This is a test: {{ xxx }}
 
     <footer class="footer">
   <div class="copyright">
-      Copyright &copy; <time datetime="2017-08-06T04:03:29+08:00">2017</time> <a href="http://localhost:4000">lszero</a> | Powered by <a href="https://github.com/jekyll/jekyll">Jekyll</a> | Designed by <a href="http://localhost:4000">lszero</a>
+      Copyright &copy; <time datetime="2017-08-06T10:08:54+08:00">2017</time> <a href="http://localhost:4000">lszero</a> | Powered by <a href="https://github.com/jekyll/jekyll">Jekyll</a> | Designed by <a href="http://localhost:4000">lszero</a>
   </div>
 </footer>
 

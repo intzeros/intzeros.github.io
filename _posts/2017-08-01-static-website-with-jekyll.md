@@ -223,6 +223,12 @@ sudo gem install capistrano
 
 `_site` 存放jekyll转化完成的html文件。有时修改效果不生效，可以尝试删除该目录。
 
+### Variables
+
+自带的变量详见：[Variables](http://jekyllrb.com/docs/variables/)。
+
+或者通过`_config.yml`添加。
+
 ### Need to Know
 
 若在`index.html`的YAML头信息中加入：
@@ -462,6 +468,19 @@ kramdown:
 
 ### Comments
 
+### Archives
+
+`for post in paginator.posts` 并不能使用，因为paginator只会对`index.html`有效。
+
+sudo gem install jekyll-archives
+
+`_config.yml`:
+
+```
+plugins:
+  - jekyll-archives
+```
+
 ### Category
 
 参考[使用Category分类](https://segmentfault.com/a/1190000000406017#articleHeader2)
@@ -500,7 +519,7 @@ categories: Algorithm
 * 使用`{{ category.last.size }}`输出该分类下文章的数目
 * 遍历`category.last`输出所有文章的信息，构建到该文章的索引
 
-
+输出某个特定类别的所有文章：`site.categories.CATEGORY`
 
 ### tags
 
@@ -515,6 +534,12 @@ tags: [github, jekyll]
 ```
 
 `site.tags.size` 获取总的tags数。
+
+`for tag in site.tags`
+
+`{{ tag[0] }}`
+
+`{{ tag[1].size }}`
 
 ### Latex
 
@@ -670,6 +695,35 @@ end
 ```
 permalink: /:categories/:year/:month/:day/:title.html
 ```
+### footer
+
+当页面内容长度不够时，footer显示位置可能有问题。
+
+让footer内容永远处于最末端：
+
+```html
+$height-footer: 40px;
+
+html {
+    height: 100%;
+}
+
+body {
+    min-height: 100%;
+    position: relative;
+    padding-bottom: $height-footer;
+}
+
+.footer {
+    bottom: 0;
+    width: 100%;
+    position: absolute;
+    height: $height-footer;
+}
+```
+
+子元素的百分比高度也可以基于父元素的百分比高度，前提是父元素的父元素必须有一个明确的高度。要使`min-height`的百分比值生效，其父元素的`height`值必须为一个固定的高度或者是一个有效的百分比高度。
+
 ## Problems
 
 {% raw %}`{{ xxx }}`{% endraw %} 或者 {% raw %}`{% xxx %}`{% endraw %} 显示不出来。

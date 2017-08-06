@@ -1,3 +1,11 @@
+html {
+  height: 100%; }
+
+body {
+  min-height: 100%;
+  position: relative;
+  padding-bottom: 40px; }
+
 strong {
   font-weight: bolder; }
 
@@ -164,14 +172,63 @@ a.back-to-top:focus {
   opacity: 1;
   color: #fff; }
 
-/*--------- footer copyright ---------*/
+/*---------------------- tags & categories ------------------------*/
+.archive-cloud a {
+  background-color: rgba(106, 159, 181, 0.15);
+  margin: 5px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  text-decoration: none;
+  display: inline-block;
+  color: #6a9fb5; }
+
+.archive-cloud a:hover,
+.archive-cloud a:focus {
+  background-color: #008080;
+  color: #fff;
+  opacity: 0.7; }
+
+.archive-posts-list .fa {
+  color: #5bc0de;
+  font-size: 20px; }
+
+.archive-posts-list .text {
+  font-size: 26px; }
+
+.archive-posts-list ul {
+  list-style-type: circle;
+  margin: 10px 0; }
+
+.archive-posts-list li {
+  margin: 5px; }
+
+.archive-posts-list .posts-list a {
+  text-decoration: none;
+  color: #404040;
+  font-size: 16px; }
+
+.archive-posts-list .posts-list a:hover,
+.archive-posts-list .posts-list a:focus {
+  color: #FFA500; }
+
+.archive-posts-list .post-date {
+  color: #9a9a9a;
+  margin-left: 5px; }
+
+/*---------------------- footer copyright ------------------------*/
+.footer {
+  bottom: 0;
+  width: 100%;
+  position: absolute;
+  height: 40px;
+  background-color: #F8F8F8;
+  border-top: 1px solid #EAEAEA; }
+
 .footer .copyright {
   font-size: 14px;
   line-height: 18px;
   padding: 10px 0px;
   margin: 0 auto;
-  background-color: #F8F8F8;
-  border-top: 1px solid #EAEAEA;
   display: block;
   color: #404040;
   text-align: center; }

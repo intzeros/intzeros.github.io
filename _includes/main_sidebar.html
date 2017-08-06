@@ -47,7 +47,7 @@
     <h3 class="sidebar-title">Categories</h3>
     <ul>
     {% for category in site.categories %}
-      <li><a href="#">{{ category.first }} ({{ category.last.size }})</a></li>
+      <li><a href="/categories.html#{{ category[0] }}">{{ category[0] }} ({{ category[1].size }})</a></li>
     {% endfor %}
     </ul>
   </nav>
@@ -58,7 +58,7 @@
     <h3 class="sidebar-title">Tags</h3>
     <ul>
     {% for tag in site.tags %}
-      <li><a href="/show_by_tag.html?tag={{ tag[0] }}"> {{ tag[0] }}</a></li>
+      <li><a href="/tags.html#{{ tag[0] }}"> {{ tag[0] }} ({{ tag[1].size }})</a></li>
     {% endfor %}
     </ul>
   </nav>
