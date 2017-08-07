@@ -162,6 +162,8 @@ $ jekyll build --watch
 
 因为是静态网站，所以Jekyll其实安装在本地就可以，静态页面也放在本地。然后将Jekyll生成的静态HTML文件（`_site`目录下）通过类似FTP的方式上传到VPS就行。
 
+将本地数据上传到远程服务用`scp`就行，后来了解到`rsync`这个命令。`rsync`只传送两个文件的不同部分，而不是每次都整份传送，因此速度很快。
+
 先来理清关系：
 
 - [Jekyll](http://jekyllrb.com/) for write our content
@@ -170,13 +172,36 @@ $ jekyll build --watch
 
 ## Nginx
 
+```
+sudo apt-get install nginx
+sudo service nginx start
+```
+
+然后输入vps地址就能看到nginx的欢迎页面。
+
+查看运行状态：
+
+```
+sudo service nginx status
+# 显示：
+- nginx is running
+```
+
+修改 nginx 配置：sudo vim /etc/nginx/sites-enabled/default
+
+将 `root /usr/share/nginx/html;` 注释掉，改为 `root /home/deploy/your_blog_name/_site`。
+
+将 `server_name localhost;` 注释掉，改为 `server_name your_domain.com;`。
+
+重新启动nginx，就能看到建的blog内容了。
+
 ## Capistrano
 
-```
-sudo gem install capistrano
-```
+Capistrano 是一个 Ruby 程序，参考第一个文章链接，它可以通过Git复制代码到服务器等操作。
 
-将本地数据上传到远程服务用`scp`就行，后来了解到`rsync`这个命令。`rsync`只传送两个文件的不同部分，而不是每次都整份传送，因此速度很快。 
+```
+sudo gem install capistrano 
+```
 
 # Create New Theme From Scratch
 
@@ -476,6 +501,20 @@ kramdown:
 
 另外，自建评论系统：[Debian 8.x / Ubuntu 16.04.x 搭建 Isso 评论系统教程](https://sb.sb/debian-8-ubuntu-16-04-install-isso/)，有时间再弄。
 
+测试自Ubuntu服务器。本来官网文档里没那么多戏，但是我一直报错。。又安了很多其它包。
+
+```
+sudo apt-get install python3-dev
+sudo pip install isso
+sudo apt-get install sqlite3
+sudo pip install werkzeug
+sudo apt-get install libffi-dev
+sudo pip install misaka
+isso -c isso.conf run
+```
+
+
+
 ### Archives
 
 {% raw %}`{% for post in paginator.posts %}`{% endraw %} 并不能使用，因为paginator只会对`index.html`有效。
@@ -752,4 +791,21 @@ This is a test: {% raw %}{{ xxx }}{% endraw %}
 ```
 （3）那么问题又来了，如何显示上面的 raw 和 endraw 呢？参考：[jekyll 如何转义字符](http://www.cnblogs.com/OceanHeaven/p/6959669.html)
 
+```
+server {
+    listen [::]:80;
+    server_name comments.lszero.com;
+    
+    location /isso {
+        proxy_pass http://localhost:8090;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Script-Name /isso;
+    }
+}
+```
 
+
+nginx -t
+nginx -s reload
