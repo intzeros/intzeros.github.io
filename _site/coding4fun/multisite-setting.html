@@ -8,7 +8,7 @@
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
   <title>
     
-      水塘抽样 &middot; Soki's Blog
+      利用Apache进行多站点配置 &middot; Soki's Blog
     
   </title>
 
@@ -103,14 +103,14 @@
   <div class="row-fluid main">
     <div class="content col-md-9">
       <article class="post">
-        <h1 class="post-title">水塘抽样</h1>
+        <h1 class="post-title">利用Apache进行多站点配置</h1>
 
         <div class="post-info">
-          <span class="post-date">21 Oct 2016</span>
+          <span class="post-date">08 Aug 2017</span>
            | 
             <span class="fa fa-folder-open" aria-hidden="true">
             
-              <a class="categories" href="/categories.html#Algorithm">Algorithm</a>
+              <a class="categories" href="/categories.html#coding4fun">coding4fun</a>
             
             </span>
           
@@ -118,50 +118,145 @@
         </div>
 
         <hr>
-        <p>先看几个问题：</p>
+        <p>用了静态网页之后，主机就空闲了，当初辛辛苦苦跟工信部折腾了好几个月连案都备好了。。总感觉特别亏（其实就是舍不得wordpress的搜索功能。。）转念一想，拿wp当图片上传服务也是不错啊，这样就省去找第三方图床了。</p>
+
+<p>我的目标：</p>
 
 <ul>
-  <li>从一个很大的源代码中随机选取一行。</li>
-  <li>对一个长度未知的链表随机选取其中的k个节点。</li>
+  <li>www.lszero.com 显示主页面。</li>
+  <li>blog.lszero.com 对应静态site。</li>
+  <li>wp.lszero.com 对应wordpress。</li>
 </ul>
 
-<p><strong>水塘抽样</strong>(<a href="https://en.wikipedia.org/wiki/Reservoir_sampling">Reservoir sampling</a>) 是随机算法的一种。其目的在于从包含n个项目的集合S中选取k个样本，其中n为一很大或未知的数量，尤其适用于不能把所有n个项目都存放到主内存的情况。</p>
+<p>我这里用的是apache来实现的，也可以用nginx。</p>
 
-<p>考虑k=1的情况。算法如下：</p>
+<p>因为我的测试平台是Ubuntu，故跟网上的配置文件有些不一样。如网上说的apache配置文件<code class="highlighter-rouge">http.conf</code>，在我的平台下是<code class="highlighter-rouge">/etc/apache2/apache2.conf</code>。<!-- more --></p>
 
-<ul>
-  <li>Keep the first item in memory.</li>
-  <li>When the <em>i</em>-th item arrives (for <em>i</em>&gt;1):with probability 1/<em>i</em>, keep the new item (discard the old one)with probability 1-1/<em>i</em>, keep the old item (ignore the new one)</li>
-</ul>
+<h2 id="apache下多站点配置">Apache下多站点配置</h2>
 
-<p>So:</p>
+<p>1.sudo vi /etc/apache2/apache2.conf，设置：</p>
 
-<ul>
-  <li>when there is only one item, it is kept with probability 1;</li>
-  <li>when there are 2 items, each of them is kept with probability 1/2;</li>
-  <li>when there are 3 items, the third item is kept with probability 1/3, and each of the previous 2 items is also kept with probability (1/2)(1-1/3) = (1/2)(2/3) = 1/3;</li>
-  <li>by induction, it is easy to prove that when there are <em>n</em> items, each item is kept with probability 1/<em>n</em>.</li>
-</ul>
-
-<p>考虑一般情况，<em>Algorithm R</em> by <a href="https://en.wikipedia.org/wiki/Jeffrey_Vitter">Jeffrey Vitter</a>：<!-- more --></p>
-
-<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="cm">/*
-  S has items to sample, R will contain the result
- */</span>
-<span class="n">ReservoirSample</span><span class="p">(</span><span class="n">S</span><span class="p">[</span><span class="mf">1.</span><span class="p">.</span><span class="n">n</span><span class="p">],</span> <span class="n">R</span><span class="p">[</span><span class="mf">1.</span><span class="p">.</span><span class="n">k</span><span class="p">])</span>
-  <span class="c1">// fill the reservoir array
-</span>  <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">k</span>
-      <span class="n">R</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">:=</span> <span class="n">S</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
- 
-  <span class="c1">// replace elements with gradually decreasing probability
-</span>  <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="n">k</span><span class="o">+</span><span class="mi">1</span> <span class="n">to</span> <span class="n">n</span>
-    <span class="n">j</span> <span class="o">:=</span> <span class="n">random</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>   <span class="c1">// important: inclusive range
-</span>    <span class="k">if</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">k</span>
-        <span class="n">R</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">:=</span> <span class="n">S</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+<pre><code class="language-text">ServerName 'www.lszero.com'
+&lt;Directory "your_home_page_path"&gt;
+...
+&lt;/Directory&gt;
 </code></pre>
-</div>
 
-<p>即以概率<code class="highlighter-rouge">k/i</code> 替换原水塘中的元素。</p>
+<p>注意该文件的最后两行为：</p>
+
+<pre><code class="language-text">IncludeOptional conf-enabled/*.conf
+IncludeOptional sites-enabled/*.conf
+</code></pre>
+
+<p>故把新加的站点配置文件放在<code class="highlighter-rouge">sites-enabled</code>目录下。</p>
+
+<p>继续，sudo vi /etc/apache2/sites-available/000-default.conf，设置：</p>
+
+<pre><code class="language-text">DocumentRoot your_home_page_path
+</code></pre>
+
+<p>2.添加新站点配置文件，并放在<code class="highlighter-rouge">sites-available</code>中。</p>
+
+<pre><code class="language-text">$ cd /etc/apache2/sites-available
+$ sudo touch wp-lszero-com.conf
+$ sudo touch blog-lszero-com.conf
+</code></pre>
+
+<p>sudo vi blog-lszero-com.conf，添加：</p>
+
+<pre><code class="language-text">&lt;VirtualHost *:80&gt;
+    ServerAdmin intzero@outlook.com
+    ServerName blog.lszero.com
+    DocumentRoot your_jekyll_site_path/_site
+
+    &lt;Directory "your_jekyll_site_path/_site"&gt;
+        Options FollowSymLinks
+        AllowOverride All
+        Require all granted
+    &lt;/Directory&gt;
+
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+&lt;/VirtualHost&gt;
+</code></pre>
+
+<p>sudo vi wp-lszero-com.conf，添加：</p>
+
+<pre><code class="language-text">&lt;VirtualHost *:80&gt;
+    ServerAdmin intzero@outlook.com
+    ServerName wp.lszero.com
+    DocumentRoot your_wordpress_site_path
+
+    &lt;Directory "your_wordpress_site_path"&gt;
+        Options FollowSymLinks
+        AllowOverride All
+        Require all granted
+    &lt;/Directory&gt;
+
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+&lt;/VirtualHost&gt;
+</code></pre>
+
+<p>然后建立软链接到<code class="highlighter-rouge">sites-enabled</code>目录：</p>
+
+<pre><code class="language-text">$ cd /etc/apache2/sites-enabled
+$ sudo ln -s /etc/apache2/sites-available/www-lszero-com.conf /etc/apache2/sites-enabled/www-lszero-com.conf
+$ sudo ln -s /etc/apache2/sites-available/blog-lszero-com.conf /etc/apache2/sites-enabled/blog-lszero-com.conf
+</code></pre>
+
+<p>重启：</p>
+
+<pre><code class="language-text">$ sudo service apache2 restart
+</code></pre>
+
+<p>参考：</p>
+
+<ul>
+  <li><a href="http://www.linuxidc.com/Linux/2017-05/143590.htm">Ubuntu/CentOS下Apache多站点配置</a></li>
+</ul>
+
+<h2 id="修改数据库">修改数据库</h2>
+
+<p>最后还要修改wordpress数据库里的链接：</p>
+
+<pre><code class="language-text">$ mysql -u[user_name] -p[your_passwd]
+(1) UPDATE wp_options SET option_value = replace( option_value, 'your old web_site','your new web_site') WHERE option_name = 'home' OR option_name ='siteurl';
+(2) UPDATE wp_posts SET post_content = replace( post_content, 'old.com','new.com') ;
+(3) UPDATE wp_comments SET comment_content = replace(comment_content, 'old.com','new.com') ;
+(4) UPDATE wp_comments SET comment_author_url = replace(comment_author_url, 'old.com','new.com') ;
+</code></pre>
+
+<hr />
+
+<p>额外说一点，</p>
+
+<p>Wordpress自带有多站点功能，前提是你的站点都是wordpress。当然我就不属于这种情况了。</p>
+
+<p>可参考：<a href="http://www.smyx.net/create-wpmu.html">WordPress多站点的创建</a></p>
+
+<p>首先开启多站点功能（默认是关闭的），修改wordpress配置文件：vi wp-config.php。找到</p>
+
+<pre><code class="language-text">/* That's all, stop editing! Happy blogging. */
+</code></pre>
+
+<p>在上面这行代码的前面加上：</p>
+
+<pre><code class="language-text">define('WP_ALLOW_MULTISITE',true);
+</code></pre>
+
+<p>回到wordpress后台界面，点击<code class="highlighter-rouge">工具 -&gt; 配置网络</code>。</p>
+
+<p>因为不是新创建的wordpress，故只能用<code class="highlighter-rouge">子域名</code>模式，而不是<code class="highlighter-rouge">子目录</code>模式。点击安装，然后根据提示，修改<code class="highlighter-rouge">wp-config.php</code>和<code class="highlighter-rouge">.htaccess</code>。</p>
+
+<p>然后在Dashboard的左上角就可以设置不同的站点，如新建一个站点。</p>
+
+<p>说明：<code class="highlighter-rouge">主站点</code>还是原来的lszero.com，<code class="highlighter-rouge">子站点</code>为你后来新加的。</p>
+
+<p>对于删除多站点：</p>
+
+<p>除了要恢复上述修改的文件之外，还有删除数据库多出来的表。</p>
+
 
         <br><br>
       </article>
@@ -171,13 +266,6 @@
       <aside class="related">
         <h3>Related Posts</h3>
         <ul class="related-posts">
-          
-            <li>
-              <a href="/coding4fun/multisite-setting.html">
-                利用Apache进行多站点配置
-                <small><time datetime="2017-08-08T16:30:00+08:00">08 Aug 2017</time></small>
-              </a>
-            </li>
           
             <li>
               <a href="/coding4fun/static-website-with-jekyll.html">
@@ -190,6 +278,13 @@
               <a href="/algorithm/computational-geometry.html">
                 计算几何
                 <small><time datetime="2017-04-27T17:16:00+08:00">27 Apr 2017</time></small>
+              </a>
+            </li>
+          
+            <li>
+              <a href="/algorithm/alibaba-interview-201704.html">
+                阿里笔试两道编程题
+                <small><time datetime="2017-04-26T18:36:00+08:00">26 Apr 2017</time></small>
               </a>
             </li>
           

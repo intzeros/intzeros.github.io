@@ -3,6 +3,14 @@
 	"data" : [
 	 
 	{
+		"title" : "利用Apache进行多站点配置 - ",
+		"url" : "/coding4fun/multisite-setting.html"
+	}
+	
+	,
+	
+    
+	{
 		"title" : "从WordPress到静态网站 - github_jekyll_bootstrap",
 		"url" : "/coding4fun/static-website-with-jekyll.html"
 	}

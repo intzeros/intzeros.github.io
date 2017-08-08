@@ -105,6 +105,47 @@
       
       <article class="post-preview">
         <h1 class="post-title">
+          <a href="/coding4fun/multisite-setting.html">利用Apache进行多站点配置</a>
+        </h1>
+
+        <div class="post-info">
+          <span class="post-date">08 Aug 2017</span>
+           | 
+            <span class="fa fa-folder-open" aria-hidden="true">
+            
+              <a class="categories" href="/categories.html#coding4fun">coding4fun</a>
+            
+            </span>
+          
+          
+        </div>
+
+        <div class="content">
+          <p>用了静态网页之后，主机就空闲了，当初辛辛苦苦跟工信部折腾了好几个月连案都备好了。。总感觉特别亏（其实就是舍不得wordpress的搜索功能。。）转念一想，拿wp当图片上传服务也是不错啊，这样就省去找第三方图床了。</p>
+
+<p>我的目标：</p>
+
+<ul>
+  <li>www.lszero.com 显示主页面。</li>
+  <li>blog.lszero.com 对应静态site。</li>
+  <li>wp.lszero.com 对应wordpress。</li>
+</ul>
+
+<p>我这里用的是apache来实现的，也可以用nginx。</p>
+
+<p>因为我的测试平台是Ubuntu，故跟网上的配置文件有些不一样。如网上说的apache配置文件<code class="highlighter-rouge">http.conf</code>，在我的平台下是<code class="highlighter-rouge">/etc/apache2/apache2.conf</code>。</p>
+
+
+        </div>
+
+        <div class="post-more">
+          <a class="read-more" href="/coding4fun/multisite-setting.html">Read More</a>
+        </div>
+      </article>
+      <hr />
+      
+      <article class="post-preview">
+        <h1 class="post-title">
           <a href="/coding4fun/static-website-with-jekyll.html">从WordPress到静态网站</a>
         </h1>
 
@@ -312,59 +353,6 @@
       </article>
       <hr />
       
-      <article class="post-preview">
-        <h1 class="post-title">
-          <a href="/cpp/unordered-map-cplusplus11.html">unordered_map & C++11配置</a>
-        </h1>
-
-        <div class="post-info">
-          <span class="post-date">28 Jun 2016</span>
-           | 
-            <span class="fa fa-folder-open" aria-hidden="true">
-            
-              <a class="categories" href="/categories.html#CPP">CPP</a>
-            
-            </span>
-          
-          
-        </div>
-
-        <div class="content">
-          <h1 id="unordered_map">unordered_map</h1>
-
-<ul>
-  <li>map是基于红黑树实现的，查找时间O(logn);</li>
-  <li>hash_map是基于hash表实现的，查找时间O(1).</li>
-</ul>
-
-<p><strong>hash_map是STL的一部分，但不属于C++ Standard Library.</strong></p>
-
-<p>Quoting Wikipedia (emphasis added):
-From the <a href="http://en.wikipedia.org/wiki/Standard_Template_Library">STL</a> page:</p>
-
-<blockquote>
-  <p>The Standard Template Library (STL) is a software library <strong>partially</strong> included in the C++ Standard Library.</p>
-</blockquote>
-
-<p>…and then from the <a href="http://en.wikipedia.org/wiki/Hash_map_%28C++%29">hash_map</a> page:</p>
-
-<blockquote>
-  <p>In the C++ programming language, <code class="highlighter-rouge">hash_map</code> <strong>is the name of a hashed associative container in the Standard Template Library</strong>. It is provided by several implementors, such as the GNU C++ compiler and Microsoft’s Visual C++. <strong>It is not part of the C++ Standard Library</strong>, but the C++ Technical Report 1 contains the very similar container <code class="highlighter-rouge">unordered_map</code>, which will be included in the upcoming C++0x standard.</p>
-</blockquote>
-
-<p>参考：<a href="http://stackoverflow.com/questions/16136142/c11-functionality-with-mingw">stackoverflow</a></p>
-
-<p>由于之前的#include <hash_map>已过时，被#include <unordered_map>代替。</unordered_map></hash_map></p>
-
-
-        </div>
-
-        <div class="post-more">
-          <a class="read-more" href="/cpp/unordered-map-cplusplus11.html">Read More</a>
-        </div>
-      </article>
-      <hr />
-      
 
       
       <nav aria-label="Page navigation">
@@ -410,7 +398,7 @@ From the <a href="http://en.wikipedia.org/wiki/Standard_Template_Library">STL</a
   <nav class="site-state">
     <div class="site-state-item">
       <a href="/archives.html">
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">7</span>
         <span>Posts</span>
       </a>
     </div>
@@ -446,7 +434,7 @@ From the <a href="http://en.wikipedia.org/wiki/Standard_Template_Library">STL</a
     
       <li><a href="/categories.html#CPP">CPP (1)</a></li>
     
-      <li><a href="/categories.html#coding4fun">coding4fun (1)</a></li>
+      <li><a href="/categories.html#coding4fun">coding4fun (2)</a></li>
     
     </ul>
   </nav>
@@ -479,7 +467,7 @@ From the <a href="http://en.wikipedia.org/wiki/Standard_Template_Library">STL</a
 
     <footer class="footer">
   <div class="copyright">
-      Copyright &copy; <time datetime="2017-08-09T00:04:26+08:00">2017</time> <a href="http://localhost:4000">lszero</a> | Powered by <a href="https://github.com/jekyll/jekyll">Jekyll</a> | Designed by <a href="http://localhost:4000">lszero</a>
+      Copyright &copy; <time datetime="2017-08-09T00:32:10+08:00">2017</time> <a href="http://localhost:4000">lszero</a> | Powered by <a href="https://github.com/jekyll/jekyll">Jekyll</a> | Designed by <a href="http://localhost:4000">lszero</a>
   </div>
 </footer>
 
