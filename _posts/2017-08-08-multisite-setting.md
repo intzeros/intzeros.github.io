@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Apache下多站点配置"
+title:  "利用Apache进行多站点配置"
 date:   2017-08-08 23:00:00
 categories: coding4fun
 ---
@@ -15,7 +15,9 @@ categories: coding4fun
 
 我这里用的是apache来实现的，也可以用nginx。
 
-因为我的测试平台是Ubuntu，故跟网上的配置文件有些不一样。如网上说的apache配置文件`http.conf`，在我的平台下是`/etc/apache2/apache2.conf`。
+因为我的测试平台是Ubuntu，故跟网上的配置文件有些不一样。如网上说的apache配置文件`http.conf`，在我的平台下是`/etc/apache2/apache2.conf`。<!--mor-->
+
+##  Apache下多站点配置
 
 1.sudo vi /etc/apache2/apache2.conf，设置：
 
@@ -95,17 +97,29 @@ $ sudo ln -s /etc/apache2/sites-available/www-lszero-com.conf /etc/apache2/sites
 $ sudo ln -s /etc/apache2/sites-available/blog-lszero-com.conf /etc/apache2/sites-enabled/blog-lszero-com.conf
 ```
 
-最后：
+重启：
 
 ```
 $ sudo service apache2 restart
 ```
 
-
-
 参考：
 
-* [Ubuntu/CentOS下Apache多站点配置](http://www.linuxidc.com/Linux/2017-05/143590.htm)
+- [Ubuntu/CentOS下Apache多站点配置](http://www.linuxidc.com/Linux/2017-05/143590.htm)
+
+
+
+## 修改数据库
+
+最后还要修改wordpress数据库里的链接：
+
+```
+$ mysql -u[user_name] -p[your_passwd]
+(1) UPDATE wp_options SET option_value = replace( option_value, 'your old web_site','your new web_site') WHERE option_name = 'home' OR option_name ='siteurl';
+(2) UPDATE wp_posts SET post_content = replace( post_content, 'old.com','new.com') ;
+(3) UPDATE wp_comments SET comment_content = replace(comment_content, 'old.com','new.com') ;
+(4) UPDATE wp_comments SET comment_author_url = replace(comment_author_url, 'old.com','new.com') ;
+```
 
 
 
