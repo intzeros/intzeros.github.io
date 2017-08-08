@@ -130,7 +130,7 @@
         <hr>
         <p>作为一个极简主义者，越来越受不了WordPress的臃肿。主要自己平时都是用Markdown来做记录，而WordPress支持的不是很好，另外有时写的md长文通过三方软件导出的html也不造放在wp的什么地方才合适，管理起来还不如几个静态页面来得方便。于是有了某天来个大整顿的想法。</p>
 
-<p>对前端只停留在css的我，花了整三天时间，从Hexo到Jekyll再到Bootstrap，以及各种markdown2html解析器…最后基本算是从头写了一个基于Jekyll的website theme 😓 <!-- more --></p>
+<p>对前端只停留在css的我，花了整三天时间，从Hexo到Jekyll再到Bootstrap，以及各种markdown2html解析器…最后基本算是从头写了一个基于Jekyll的website theme 😓  在此记录了各种前端坑，自认为还算详细吧。<!-- more --></p>
 
 <h1 id="hexo">Hexo</h1>
 
@@ -276,6 +276,8 @@ $ jekyll serve --watch
 
 <p>因为是静态网站，所以Jekyll其实安装在本地就可以，静态页面也放在本地。然后将Jekyll生成的静态HTML文件（<code class="highlighter-rouge">_site</code>目录下）通过类似FTP的方式上传到VPS就行。</p>
 
+<p>将本地数据上传到远程服务用<code class="highlighter-rouge">scp</code>就行，后来了解到<code class="highlighter-rouge">rsync</code>这个命令。<code class="highlighter-rouge">rsync</code>只传送两个文件的不同部分，而不是每次都整份传送，因此速度很快。</p>
+
 <p>先来理清关系：</p>
 
 <ul>
@@ -286,12 +288,33 @@ $ jekyll serve --watch
 
 <h2 id="nginx">Nginx</h2>
 
-<h2 id="capistrano">Capistrano</h2>
-
-<pre><code class="language-text">sudo gem install capistrano
+<pre><code class="language-text">sudo apt-get install nginx
+sudo service nginx start
 </code></pre>
 
-<p>将本地数据上传到远程服务用<code class="highlighter-rouge">scp</code>就行，后来了解到<code class="highlighter-rouge">rsync</code>这个命令。<code class="highlighter-rouge">rsync</code>只传送两个文件的不同部分，而不是每次都整份传送，因此速度很快。</p>
+<p>然后输入vps地址就能看到nginx的欢迎页面。</p>
+
+<p>查看运行状态：</p>
+
+<pre><code class="language-text">sudo service nginx status
+# 显示：
+- nginx is running
+</code></pre>
+
+<p>修改 nginx 配置：sudo vim /etc/nginx/sites-enabled/default</p>
+
+<p>将 <code class="highlighter-rouge">root /usr/share/nginx/html;</code> 注释掉，改为 <code class="highlighter-rouge">root /home/deploy/your_blog_name/_site</code>。</p>
+
+<p>将 <code class="highlighter-rouge">server_name localhost;</code> 注释掉，改为 <code class="highlighter-rouge">server_name your_domain.com;</code>。</p>
+
+<p>重新启动nginx，就能看到建的blog内容了。</p>
+
+<h2 id="capistrano">Capistrano</h2>
+
+<p>Capistrano 是一个 Ruby 程序，参考第一个文章链接，它可以通过Git复制代码到服务器等操作。</p>
+
+<pre><code class="language-text">sudo gem install capistrano 
+</code></pre>
 
 <h1 id="create-new-theme-from-scratch">Create New Theme From Scratch</h1>
 
@@ -587,6 +610,17 @@ paginate_path: "/pages:num/"
 
 <p>另外，自建评论系统：<a href="https://sb.sb/debian-8-ubuntu-16-04-install-isso/">Debian 8.x / Ubuntu 16.04.x 搭建 Isso 评论系统教程</a>，有时间再弄。</p>
 
+<p>测试自Ubuntu服务器。本来官网文档里没那么多戏，但是我一直报错。。又安了很多其它包。</p>
+
+<pre><code class="language-text">sudo apt-get install python3-dev
+sudo pip install isso
+sudo apt-get install sqlite3
+sudo pip install werkzeug
+sudo apt-get install libffi-dev
+sudo pip install misaka
+isso -c isso.conf run
+</code></pre>
+
 <h3 id="archives">Archives</h3>
 
 <p><code class="highlighter-rouge"><span class="p">{</span><span class="err">%</span><span class="w"> </span><span class="err">for</span><span class="w"> </span><span class="err">post</span><span class="w"> </span><span class="err">in</span><span class="w"> </span><span class="err">paginator.posts</span><span class="w"> </span><span class="err">%</span><span class="p">}</span></code> 并不能使用，因为paginator只会对<code class="highlighter-rouge">index.html</code>有效。</p>
@@ -856,6 +890,22 @@ This is a test: {{ xxx }}
 </code></pre>
 <p>（3）那么问题又来了，如何显示上面的 raw 和 endraw 呢？参考：<a href="http://www.cnblogs.com/OceanHeaven/p/6959669.html">jekyll 如何转义字符</a></p>
 
+<pre><code class="language-text">server {
+    listen [::]:80;
+    server_name comments.lszero.com;
+    
+    location /isso {
+        proxy_pass http://localhost:8090;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Script-Name /isso;
+    }
+}
+</code></pre>
+
+<p>nginx -t
+nginx -s reload</p>
 
         <br><br>
       </article>
@@ -924,7 +974,7 @@ gitment.render('container')
 
     <footer class="footer">
   <div class="copyright">
-      Copyright &copy; <time datetime="2017-08-06T19:52:46+08:00">2017</time> <a href="http://localhost:4000">lszero</a> | Powered by <a href="https://github.com/jekyll/jekyll">Jekyll</a> | Designed by <a href="http://localhost:4000">lszero</a>
+      Copyright &copy; <time datetime="2017-08-09T00:04:26+08:00">2017</time> <a href="http://localhost:4000">lszero</a> | Powered by <a href="https://github.com/jekyll/jekyll">Jekyll</a> | Designed by <a href="http://localhost:4000">lszero</a>
   </div>
 </footer>
 

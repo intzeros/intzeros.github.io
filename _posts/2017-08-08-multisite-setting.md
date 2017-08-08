@@ -15,7 +15,7 @@ categories: coding4fun
 
 我这里用的是apache来实现的，也可以用nginx。
 
-因为我的测试平台是Ubuntu，故跟网上的配置文件有些不一样。如网上说的apache配置文件`http.conf`，在我的平台下是`/etc/apache2/apache2.conf`。<!--mor-->
+因为我的测试平台是Ubuntu，故跟网上的配置文件有些不一样。如网上说的apache配置文件`http.conf`，在我的平台下是`/etc/apache2/apache2.conf`。<!-- more -->
 
 ##  Apache下多站点配置
 
