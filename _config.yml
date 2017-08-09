@@ -18,18 +18,8 @@ author: lszero
 email: intzero@outlook.com
 description: > # this means to ignore newlines until "baseurl:"
   程序媛/小硕/外协/折腾/技术宅
-url: https://lszero.github.io # the base hostname & protocol for your site, e.g. http://example.com
+url: http://lszero.com # the base hostname & protocol for your site, e.g. http://example.com
 baseurl: "" # the subpath of your site, e.g. /blog
-twitter_username: lszero
-github_username:  lszero
-
-
-# Serving
-# detach:  false
-# port:    80
-# host:    lszero.com
-# baseurl: "" # the subpath of your site, e.g. /blog
-# show_dir_listing: false
 
 # Markdown Processors
 markdown: kramdown

@@ -13,7 +13,8 @@ mathjax: true
 (1) **点积**:  $$\vec{a}\cdot \vec{b} = x_1x_2 + y_1y_2 = \vert a \vert \vert b \vert cos\theta$$
 
 (2) **叉积** (cross product):
-<img src="http://lszero.com/wp-content/uploads/2017/04/Screen-Shot-2017-04-27-at-11.20.09-AM.png" style="zoom:50%; float:right" />
+
+<img src="http://wp.lszero.com/wp-content/uploads/2017/04/Screen-Shot-2017-04-27-at-11.20.09-AM.png" style="zoom:50%; float:right" />
 
 $$\vert \vec{a}\times \vec{b} \vert = det\begin{bmatrix}x_1 & x_2 \\y_1 & y_2 \end{bmatrix}= x_1y_2 - x_2y_1 = \vert a \vert \vert b \vert sin\theta$$.
 
@@ -46,12 +47,14 @@ $\vec{a}\times \vec{b} =  - \vec{b}\times \vec{a}$
 通过计算$\overrightarrow{P_0P_1}\times \overrightarrow{P_0P_2}$的结果为正还是为负.
 
 (2) 在P1处，两条连续的有向线段$\overrightarrow{P_0P_1}$ 和$\overrightarrow{P_1P_2}$ 是向左转还是向右转: 同上述问题(1).
-<img src="http://lszero.com/wp-content/uploads/2017/04/Screen-Shot-2017-04-27-at-12.27.01-PM.png" style="zoom:50%" />
+
+<img src="http://wp.lszero.com/wp-content/uploads/2017/04/Screen-Shot-2017-04-27-at-12.27.01-PM.png" style="zoom:50%" />
 
 (3) 判断两条线段相交:
 点P1和点P2分别在$\overrightarrow{P_3P_4}$的两个不同方向 **&&** 点P3和点P4分别在$\overrightarrow{P_1P_2}$的两个不同方向.
 特殊情况: 仅有一个端点在另一条线段上.
-<img src="http://lszero.com/wp-content/uploads/2017/04/Screen-Shot-2017-04-27-at-12.53.42-PM.png" style="zoom:25%" />
+
+<img src="http://wp.lszero.com/wp-content/uploads/2017/04/Screen-Shot-2017-04-27-at-12.53.42-PM.png" style="zoom:25%" />
 
 (4) 判断线段与直线相交: 同理.
 
@@ -212,7 +215,7 @@ double area_polygon(vector<Point>& v){
 	求二维平面上的最近点对.
 详见《编程之美》-> 分治思想.
 
-​(:smile: 不是说不贴代码就不重要…:smile: )
+​(​😀 不是说不贴代码就不重要…​😀 )
 
 ---
 
