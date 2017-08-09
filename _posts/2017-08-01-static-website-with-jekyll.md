@@ -203,6 +203,10 @@ Capistrano 是一个 Ruby 程序，参考第一个文章链接，它可以通过
 sudo gem install capistrano 
 ```
 
+这里先存留吧，暂时还没用到Capistrano。
+
+目前是按照[利用Apache进行多站点配置](http://blog.lszero.com/coding4fun/multisite-setting.html)设置的。
+
 # Create New Theme From Scratch
 
 既然是from scratch，就先把jekyll的目录结构理清，然后借助bootstrap框架创建主题，最后就是各种features了。
@@ -477,6 +481,8 @@ kramdown:
 </form>
 ```
 
+对于search逻辑，目前还没找到一个很好的方式去实现。。。（如果知道的，麻烦告诉我一声！）
+
 ### Back to Top
 
 该功能我放在了`post_sidebar.html`中：
@@ -495,11 +501,9 @@ kramdown:
 
 ### Comments
 
-使用的是[Gitment](https://imsun.net/posts/gitment-introduction/)。
+#### Gitment
 
-按照官网的说明引入js后，在其中修改自己的OAuth Application信息。
-
-另外，自建评论系统：[Debian 8.x / Ubuntu 16.04.x 搭建 Isso 评论系统教程](https://sb.sb/debian-8-ubuntu-16-04-install-isso/)，有时间再弄。
+[Gitment](https://imsun.net/posts/gitment-introduction/) 挺不错的的。按照官网的说明引入js后，在其中修改自己的OAuth Application信息。
 
 测试自Ubuntu服务器。本来官网文档里没那么多戏，但是我一直报错。。又安了很多其它包。
 
@@ -513,7 +517,9 @@ sudo pip install misaka
 isso -c isso.conf run
 ```
 
+#### isso
 
+自建评论系统的一种方式。参见：[Debian 8.x / Ubuntu 16.04.x 搭建 Isso 评论系统教程](https://sb.sb/debian-8-ubuntu-16-04-install-isso/)，有时间再弄。
 
 ### Archives
 
@@ -749,6 +755,8 @@ $ ruby setup.rb config
 $ ruby setup.rb setup
 $ ruby setup.rb install
 ```
+
+好吧，暂时没弄好。。。
 
 ## Else
 
