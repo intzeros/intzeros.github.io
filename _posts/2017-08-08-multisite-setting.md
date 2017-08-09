@@ -19,6 +19,8 @@ categories: coding4fun
 
 ##  Apache下多站点配置
 
+首先修改默认的VirtualHost，然后再添加其他的VirtualHost。
+
 1.sudo vi /etc/apache2/apache2.conf，设置：
 
 ```

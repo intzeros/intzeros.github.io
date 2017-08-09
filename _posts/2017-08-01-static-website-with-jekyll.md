@@ -505,21 +505,11 @@ kramdown:
 
 [Gitment](https://imsun.net/posts/gitment-introduction/) 挺不错的的。按照官网的说明引入js后，在其中修改自己的OAuth Application信息。
 
-测试自Ubuntu服务器。本来官网文档里没那么多戏，但是我一直报错。。又安了很多其它包。
-
-```
-sudo apt-get install python3-dev
-sudo pip install isso
-sudo apt-get install sqlite3
-sudo pip install werkzeug
-sudo apt-get install libffi-dev
-sudo pip install misaka
-isso -c isso.conf run
-```
-
 #### isso
 
-自建评论系统的一种方式。参见：[Debian 8.x / Ubuntu 16.04.x 搭建 Isso 评论系统教程](https://sb.sb/debian-8-ubuntu-16-04-install-isso/)，有时间再弄。
+这是自建评论系统的一种方式。[官网](https://posativ.org/isso/)需要fq.
+
+我之后用的也是这种方法，详见：[搭建Isso评论服务](http://blog.lszero.com/coding4fun/comments-with-isso.html)
 
 ### Archives
 
