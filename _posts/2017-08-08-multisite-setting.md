@@ -45,7 +45,7 @@ DocumentRoot your_home_page_path
 
 2.添加新站点配置文件，并放在`sites-available`中。
 
-```
+```shell
 $ cd /etc/apache2/sites-available
 $ sudo touch wp-lszero-com.conf
 $ sudo touch blog-lszero-com.conf
@@ -91,7 +91,7 @@ sudo vi wp-lszero-com.conf，添加：
 
 然后建立软链接到`sites-enabled`目录：
 
-```
+```shell
 $ cd /etc/apache2/sites-enabled
 $ sudo ln -s /etc/apache2/sites-available/www-lszero-com.conf /etc/apache2/sites-enabled/www-lszero-com.conf
 $ sudo ln -s /etc/apache2/sites-available/blog-lszero-com.conf /etc/apache2/sites-enabled/blog-lszero-com.conf
@@ -99,7 +99,7 @@ $ sudo ln -s /etc/apache2/sites-available/blog-lszero-com.conf /etc/apache2/site
 
 重启：
 
-```
+```shell
 $ sudo service apache2 restart
 ```
 
@@ -113,7 +113,7 @@ $ sudo service apache2 restart
 
 最后还要修改wordpress数据库里的链接：
 
-```
+```shell
 $ mysql -u[user_name] -p[your_passwd]
 (1) UPDATE wp_options SET option_value = replace( option_value, 'your old web_site','your new web_site') WHERE option_name = 'home' OR option_name ='siteurl';
 (2) UPDATE wp_posts SET post_content = replace( post_content, 'old.com','new.com') ;

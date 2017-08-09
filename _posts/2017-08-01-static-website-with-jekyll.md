@@ -732,6 +732,24 @@ end
 
 这样在不指明语言的时候，不高亮显示。
 
+---
+
+上面是mac环境下，可以直接改代码。但是在linux环境下，只有一个二进制执行文件。
+
+于是，先删除原有的：
+
+```
+$ sudo gem uninstall kramdown
+```
+
+然后在官网[下载源码](https://github.com/gettalong/kramdown/releases)重新安装：
+
+```
+$ ruby setup.rb config
+$ ruby setup.rb setup
+$ ruby setup.rb install
+```
+
 ## Else
 
 ### Permalinks
@@ -807,5 +825,3 @@ server {
 ```
 
 
-nginx -t
-nginx -s reload
