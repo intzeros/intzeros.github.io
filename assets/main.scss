@@ -23,6 +23,10 @@ pre.highlight {
     background: #272822;
 }
 
+.post h4 {
+    margin-top: 15px;
+}
+
 /*---------------------- post-meta ------------------------*/
 
 .post-preview .post-title a {
@@ -181,6 +185,7 @@ pre.highlight {
 
 .social-icons .btn {
     padding: 6px 4px;
+    width: 40px;
 }
 
 /*---------------------- post-sidebar ------------------------*/

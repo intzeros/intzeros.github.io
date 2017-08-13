@@ -552,8 +552,6 @@ paginate_path: "/pages:num/"
 <pre><code class="language-text">kramdown: 
   toc_levels: "2,3" 
 </code></pre>
-<p><br /></p>
-
 <h4 id="sidebar中显示目录">sidebar中显示目录</h4>
 
 <p>侧边栏目录随浏览内容动态滚动功能，利用Bootstrap的<a href="http://getbootstrap.com/javascript/#scrollspy">Scrollspy</a>来实现。</p>
@@ -572,6 +570,18 @@ paginate_path: "/pages:num/"
   <li><a href="http://gregfranko.com/jquery.tocify.js/">Tocify plugin</a></li>
   <li><a href="http://projects.jga.me/toc/">TOC plugin</a></li>
 </ul>
+
+<h4 id="hide-sidebar-for-mobile-display">Hide sidebar for mobile display</h4>
+
+<p>手机显示时，隐藏侧边栏，否则会显示混乱。</p>
+
+<div class="language-css highlighter-rouge"><pre class="highlight"><code><span class="k">@media</span> <span class="p">(</span><span class="n">max-width</span><span class="p">:</span> <span class="m">800px</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nf">#sidebar</span> <span class="p">{</span>
+        <span class="nl">display</span><span class="p">:</span><span class="nb">none</span> <span class="cp">!important</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
 
 <h3 id="search">Search</h3>
 
@@ -927,8 +937,6 @@ This is a test: {{ xxx }}
 
       <nav class="post-pagination">
         
-        <a href="/algorithm/computational-geometry.html" class="btn previous" title="计算几何">&larr; 计算几何</a>
-        
         
         <a href="/coding4fun/multisite-setting.html" class="btn next" title="利用Apache进行多站点配置">利用Apache进行多站点配置 &rarr;</a>
         
@@ -952,13 +960,6 @@ This is a test: {{ xxx }}
               <a href="/coding4fun/multisite-setting.html">
                 利用Apache进行多站点配置
                 <small><time datetime="2017-08-08T16:30:00+08:00">08 Aug 2017</time></small>
-              </a>
-            </li>
-          
-            <li>
-              <a href="/algorithm/computational-geometry.html">
-                计算几何
-                <small><time datetime="2017-04-27T17:16:00+08:00">27 Apr 2017</time></small>
               </a>
             </li>
           
@@ -999,7 +1000,7 @@ gitment.render('container')
 
     <footer class="footer">
   <div class="copyright">
-      Copyright &copy; <time datetime="2017-08-13T22:13:57+08:00">2017</time> <a href="http://localhost:4000">lszero</a> | Powered by <a href="https://github.com/jekyll/jekyll">Jekyll</a> | Designed by <a href="http://localhost:4000">lszero</a>
+      Copyright &copy; <time datetime="2017-08-13T23:26:43+08:00">2017</time> <a href="http://localhost:4000">lszero</a> | Powered by <a href="https://github.com/jekyll/jekyll">Jekyll</a> | Designed by <a href="http://localhost:4000">lszero</a>
   </div>
 </footer>
 

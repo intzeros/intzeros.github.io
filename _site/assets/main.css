@@ -13,6 +13,9 @@ pre.highlight {
   font-size: 90%;
   background: #272822; }
 
+.post h4 {
+  margin-top: 15px; }
+
 /*---------------------- post-meta ------------------------*/
 .post-preview .post-title a {
   color: #404040; }
@@ -138,7 +141,8 @@ pre.highlight {
   color: #777; }
 
 .social-icons .btn {
-  padding: 6px 4px; }
+  padding: 6px 4px;
+  width: 40px; }
 
 /*---------------------- post-sidebar ------------------------*/
 .post-sidebar {

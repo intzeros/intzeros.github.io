@@ -117,6 +117,14 @@
             
             </span>
           
+           | 
+            <span class="fa fa-tag" aria-hidden="true">
+            
+              <a class="post-tags" href="/tags.html#jekyll">jekyll</a>
+            
+              <a class="post-tags" href="/tags.html#blog">blog</a>
+            
+            </span>
           
         </div>
 
@@ -160,6 +168,16 @@ $ sudo pip install misaka
             
             </span>
           
+           | 
+            <span class="fa fa-tag" aria-hidden="true">
+            
+              <a class="post-tags" href="/tags.html#jekyll">jekyll</a>
+            
+              <a class="post-tags" href="/tags.html#blog">blog</a>
+            
+              <a class="post-tags" href="/tags.html#multisites">multisites</a>
+            
+            </span>
           
         </div>
 
@@ -228,121 +246,6 @@ $ sudo pip install misaka
       </article>
       <hr />
       
-      <article class="post-preview">
-        <h1 class="post-title">
-          <a href="/algorithm/computational-geometry.html">计算几何</a>
-        </h1>
-
-        <div class="post-info">
-          <span class="post-date">27 Apr 2017</span>
-           | 
-            <span class="fa fa-folder-open" aria-hidden="true">
-            
-              <a class="categories" href="/categories.html#Algorithm">Algorithm</a>
-            
-            </span>
-          
-          
-        </div>
-
-        <div class="content">
-          <h2 id="点和线">点和线</h2>
-<h3 id="基础">基础</h3>
-<p>向量  $\vec{a} = (x_1, y_1), \vec{b} = (x_2, y_2)$.</p>
-
-<p>(1) <strong>点积</strong>:  <script type="math/tex">\vec{a}\cdot \vec{b} = x_1x_2 + y_1y_2 = \vert a \vert \vert b \vert cos\theta</script></p>
-
-<p>(2) <strong>叉积</strong> (cross product):</p>
-
-<p><img src="http://wp.lszero.com/wp-content/uploads/2017/04/Screen-Shot-2017-04-27-at-11.20.09-AM.png" style="zoom:50%; float:right" /></p>
-
-<p><script type="math/tex">% <![CDATA[
-\vert \vec{a}\times \vec{b} \vert = det\begin{bmatrix}x_1 & x_2 \\y_1 & y_2 \end{bmatrix}= x_1y_2 - x_2y_1 = \vert a \vert \vert b \vert sin\theta %]]></script>.</p>
-
-<p>$\vec{a}\times \vec{b} =  - \vec{b}\times \vec{a}$</p>
-
-<p>看作由点(0, 0), $\vec{a}$, $\vec{b}$ 和 $\vec{a}+\vec{b}=(x_1+x_2, y_1+y_2)$所形成的平行四边形的有向面积.</p>
-
-<p><strong>右手</strong>定则判断方向.</p>
-
-<p>(3) 向量 $\vec{a}, \vec{b}$ <strong>共线</strong>:  $\vec{a}\times \vec{b} = x_1y_2 - x_2y_1 = 0$</p>
-
-<p>向量 $\vec{a}, \vec{b}$ <strong>垂直</strong>:  $\vec{a}\cdot \vec{b} = x_1x_2 + y_1y_2 = 0$</p>
-
-<p>(4) 点 $P_1 = (x_1, y_1), P2 = (x_2, y_2)$, 则 $\overrightarrow{P_1P_2} = (x_2-x_1, y_2-y_1)$.</p>
-
-<p>(5) 判断三点共线: <code class="highlighter-rouge">叉乘==0</code>.</p>
-
-<p>(6) 判断点P在线段$P_1P_2$上:</p>
-
-<p><code class="highlighter-rouge">叉乘==0 &amp;&amp; (P1.x-P.x)*(P2.x-P.x)&lt;0 &amp;&amp; (P1.y-P.y)*(P2.y-P.y)&lt;0</code></p>
-
-<p>(7) 判断两直线平行: <code class="highlighter-rouge">叉乘==0</code>.</p>
-
-
-        </div>
-
-        <div class="post-more">
-          <a class="read-more" href="/algorithm/computational-geometry.html">Read More</a>
-        </div>
-      </article>
-      <hr />
-      
-      <article class="post-preview">
-        <h1 class="post-title">
-          <a href="/algorithm/alibaba-interview-201704.html">阿里笔试两道编程题</a>
-        </h1>
-
-        <div class="post-info">
-          <span class="post-date">26 Apr 2017</span>
-           | 
-            <span class="fa fa-folder-open" aria-hidden="true">
-            
-              <a class="categories" href="/categories.html#Algorithm">Algorithm</a>
-            
-            </span>
-          
-          
-        </div>
-
-        <div class="content">
-          <p>阿里笔试没做啊, 感谢同学过来分享讨论.</p>
-
-<p>感觉其中的概率题还是挺有意思的, 赶紧记录一下。思路不一定对… (汗…</p>
-
-<hr />
-
-<p>第一道.</p>
-
-<pre><code class="language-text">给一个矩形, 再给一堆矩形里的线段, 问是否存在一条路线可以从左下角走到右上角(要求不穿过线段).
-</code></pre>
-
-<p>思路: 用并查集把两条相交的线段作为一个集合, 然后对每个集合求上下左右边界, 判断这个子矩阵是否截断了从左下角走到右上角的路径.</p>
-
-<hr />
-
-<p>第二道.</p>
-
-<pre><code class="language-text">小伙纸要去跟 n 个妹纸相亲, 每次随机见一个妹纸(可能是之前已经见过的). 问至少相亲几次使得这 n 个妹纸都见过.
-</code></pre>
-
-<p>思路: 得益于之前做的<a href="http://lszero.com/1595/2017-microsoft-intern-hihocoder/">微软第一题</a>, 感觉有点像, 但也不知道是不是最优解法…</p>
-
-<p>假如当前已经见了 k 个妹纸, 要见第 k+1个妹纸时, 相亲次数的期望值为:  ∑∞i=1i(kn)i−1n−kn. (这个公式怎么来? 参考之前<a href="http://lszero.com/1595/2017-microsoft-intern-hihocoder/">微软</a>那张树的图就能推出来)</p>
-
-<p>另 p=k/n, 则上式为</p>
-
-<p>$(1-p)\sum_{i=1}^\infty i*p^{i-1}=(1-p)(\sum_{i=1}^\infty p^i)’=(1-p)(\lim_{n \rightarrow \infty}p\frac{1-p^n}{1-p})’=(1-p)(\frac{p}{1-p})’=1-p$</p>
-
-
-        </div>
-
-        <div class="post-more">
-          <a class="read-more" href="/algorithm/alibaba-interview-201704.html">Read More</a>
-        </div>
-      </article>
-      <hr />
-      
 
       
       <nav aria-label="Page navigation">
@@ -356,13 +259,9 @@ $ sudo pip install misaka
               <li class="active"><a>1</a></li>
             
           
-            
-              <li><a href="/pages2/">2</a></li>
-            
-          
 
           
-            <li><a href="/pages2/">&raquo;</a></li>
+            <li><span>&raquo;</span></li>
           
         </ul>
       </nav>
@@ -388,19 +287,19 @@ $ sudo pip install misaka
   <nav class="site-state">
     <div class="site-state-item">
       <a href="/archives.html">
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">3</span>
         <span>Posts</span>
       </a>
     </div>
     <div class="site-state-item">
       <a href="/categories.html">
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">1</span>
         <span>Categories</span>
       </a>
     </div>
     <div class="site-state-item">
       <a href="/tags.html">
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">5</span>
         <span>Tags</span>
       </a>
     </div>
@@ -420,10 +319,6 @@ $ sudo pip install misaka
     <h3 class="sidebar-title">Categories</h3>
     <ul>
     
-      <li><a href="/categories.html#Algorithm">Algorithm (4)</a></li>
-    
-      <li><a href="/categories.html#CPP">CPP (1)</a></li>
-    
       <li><a href="/categories.html#coding4fun">coding4fun (3)</a></li>
     
     </ul>
@@ -437,9 +332,13 @@ $ sudo pip install misaka
     
       <li><a href="/tags.html#github"> github (1)</a></li>
     
-      <li><a href="/tags.html#jekyll"> jekyll (1)</a></li>
+      <li><a href="/tags.html#jekyll"> jekyll (3)</a></li>
     
       <li><a href="/tags.html#bootstrap"> bootstrap (1)</a></li>
+    
+      <li><a href="/tags.html#blog"> blog (2)</a></li>
+    
+      <li><a href="/tags.html#multisites"> multisites (1)</a></li>
     
     </ul>
   </nav>
@@ -457,7 +356,7 @@ $ sudo pip install misaka
 
     <footer class="footer">
   <div class="copyright">
-      Copyright &copy; <time datetime="2017-08-13T22:13:57+08:00">2017</time> <a href="http://localhost:4000">lszero</a> | Powered by <a href="https://github.com/jekyll/jekyll">Jekyll</a> | Designed by <a href="http://localhost:4000">lszero</a>
+      Copyright &copy; <time datetime="2017-08-13T23:26:43+08:00">2017</time> <a href="http://localhost:4000">lszero</a> | Powered by <a href="https://github.com/jekyll/jekyll">Jekyll</a> | Designed by <a href="http://localhost:4000">lszero</a>
   </div>
 </footer>
 
