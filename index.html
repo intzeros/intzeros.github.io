@@ -41,7 +41,7 @@ title: Home
       <hr />
       {% endfor %}
 
-      {% if paginator.total_pages > 1 %}
+      {% if paginator.total_pages >= 1 %}
       <nav aria-label="Page navigation">
         <ul class="pagination">
           {% if paginator.previous_page %}
