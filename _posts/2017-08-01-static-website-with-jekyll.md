@@ -447,8 +447,6 @@ kramdown自带了解析目录的功能。详见：[https://kramdown.gettalong.or
 kramdown: 
   toc_levels: "2,3" 
 ```
-<br/>
-
 #### sidebar中显示目录
 
 侧边栏目录随浏览内容动态滚动功能，利用Bootstrap的[Scrollspy](http://getbootstrap.com/javascript/#scrollspy)来实现。
@@ -463,6 +461,18 @@ kramdown:
 - [bootstrap-toc](https://afeld.github.io/bootstrap-toc/) ([github](https://github.com/afeld/bootstrap-toc/tree/gh-pages/dist))
 - [Tocify plugin](http://gregfranko.com/jquery.tocify.js/)
 - [TOC plugin](http://projects.jga.me/toc/)
+
+#### Hide sidebar for mobile display
+
+手机显示时，隐藏侧边栏，否则会显示混乱。
+
+```css
+@media (max-width: 800px) {
+    #sidebar {
+        display:none !important;
+    }
+}
+```
 
 ### Search
 
