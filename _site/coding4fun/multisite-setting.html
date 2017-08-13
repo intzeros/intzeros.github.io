@@ -134,6 +134,8 @@
 
 <h2 id="apache下多站点配置">Apache下多站点配置</h2>
 
+<p>首先修改默认的VirtualHost，然后再添加其他的VirtualHost。</p>
+
 <p>1.sudo vi /etc/apache2/apache2.conf，设置：</p>
 
 <pre><code class="language-text">ServerName 'www.lszero.com'
@@ -157,10 +159,11 @@ IncludeOptional sites-enabled/*.conf
 
 <p>2.添加新站点配置文件，并放在<code class="highlighter-rouge">sites-available</code>中。</p>
 
-<pre><code class="language-text">$ cd /etc/apache2/sites-available
-$ sudo touch wp-lszero-com.conf
-$ sudo touch blog-lszero-com.conf
+<div class="language-shell highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span><span class="nb">cd</span> /etc/apache2/sites-available
+<span class="gp">$ </span>sudo touch wp-lszero-com.conf
+<span class="gp">$ </span>sudo touch blog-lszero-com.conf
 </code></pre>
+</div>
 
 <p>sudo vi blog-lszero-com.conf，添加：</p>
 
@@ -200,15 +203,17 @@ $ sudo touch blog-lszero-com.conf
 
 <p>然后建立软链接到<code class="highlighter-rouge">sites-enabled</code>目录：</p>
 
-<pre><code class="language-text">$ cd /etc/apache2/sites-enabled
-$ sudo ln -s /etc/apache2/sites-available/www-lszero-com.conf /etc/apache2/sites-enabled/www-lszero-com.conf
-$ sudo ln -s /etc/apache2/sites-available/blog-lszero-com.conf /etc/apache2/sites-enabled/blog-lszero-com.conf
+<div class="language-shell highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span><span class="nb">cd</span> /etc/apache2/sites-enabled
+<span class="gp">$ </span>sudo ln -s /etc/apache2/sites-available/www-lszero-com.conf /etc/apache2/sites-enabled/www-lszero-com.conf
+<span class="gp">$ </span>sudo ln -s /etc/apache2/sites-available/blog-lszero-com.conf /etc/apache2/sites-enabled/blog-lszero-com.conf
 </code></pre>
+</div>
 
 <p>重启：</p>
 
-<pre><code class="language-text">$ sudo service apache2 restart
+<div class="language-shell highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>sudo service apache2 restart
 </code></pre>
+</div>
 
 <p>参考：</p>
 
@@ -220,12 +225,13 @@ $ sudo ln -s /etc/apache2/sites-available/blog-lszero-com.conf /etc/apache2/site
 
 <p>最后还要修改wordpress数据库里的链接：</p>
 
-<pre><code class="language-text">$ mysql -u[user_name] -p[your_passwd]
-(1) UPDATE wp_options SET option_value = replace( option_value, 'your old web_site','your new web_site') WHERE option_name = 'home' OR option_name ='siteurl';
-(2) UPDATE wp_posts SET post_content = replace( post_content, 'old.com','new.com') ;
-(3) UPDATE wp_comments SET comment_content = replace(comment_content, 'old.com','new.com') ;
-(4) UPDATE wp_comments SET comment_author_url = replace(comment_author_url, 'old.com','new.com') ;
+<div class="language-shell highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>mysql -u[user_name] -p[your_passwd]
+<span class="o">(</span>1<span class="o">)</span> UPDATE wp_options SET option_value <span class="o">=</span> replace<span class="o">(</span> option_value, <span class="s1">'your old web_site'</span>,<span class="s1">'your new web_site'</span><span class="o">)</span> WHERE option_name <span class="o">=</span> <span class="s1">'home'</span> OR option_name <span class="o">=</span><span class="s1">'siteurl'</span>;
+<span class="o">(</span>2<span class="o">)</span> UPDATE wp_posts SET post_content <span class="o">=</span> replace<span class="o">(</span> post_content, <span class="s1">'old.com'</span>,<span class="s1">'new.com'</span><span class="o">)</span> ;
+<span class="o">(</span>3<span class="o">)</span> UPDATE wp_comments SET comment_content <span class="o">=</span> replace<span class="o">(</span>comment_content, <span class="s1">'old.com'</span>,<span class="s1">'new.com'</span><span class="o">)</span> ;
+<span class="o">(</span>4<span class="o">)</span> UPDATE wp_comments SET comment_author_url <span class="o">=</span> replace<span class="o">(</span>comment_author_url, <span class="s1">'old.com'</span>,<span class="s1">'new.com'</span><span class="o">)</span> ;
 </code></pre>
+</div>
 
 <hr />
 
@@ -261,11 +267,28 @@ $ sudo ln -s /etc/apache2/sites-available/blog-lszero-com.conf /etc/apache2/site
         <br><br>
       </article>
 
-      
+      <nav class="post-pagination">
+        
+        <a href="/coding4fun/static-website-with-jekyll.html" class="btn previous" title="从WordPress到静态网站">&larr; 从WordPress到静态网站</a>
+        
+        
+        <a href="/coding4fun/comments-with-isso.html" class="btn next" title="搭建Isso评论服务">搭建Isso评论服务 &rarr;</a>
+        
+      </nav>
+
       <hr>
+
+      
       <aside class="related">
         <h3>Related Posts</h3>
         <ul class="related-posts">
+          
+            <li>
+              <a href="/coding4fun/comments-with-isso.html">
+                搭建Isso评论服务
+                <small><time datetime="2017-08-09T18:30:00+08:00">09 Aug 2017</time></small>
+              </a>
+            </li>
           
             <li>
               <a href="/coding4fun/static-website-with-jekyll.html">
@@ -278,13 +301,6 @@ $ sudo ln -s /etc/apache2/sites-available/blog-lszero-com.conf /etc/apache2/site
               <a href="/algorithm/computational-geometry.html">
                 计算几何
                 <small><time datetime="2017-04-27T17:16:00+08:00">27 Apr 2017</time></small>
-              </a>
-            </li>
-          
-            <li>
-              <a href="/algorithm/alibaba-interview-201704.html">
-                阿里笔试两道编程题
-                <small><time datetime="2017-04-26T18:36:00+08:00">26 Apr 2017</time></small>
               </a>
             </li>
           
@@ -325,7 +341,7 @@ gitment.render('container')
 
     <footer class="footer">
   <div class="copyright">
-      Copyright &copy; <time datetime="2017-08-09T22:19:33+08:00">2017</time> <a href="http://localhost:4000">lszero</a> | Powered by <a href="https://github.com/jekyll/jekyll">Jekyll</a> | Designed by <a href="http://localhost:4000">lszero</a>
+      Copyright &copy; <time datetime="2017-08-13T21:54:43+08:00">2017</time> <a href="http://localhost:4000">lszero</a> | Powered by <a href="https://github.com/jekyll/jekyll">Jekyll</a> | Designed by <a href="http://localhost:4000">lszero</a>
   </div>
 </footer>
 

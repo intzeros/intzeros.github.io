@@ -316,6 +316,10 @@ sudo service nginx start
 <pre><code class="language-text">sudo gem install capistrano 
 </code></pre>
 
+<p>这里先存留吧，暂时还没用到Capistrano。</p>
+
+<p>目前是按照<a href="http://blog.lszero.com/coding4fun/multisite-setting.html">利用Apache进行多站点配置</a>设置的。</p>
+
 <h1 id="create-new-theme-from-scratch">Create New Theme From Scratch</h1>
 
 <p>既然是from scratch，就先把jekyll的目录结构理清，然后借助bootstrap框架创建主题，最后就是各种features了。</p>
@@ -586,6 +590,8 @@ paginate_path: "/pages:num/"
 </code></pre>
 </div>
 
+<p>对于search逻辑，目前还没找到一个很好的方式去实现。。。（如果知道的，麻烦告诉我一声！）</p>
+
 <h3 id="back-to-top">Back to Top</h3>
 
 <p>该功能我放在了<code class="highlighter-rouge">post_sidebar.html</code>中：</p>
@@ -604,22 +610,15 @@ paginate_path: "/pages:num/"
 
 <h3 id="comments">Comments</h3>
 
-<p>使用的是<a href="https://imsun.net/posts/gitment-introduction/">Gitment</a>。</p>
+<h4 id="gitment">Gitment</h4>
 
-<p>按照官网的说明引入js后，在其中修改自己的OAuth Application信息。</p>
+<p><a href="https://imsun.net/posts/gitment-introduction/">Gitment</a> 挺不错的的。按照官网的说明引入js后，在其中修改自己的OAuth Application信息。</p>
 
-<p>另外，自建评论系统：<a href="https://sb.sb/debian-8-ubuntu-16-04-install-isso/">Debian 8.x / Ubuntu 16.04.x 搭建 Isso 评论系统教程</a>，有时间再弄。</p>
+<h4 id="isso">isso</h4>
 
-<p>测试自Ubuntu服务器。本来官网文档里没那么多戏，但是我一直报错。。又安了很多其它包。</p>
+<p>这是自建评论系统的一种方式。<a href="https://posativ.org/isso/">官网</a>需要fq.</p>
 
-<pre><code class="language-text">sudo apt-get install python3-dev
-sudo pip install isso
-sudo apt-get install sqlite3
-sudo pip install werkzeug
-sudo apt-get install libffi-dev
-sudo pip install misaka
-isso -c isso.conf run
-</code></pre>
+<p>我之后用的也是这种方法，详见：<a href="http://blog.lszero.com/coding4fun/comments-with-isso.html">搭建Isso评论服务</a></p>
 
 <h3 id="archives">Archives</h3>
 
@@ -834,6 +833,24 @@ xxx
 
 <p>这样在不指明语言的时候，不高亮显示。</p>
 
+<hr />
+
+<p>上面是mac环境下，可以直接改代码。但是在linux环境下，只有一个二进制执行文件。</p>
+
+<p>于是，先删除原有的：</p>
+
+<pre><code class="language-text">$ sudo gem uninstall kramdown
+</code></pre>
+
+<p>然后在官网<a href="https://github.com/gettalong/kramdown/releases">下载源码</a>重新安装：</p>
+
+<pre><code class="language-text">$ ruby setup.rb config
+$ ruby setup.rb setup
+$ ruby setup.rb install
+</code></pre>
+
+<p>好吧，暂时没弄好。。。</p>
+
 <h2 id="else">Else</h2>
 
 <h3 id="permalinks">Permalinks</h3>
@@ -904,17 +921,32 @@ This is a test: {{ xxx }}
 }
 </code></pre>
 
-<p>nginx -t
-nginx -s reload</p>
 
         <br><br>
       </article>
 
-      
+      <nav class="post-pagination">
+        
+        <a href="/algorithm/computational-geometry.html" class="btn previous" title="计算几何">&larr; 计算几何</a>
+        
+        
+        <a href="/coding4fun/multisite-setting.html" class="btn next" title="利用Apache进行多站点配置">利用Apache进行多站点配置 &rarr;</a>
+        
+      </nav>
+
       <hr>
+
+      
       <aside class="related">
         <h3>Related Posts</h3>
         <ul class="related-posts">
+          
+            <li>
+              <a href="/coding4fun/comments-with-isso.html">
+                搭建Isso评论服务
+                <small><time datetime="2017-08-09T18:30:00+08:00">09 Aug 2017</time></small>
+              </a>
+            </li>
           
             <li>
               <a href="/coding4fun/multisite-setting.html">
@@ -927,13 +959,6 @@ nginx -s reload</p>
               <a href="/algorithm/computational-geometry.html">
                 计算几何
                 <small><time datetime="2017-04-27T17:16:00+08:00">27 Apr 2017</time></small>
-              </a>
-            </li>
-          
-            <li>
-              <a href="/algorithm/alibaba-interview-201704.html">
-                阿里笔试两道编程题
-                <small><time datetime="2017-04-26T18:36:00+08:00">26 Apr 2017</time></small>
               </a>
             </li>
           
@@ -974,7 +999,7 @@ gitment.render('container')
 
     <footer class="footer">
   <div class="copyright">
-      Copyright &copy; <time datetime="2017-08-09T22:19:33+08:00">2017</time> <a href="http://localhost:4000">lszero</a> | Powered by <a href="https://github.com/jekyll/jekyll">Jekyll</a> | Designed by <a href="http://localhost:4000">lszero</a>
+      Copyright &copy; <time datetime="2017-08-13T21:54:43+08:00">2017</time> <a href="http://localhost:4000">lszero</a> | Powered by <a href="https://github.com/jekyll/jekyll">Jekyll</a> | Designed by <a href="http://localhost:4000">lszero</a>
   </div>
 </footer>
 

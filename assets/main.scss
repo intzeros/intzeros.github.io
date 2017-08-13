@@ -72,6 +72,30 @@ pre.highlight {
     margin-bottom: -10px;
 }
 
+.post-pagination {
+    margin-bottom: 60px;
+}
+
+.post-pagination .previous {
+    float: left;
+}
+
+.post-pagination .next {
+    float: right;
+}
+
+.post-pagination a {
+    border: 1px solid #EAEAEA;
+    background-color: #48D1CC;
+    color: #ffffff;
+    text-decoration: none;
+}
+.post-pagination a:hover,
+.post-pagination a:focus {
+    color: #fff;
+    text-decoration: underline;
+}
+
 
 .sidebar-content {
     margin-top: 20px;

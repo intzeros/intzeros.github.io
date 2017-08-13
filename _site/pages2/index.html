@@ -105,6 +105,60 @@
       
       <article class="post-preview">
         <h1 class="post-title">
+          <a href="/algorithm/reservoir-sampling.html">水塘抽样</a>
+        </h1>
+
+        <div class="post-info">
+          <span class="post-date">21 Oct 2016</span>
+           | 
+            <span class="fa fa-folder-open" aria-hidden="true">
+            
+              <a class="categories" href="/categories.html#Algorithm">Algorithm</a>
+            
+            </span>
+          
+          
+        </div>
+
+        <div class="content">
+          <p>先看几个问题：</p>
+
+<ul>
+  <li>从一个很大的源代码中随机选取一行。</li>
+  <li>对一个长度未知的链表随机选取其中的k个节点。</li>
+</ul>
+
+<p><strong>水塘抽样</strong>(<a href="https://en.wikipedia.org/wiki/Reservoir_sampling">Reservoir sampling</a>) 是随机算法的一种。其目的在于从包含n个项目的集合S中选取k个样本，其中n为一很大或未知的数量，尤其适用于不能把所有n个项目都存放到主内存的情况。</p>
+
+<p>考虑k=1的情况。算法如下：</p>
+
+<ul>
+  <li>Keep the first item in memory.</li>
+  <li>When the <em>i</em>-th item arrives (for <em>i</em>&gt;1):with probability 1/<em>i</em>, keep the new item (discard the old one)with probability 1-1/<em>i</em>, keep the old item (ignore the new one)</li>
+</ul>
+
+<p>So:</p>
+
+<ul>
+  <li>when there is only one item, it is kept with probability 1;</li>
+  <li>when there are 2 items, each of them is kept with probability 1/2;</li>
+  <li>when there are 3 items, the third item is kept with probability 1/3, and each of the previous 2 items is also kept with probability (1/2)(1-1/3) = (1/2)(2/3) = 1/3;</li>
+  <li>by induction, it is easy to prove that when there are <em>n</em> items, each item is kept with probability 1/<em>n</em>.</li>
+</ul>
+
+<p>考虑一般情况，<em>Algorithm R</em> by <a href="https://en.wikipedia.org/wiki/Jeffrey_Vitter">Jeffrey Vitter</a>：</p>
+
+
+        </div>
+
+        <div class="post-more">
+          <a class="read-more" href="/algorithm/reservoir-sampling.html">Read More</a>
+        </div>
+      </article>
+      <hr />
+      
+      <article class="post-preview">
+        <h1 class="post-title">
           <a href="/cpp/unordered-map-cplusplus11.html">unordered_map & C++11配置</a>
         </h1>
 
@@ -253,7 +307,7 @@ From the <a href="http://en.wikipedia.org/wiki/Standard_Template_Library">STL</a
   <nav class="site-state">
     <div class="site-state-item">
       <a href="/archives.html">
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">8</span>
         <span>Posts</span>
       </a>
     </div>
@@ -289,7 +343,7 @@ From the <a href="http://en.wikipedia.org/wiki/Standard_Template_Library">STL</a
     
       <li><a href="/categories.html#CPP">CPP (1)</a></li>
     
-      <li><a href="/categories.html#coding4fun">coding4fun (2)</a></li>
+      <li><a href="/categories.html#coding4fun">coding4fun (3)</a></li>
     
     </ul>
   </nav>
@@ -322,7 +376,7 @@ From the <a href="http://en.wikipedia.org/wiki/Standard_Template_Library">STL</a
 
     <footer class="footer">
   <div class="copyright">
-      Copyright &copy; <time datetime="2017-08-09T22:19:33+08:00">2017</time> <a href="http://localhost:4000">lszero</a> | Powered by <a href="https://github.com/jekyll/jekyll">Jekyll</a> | Designed by <a href="http://localhost:4000">lszero</a>
+      Copyright &copy; <time datetime="2017-08-13T21:54:43+08:00">2017</time> <a href="http://localhost:4000">lszero</a> | Powered by <a href="https://github.com/jekyll/jekyll">Jekyll</a> | Designed by <a href="http://localhost:4000">lszero</a>
   </div>
 </footer>
 

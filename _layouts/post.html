@@ -31,8 +31,18 @@ layout: default
         <br><br>
       </article>
 
-      {% if site.related_posts != empty %}
+      <nav class="post-pagination">
+        {% if page.previous %}
+        <a href="{{ site.baseurl }}{{ page.previous.url }}" class="btn previous" title="{{ page.previous.title }}">&larr; {{ page.previous.title }}</a>
+        {% endif %}
+        {% if page.next %}
+        <a href="{{ site.baseurl }}{{ page.next.url }}" class="btn next" title="{{ page.next.title }}">{{ page.next.title }} &rarr;</a>
+        {% endif %}
+      </nav>
+
       <hr>
+
+      {% if site.related_posts != empty %}
       <aside class="related">
         <h3>Related Posts</h3>
         <ul class="related-posts">
