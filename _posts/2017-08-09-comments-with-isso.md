@@ -3,6 +3,7 @@ layout: post
 title:  "搭建Isso评论服务"
 date:   2017-08-09 10:30:00
 categories: coding4fun
+tags: [jekyll, blog]
 ---
 
 与其借助第三方服务天天担心挂，还不如将自己的服务器资源利用起来。[Isso](https://posativ.org/isso/)就是自建评论系统的一种方式。（官网需要fq.）

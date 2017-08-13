@@ -3,6 +3,7 @@ layout: post
 title:  "利用Apache进行多站点配置"
 date:   2017-08-08 08:30:00
 categories: coding4fun
+tags: [jekyll, blog, multisites]
 ---
 
 用了静态网页之后，主机就空闲了，当初辛辛苦苦跟工信部折腾了好几个月连案都备好了。。总感觉特别亏（其实就是舍不得wordpress的搜索功能。。）转念一想，拿wp当图片上传服务也是不错啊，这样就省去找第三方图床了。
