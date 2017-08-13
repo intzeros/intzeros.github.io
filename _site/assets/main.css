@@ -72,6 +72,9 @@ pre.highlight {
   color: #fff;
   text-decoration: underline; }
 
+@media (max-width: 800px) {
+  #sidebar {
+    display: none !important; } }
 .sidebar-content {
   margin-top: 20px; }
 

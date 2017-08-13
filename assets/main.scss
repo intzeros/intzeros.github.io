@@ -97,6 +97,12 @@ pre.highlight {
 }
 
 
+@media (max-width: 800px) {
+    #sidebar {
+        display:none !important;
+    }
+}
+
 .sidebar-content {
     margin-top: 20px;
 }
