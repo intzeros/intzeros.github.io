@@ -15,7 +15,7 @@
   <!-- Bootstrap -->
   <link rel="stylesheet" href="/assets/bootstrap-3.3.7-dist/css/bootstrap.min.css">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="/assets/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/assets/font-awesome/css/font-awesome.min.css">
   <!-- My CSS -->
   <link rel="stylesheet" href="/assets/main.css">
 
@@ -101,7 +101,7 @@
   
     <div class="container">
   <div class="row-fluid main">
-    <div class="content posts col-md-9">
+    <div class="col-md-9 content main-posts-preview">
       
       <article class="post-preview">
         <h1 class="post-title">
@@ -113,7 +113,7 @@
            | 
             <span class="fa fa-folder-open" aria-hidden="true">
             
-              <a class="categories" href="/categories.html#coding4fun">coding4fun</a>
+              <a class="post-categories" href="/categories.html#coding4fun">coding4fun</a>
             
             </span>
           
@@ -128,7 +128,7 @@
           
         </div>
 
-        <div class="content">
+        <div class="post-excerpt">
           <p>与其借助第三方服务天天担心挂，还不如将自己的服务器资源利用起来。<a href="https://posativ.org/isso/">Isso</a>就是自建评论系统的一种方式。（官网需要fq.）</p>
 
 <h2 id="install-isso">Install Isso</h2>
@@ -148,7 +148,7 @@ $ sudo pip install misaka
 
         </div>
 
-        <div class="post-more">
+        <div class="post-readmore">
           <a class="read-more" href="/coding4fun/comments-with-isso.html">Read More</a>
         </div>
       </article>
@@ -164,7 +164,7 @@ $ sudo pip install misaka
            | 
             <span class="fa fa-folder-open" aria-hidden="true">
             
-              <a class="categories" href="/categories.html#coding4fun">coding4fun</a>
+              <a class="post-categories" href="/categories.html#coding4fun">coding4fun</a>
             
             </span>
           
@@ -181,7 +181,7 @@ $ sudo pip install misaka
           
         </div>
 
-        <div class="content">
+        <div class="post-excerpt">
           <p>用了静态网页之后，主机就空闲了，当初辛辛苦苦跟工信部折腾了好几个月连案都备好了。。总感觉特别亏（其实就是舍不得wordpress的搜索功能。。）转念一想，拿wp当图片上传服务也是不错啊，这样就省去找第三方图床了。</p>
 
 <p>我的目标：</p>
@@ -199,7 +199,7 @@ $ sudo pip install misaka
 
         </div>
 
-        <div class="post-more">
+        <div class="post-readmore">
           <a class="read-more" href="/coding4fun/multisite-setting.html">Read More</a>
         </div>
       </article>
@@ -215,7 +215,7 @@ $ sudo pip install misaka
            | 
             <span class="fa fa-folder-open" aria-hidden="true">
             
-              <a class="categories" href="/categories.html#coding4fun">coding4fun</a>
+              <a class="post-categories" href="/categories.html#coding4fun">coding4fun</a>
             
             </span>
           
@@ -232,7 +232,7 @@ $ sudo pip install misaka
           
         </div>
 
-        <div class="content">
+        <div class="post-excerpt">
           <p>作为一个极简主义者，越来越受不了WordPress的臃肿。主要自己平时都是用Markdown来做记录，而WordPress支持的不是很好，另外有时写的md长文通过三方软件导出的html也不造放在wp的什么地方才合适，管理起来还不如几个静态页面来得方便。于是有了某天来个大整顿的想法。</p>
 
 <p>对前端只停留在css的我，花了整三天时间，从Hexo到Jekyll再到Bootstrap，以及各种markdown2html解析器…最后基本算是从头写了一个基于Jekyll的website theme 😓  在此记录了各种前端坑，自认为还算详细吧。</p>
@@ -240,7 +240,7 @@ $ sudo pip install misaka
 
         </div>
 
-        <div class="post-more">
+        <div class="post-readmore">
           <a class="read-more" href="/coding4fun/static-website-with-jekyll.html">Read More</a>
         </div>
       </article>
@@ -268,8 +268,8 @@ $ sudo pip install misaka
       
     </div>
 
-    <div class="sidebar-content col-md-3">
-      <div class="main-sidebar" id="sidebar">
+    <div class="col-md-3 main-sidebar">
+      <div class="sidebar-content" id="sidebar">
   <div class="author-avatar">
     <img src="/assets/img/author_avatar.jpg" alt="lszero">
   </div>
@@ -315,11 +315,14 @@ $ sudo pip install misaka
 
   <hr />
 
-  <nav class="category-list">
+  <nav class="category-list list-group">
     <h3 class="sidebar-title">Categories</h3>
-    <ul>
+    <ul class="list-group">
     
-      <li><a href="/categories.html#coding4fun">coding4fun (3)</a></li>
+      <li class="list-group-item">
+        <a href="/categories.html#coding4fun">coding4fun</a>
+        <span class="badge">3</span>
+      </li>
     
     </ul>
   </nav>
@@ -328,17 +331,32 @@ $ sudo pip install misaka
 
   <nav class="tags-list">
     <h3 class="sidebar-title">Tags</h3>
-    <ul>
+    <ul class="list-group">
     
-      <li><a href="/tags.html#github"> github (1)</a></li>
+      <li class="list-group-item">
+        <a href="/tags.html#github"> github</a>
+        <span class="badge">1</span>
+      </li>
     
-      <li><a href="/tags.html#jekyll"> jekyll (3)</a></li>
+      <li class="list-group-item">
+        <a href="/tags.html#jekyll"> jekyll</a>
+        <span class="badge">3</span>
+      </li>
     
-      <li><a href="/tags.html#bootstrap"> bootstrap (1)</a></li>
+      <li class="list-group-item">
+        <a href="/tags.html#bootstrap"> bootstrap</a>
+        <span class="badge">1</span>
+      </li>
     
-      <li><a href="/tags.html#blog"> blog (2)</a></li>
+      <li class="list-group-item">
+        <a href="/tags.html#blog"> blog</a>
+        <span class="badge">2</span>
+      </li>
     
-      <li><a href="/tags.html#multisites"> multisites (1)</a></li>
+      <li class="list-group-item">
+        <a href="/tags.html#multisites"> multisites</a>
+        <span class="badge">1</span>
+      </li>
     
     </ul>
   </nav>
@@ -356,7 +374,7 @@ $ sudo pip install misaka
 
     <footer class="footer">
   <div class="copyright">
-      Copyright &copy; <time datetime="2017-08-13T23:26:43+08:00">2017</time> <a href="http://localhost:4000">lszero</a> | Powered by <a href="https://github.com/jekyll/jekyll">Jekyll</a> | Designed by <a href="http://localhost:4000">lszero</a>
+      Copyright &copy; <time datetime="2017-08-26T22:27:15+08:00">2017</time> <a href="http://localhost:4000">lszero</a> | Powered by <a href="https://github.com/jekyll/jekyll">Jekyll</a> | Designed by <a href="http://localhost:4000">lszero</a>
   </div>
 </footer>
 

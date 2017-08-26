@@ -758,6 +758,12 @@ $ ruby setup.rb install
 
 好吧，暂时没弄好。。。
 
+### Collections
+
+参见：
+
+* [Introduction to collections](https://learn.cloudcannon.com/jekyll/introduction-to-jekyll-collections/)
+
 ## Else
 
 ### Permalinks

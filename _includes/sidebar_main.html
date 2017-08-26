@@ -1,4 +1,4 @@
-<div class="main-sidebar" id="sidebar">
+<div class="sidebar-content" id="sidebar">
   <div class="author-avatar">
     <img src="{{ site.baseurl }}/assets/img/author_avatar.jpg" alt="lszero">
   </div>
@@ -43,11 +43,14 @@
 
   <hr />
 
-  <nav class="category-list">
+  <nav class="category-list list-group">
     <h3 class="sidebar-title">Categories</h3>
-    <ul>
+    <ul class="list-group">
     {% for category in site.categories %}
-      <li><a href="{{ site.baseurl }}/categories.html#{{ category[0] }}">{{ category[0] }} ({{ category[1].size }})</a></li>
+      <li class="list-group-item">
+        <a href="{{ site.baseurl }}/categories.html#{{ category[0] }}">{{ category[0] }}</a>
+        <span class="badge">{{ category[1].size }}</span>
+      </li>
     {% endfor %}
     </ul>
   </nav>
@@ -56,9 +59,12 @@
 
   <nav class="tags-list">
     <h3 class="sidebar-title">Tags</h3>
-    <ul>
+    <ul class="list-group">
     {% for tag in site.tags %}
-      <li><a href="{{ site.baseurl }}/tags.html#{{ tag[0] }}"> {{ tag[0] }} ({{ tag[1].size }})</a></li>
+      <li class="list-group-item">
+        <a href="{{ site.baseurl }}/tags.html#{{ tag[0] }}"> {{ tag[0] }}</a>
+        <span class="badge">{{ tag[1].size }}</span>
+      </li>
     {% endfor %}
     </ul>
   </nav>

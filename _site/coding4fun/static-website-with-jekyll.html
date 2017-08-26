@@ -15,7 +15,7 @@
   <!-- Bootstrap -->
   <link rel="stylesheet" href="/assets/bootstrap-3.3.7-dist/css/bootstrap.min.css">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="/assets/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/assets/font-awesome/css/font-awesome.min.css">
   <!-- My CSS -->
   <link rel="stylesheet" href="/assets/main.css">
 
@@ -101,7 +101,7 @@
   
     <div class="container">
   <div class="row-fluid main">
-    <div class="content col-md-9">
+    <div class="col-md-9 content">
       <article class="post">
         <h1 class="post-title">从WordPress到静态网站</h1>
 
@@ -110,7 +110,7 @@
            | 
             <span class="fa fa-folder-open" aria-hidden="true">
             
-              <a class="categories" href="/categories.html#coding4fun">coding4fun</a>
+              <a class="post-categories" href="/categories.html#coding4fun">coding4fun</a>
             
             </span>
           
@@ -128,7 +128,8 @@
         </div>
 
         <hr>
-        <p>作为一个极简主义者，越来越受不了WordPress的臃肿。主要自己平时都是用Markdown来做记录，而WordPress支持的不是很好，另外有时写的md长文通过三方软件导出的html也不造放在wp的什么地方才合适，管理起来还不如几个静态页面来得方便。于是有了某天来个大整顿的想法。</p>
+        <div class="post-content">
+          <p>作为一个极简主义者，越来越受不了WordPress的臃肿。主要自己平时都是用Markdown来做记录，而WordPress支持的不是很好，另外有时写的md长文通过三方软件导出的html也不造放在wp的什么地方才合适，管理起来还不如几个静态页面来得方便。于是有了某天来个大整顿的想法。</p>
 
 <p>对前端只停留在css的我，花了整三天时间，从Hexo到Jekyll再到Bootstrap，以及各种markdown2html解析器…最后基本算是从头写了一个基于Jekyll的website theme 😓  在此记录了各种前端坑，自认为还算详细吧。<!-- more --></p>
 
@@ -861,6 +862,14 @@ $ ruby setup.rb install
 
 <p>好吧，暂时没弄好。。。</p>
 
+<h3 id="collections">Collections</h3>
+
+<p>参见：</p>
+
+<ul>
+  <li><a href="https://learn.cloudcannon.com/jekyll/introduction-to-jekyll-collections/">Introduction to collections</a></li>
+</ul>
+
 <h2 id="else">Else</h2>
 
 <h3 id="permalinks">Permalinks</h3>
@@ -932,6 +941,7 @@ This is a test: {{ xxx }}
 </code></pre>
 
 
+        </div>
         <br><br>
       </article>
 
@@ -985,8 +995,8 @@ gitment.render('container')
 </script>
     </div>
     
-    <div class="sidebar-content col-md-3">
-      <div class="post-sidebar" id="sidebar">
+    <div class="col-md-3 post-sidebar">
+      <div class="sidebar-content" id="sidebar">
   <nav class="header-list-sidebar">
     <ul id="sideNav" class="nav headers-sidenav">
         <!-- code will be generated in TOC.js -->
@@ -1000,7 +1010,7 @@ gitment.render('container')
 
     <footer class="footer">
   <div class="copyright">
-      Copyright &copy; <time datetime="2017-08-13T23:26:43+08:00">2017</time> <a href="http://localhost:4000">lszero</a> | Powered by <a href="https://github.com/jekyll/jekyll">Jekyll</a> | Designed by <a href="http://localhost:4000">lszero</a>
+      Copyright &copy; <time datetime="2017-08-26T22:27:15+08:00">2017</time> <a href="http://localhost:4000">lszero</a> | Powered by <a href="https://github.com/jekyll/jekyll">Jekyll</a> | Designed by <a href="http://localhost:4000">lszero</a>
   </div>
 </footer>
 

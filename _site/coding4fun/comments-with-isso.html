@@ -15,7 +15,7 @@
   <!-- Bootstrap -->
   <link rel="stylesheet" href="/assets/bootstrap-3.3.7-dist/css/bootstrap.min.css">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="/assets/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/assets/font-awesome/css/font-awesome.min.css">
   <!-- My CSS -->
   <link rel="stylesheet" href="/assets/main.css">
 
@@ -101,7 +101,7 @@
   
     <div class="container">
   <div class="row-fluid main">
-    <div class="content col-md-9">
+    <div class="col-md-9 content">
       <article class="post">
         <h1 class="post-title">搭建Isso评论服务</h1>
 
@@ -110,7 +110,7 @@
            | 
             <span class="fa fa-folder-open" aria-hidden="true">
             
-              <a class="categories" href="/categories.html#coding4fun">coding4fun</a>
+              <a class="post-categories" href="/categories.html#coding4fun">coding4fun</a>
             
             </span>
           
@@ -126,7 +126,8 @@
         </div>
 
         <hr>
-        <p>与其借助第三方服务天天担心挂，还不如将自己的服务器资源利用起来。<a href="https://posativ.org/isso/">Isso</a>就是自建评论系统的一种方式。（官网需要fq.）</p>
+        <div class="post-content">
+          <p>与其借助第三方服务天天担心挂，还不如将自己的服务器资源利用起来。<a href="https://posativ.org/isso/">Isso</a>就是自建评论系统的一种方式。（官网需要fq.）</p>
 
 <h2 id="install-isso">Install Isso</h2>
 
@@ -297,6 +298,7 @@ $ isso -c /path/to/isso.conf run
 
 <p>如果你在发评论自己测试的时候遇到403 Forbidden的错误，你可能是需要修改isso的配置文件，设置<code class="highlighter-rouge">reply-to-self = true</code>，让自己可以回复自己。</p>
 
+        </div>
         <br><br>
       </article>
 
@@ -350,8 +352,8 @@ gitment.render('container')
 </script>
     </div>
     
-    <div class="sidebar-content col-md-3">
-      <div class="post-sidebar" id="sidebar">
+    <div class="col-md-3 post-sidebar">
+      <div class="sidebar-content" id="sidebar">
   <nav class="header-list-sidebar">
     <ul id="sideNav" class="nav headers-sidenav">
         <!-- code will be generated in TOC.js -->
@@ -365,7 +367,7 @@ gitment.render('container')
 
     <footer class="footer">
   <div class="copyright">
-      Copyright &copy; <time datetime="2017-08-13T23:26:43+08:00">2017</time> <a href="http://localhost:4000">lszero</a> | Powered by <a href="https://github.com/jekyll/jekyll">Jekyll</a> | Designed by <a href="http://localhost:4000">lszero</a>
+      Copyright &copy; <time datetime="2017-08-26T22:27:15+08:00">2017</time> <a href="http://localhost:4000">lszero</a> | Powered by <a href="https://github.com/jekyll/jekyll">Jekyll</a> | Designed by <a href="http://localhost:4000">lszero</a>
   </div>
 </footer>
 
